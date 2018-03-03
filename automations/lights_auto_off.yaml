@@ -8,7 +8,7 @@
     entity_id: light.beleuchtung_toilette
     to: 'on'
   action:
-    - delay: 0:10:00
+    - delay: 0:10
     - condition: state
       entity_id: light.beleuchtung_toilette
       state: 'on'
@@ -21,7 +21,7 @@
     entity_id: light.beleuchtung_kueche
     to: 'on'
   action:
-    - delay: 02:00:00
+    - delay: 02:00
     - condition: state
       entity_id: light.beleuchtung_kueche
       state: 'on'
@@ -34,7 +34,7 @@
     entity_id: light.beleuchtung_flur
     to: 'on'
   action:
-    - delay: 02:00:00
+    - delay: 02:00
     - condition: state
       entity_id: light.beleuchtung_flur
       state: 'on'
@@ -47,7 +47,7 @@
     entity_id: light.stehlampe_flur
     to: 'on'
   action:
-    - delay: 02:00:00
+    - delay: 02:00
     - condition: state
       entity_id: light.stehlampe_flur
       state: 'on'
@@ -62,7 +62,7 @@
     entity_id: light.beleuchtung_esszimmer
     to: 'on'
   action:
-    - delay: 02:00:00
+    - delay: 02:00
     - condition: state
       entity_id: light.beleuchtung_esszimmer
       state: 'on'
