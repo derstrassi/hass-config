@@ -1,0 +1,4 @@
+- platform: yeelight
+  devices:
+    192.168.10.87:
+      name: Stehlampe Flur

@@ -1,0 +1,4 @@
+- platform: lg_netcast
+  name: LG TV
+  host: 192.168.10.65
+  access_token: !secret LG_TV_ACCESS_TOKEN

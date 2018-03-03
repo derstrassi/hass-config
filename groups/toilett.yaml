@@ -1,0 +1,4 @@
+toilette:
+  name: Toilette
+  entities:
+    - light.beleuchtung_toilette

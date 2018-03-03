@@ -1,0 +1,71 @@
+homeassistant:
+  name: Zuhause
+  latitude: 50.941898
+  longitude: 10.694166
+  elevation: 350
+  unit_system: metric
+  time_zone: Europe/Berlin
+  # customize: !include_dir_merge_named customize
+  customize: !include customize.yaml
+  customize_glob:
+    "sensor.heizung_*":
+      hidden: true
+  packages: !include_dir_named packages
+
+http:
+  api_password: !secret HTTP_API_PASSWORD
+  trusted_networks:
+    - 192.168.10.0/24
+  ip_ban_enabled: True
+  login_attempts_threshold: 3
+
+map:
+
+config:
+
+history:
+
+logbook:
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+updater:
+  include_used_components: true
+
+discovery:
+  ignore:
+    - panasonic_viera
+
+tts:
+  - platform: google
+
+tado:
+  username: !secret TADO_USERNAME
+  password: !secret TADO_PASSWORD
+
+mqtt:
+  discovery: true
+  discovery_prefix: homeassistant
+  broker: hassbian.local
+  port: 1883
+  client_id: homeassistant
+  protocol: 3.1
+  username: !secret MQTT_USERNAME
+  password: !secret MQTT_PASSWORD
+
+camera:
+  - platform: ffmpeg
+    input: rtsp://192.168.10.76/unicast
+
+automation: !include_dir_merge_list automations
+binary_sensor: !include_dir_merge_list binary_sensor
+device_tracker: !include_dir_merge_list device_tracker
+group: !include_dir_merge_named groups
+input_boolean: !include_dir_merge_named input_boolean
+light: !include_dir_merge_list lights
+media_player: !include_dir_merge_list media_player
+scene: !include_dir_merge_list scene
+script: !include_dir_merge_list scripts
+sensor: !include_dir_merge_list sensor
+switch: !include_dir_merge_list switch

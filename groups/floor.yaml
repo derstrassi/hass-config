@@ -1,0 +1,5 @@
+flur:
+  name: Flur
+  entities:
+    - light.beleuchtung_flur
+    - light.stehlampe_flur

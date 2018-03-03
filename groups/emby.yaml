@@ -1,0 +1,5 @@
+emby:
+  name: Emby
+  entities:
+    - media_player.emby__kodi__kodi_libreelec
+    - media_player.emby__kodi__kodi_libreelecwz

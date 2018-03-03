@@ -1,0 +1,25 @@
+group.all_lights:
+  friendly_name: Lichter
+  hidden: false
+sensor.dennis_und_maria_tado_bridge_status:
+  hidden: true
+group.weather:
+  hidden: false
+group.all_automations:
+  hidden: false
+light.beleuchtung_flur:
+  friendly_name: Beleuchtung Flur
+light.beleuchtung_toilette:
+  friendly_name: Beleuchtung Toilette
+light.beleuchtung_esszimmer:
+  friendly_name: Beleuchtung Esszimmer
+light.beleuchtung_kueche:
+  friendly_name: Beleuchtung Küche
+sensor.weather_temperature:
+  friendly_name: Temperatur
+sensor.weather_cloudiness:
+  friendly_name: Wolken
+sensor.weather_dewpoint_temperature:
+  friendly_name: Taupunkt
+camera.ffmpeg:
+  friendly_name: Arthur CAM

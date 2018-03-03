@@ -1,0 +1,7 @@
+media_view:
+  name: Media
+  view: yes
+  entities:
+    - group.emby
+    - group.schalter
+    - media_player.lg_tv

@@ -1,0 +1,9 @@
+Familie:
+  entities:
+    - device_tracker.iphonevondennislocal
+    - device_tracker.iphonevonmarylocal
+
+Eltern:
+  entities:
+    - device_tracker.dieter
+    - device_tracker.sylvia

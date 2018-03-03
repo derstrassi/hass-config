@@ -1,0 +1,10 @@
+automation_view:
+  name: Automation
+  view: yes
+  entities:
+    - group.all_automations
+    - group.all_scripts
+
+# auto_off:
+#   name: Auto-OFF
+#   entities:

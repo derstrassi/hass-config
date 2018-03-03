@@ -1,0 +1,13 @@
+# - alias: Flur Stehlampe Guten Morgen
+#   trigger:
+#     platform: state
+#     entity_id: light.stehlampe_flur
+#     to: 'on'
+#   action:
+#     - delay: 2:00
+#     - condition: state
+#       entity_id: light.stehlampe_flur
+#       state: 'on'
+#     - service: light.turn_off
+#       entity_id: light.stehlampe_flur
+#       transition: 30

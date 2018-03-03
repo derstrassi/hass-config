@@ -1,0 +1,8 @@
+schalter:
+  name: Schalter
+  entities:
+    - input_boolean.good_morning
+    - input_boolean.good_night
+    - input_boolean.meal_time
+    - input_boolean.tv_time
+    - input_boolean.work

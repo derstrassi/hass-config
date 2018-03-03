@@ -1,0 +1,9 @@
+# default_view:
+#   name: Home
+#   view: yes
+#   icon: mdi:home
+#   entities:
+#     - climate.heizung
+#     - group.all_lights
+#     - group.weather
+#     - media_player.lg_tv

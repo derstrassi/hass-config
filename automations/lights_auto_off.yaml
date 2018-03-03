@@ -1,0 +1,70 @@
+################################################
+# Automatisches Ausschalten der Lichter nach
+# einer bestimmten Zeit
+#
+- alias: Toilette Auto-OFF
+  trigger:
+    platform: state
+    entity_id: light.beleuchtung_toilette
+    to: 'on'
+  action:
+    - delay: 0:10:00
+    - condition: state
+      entity_id: light.beleuchtung_toilette
+      state: 'on'
+    - service: homeassistant.turn_off
+      entity_id: light.beleuchtung_toilette
+
+- alias: Küche Auto-OFF
+  trigger:
+    platform: state
+    entity_id: light.beleuchtung_kueche
+    to: 'on'
+  action:
+    - delay: 02:00:00
+    - condition: state
+      entity_id: light.beleuchtung_kueche
+      state: 'on'
+    - service: homeassistant.turn_off
+      entity_id: light.beleuchtung_kueche
+
+- alias: Flur Auto-OFF
+  trigger:
+    platform: state
+    entity_id: light.beleuchtung_flur
+    to: 'on'
+  action:
+    - delay: 02:00:00
+    - condition: state
+      entity_id: light.beleuchtung_flur
+      state: 'on'
+    - service: homeassistant.turn_off
+      entity_id: light.beleuchtung_flur
+
+- alias: Flur Stehlampe Auto-OFF
+  trigger:
+    platform: state
+    entity_id: light.stehlampe_flur
+    to: 'on'
+  action:
+    - delay: 02:00:00
+    - condition: state
+      entity_id: light.stehlampe_flur
+      state: 'on'
+    - service: light.turn_off
+      entity_id: light.stehlampe_flur
+      data:
+        transition: 30
+
+- alias: Esszimmer Auto-OFF
+  trigger:
+    platform: state
+    entity_id: light.beleuchtung_esszimmer
+    to: 'on'
+  action:
+    - delay: 02:00:00
+    - condition: state
+      entity_id: light.beleuchtung_esszimmer
+      state: 'on'
+    - service: homeassistant.turn_off
+      entity_id: light.beleuchtung_esszimmer
