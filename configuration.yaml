@@ -1,7 +1,7 @@
 homeassistant:
   name: Zuhause
-  latitude: 50.941898
-  longitude: 10.694166
+  latitude: !secret HOMEASSISTANT_LATITUDE
+  longitude: !secret HOMEASSISTANT_LONGITUDE
   elevation: 350
   unit_system: metric
   time_zone: Europe/Berlin
