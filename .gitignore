@@ -2,7 +2,6 @@
 *.log
 .uuid
 deps
-enity_registry.yaml
 known_devices.yaml
 packages
 secrets.yaml
