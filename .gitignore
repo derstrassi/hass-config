@@ -3,5 +3,4 @@
 .uuid
 deps
 known_devices.yaml
-packages
 secrets.yaml

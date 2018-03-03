@@ -1,0 +1,103 @@
+binary_sensor:
+  - platform: ping
+    name: LG TV
+    host: 192.168.10.65
+  - platform: ping
+    name: Emby Server
+    host: 192.168.10.49
+  - platform: ping
+    name: FreeNAS
+    host: 192.168.10.48
+  - platform: ping
+    name: FRITZ!Repeater
+    host: 192.168.10.69
+  - platform: ping
+    name: MiCAM Arthur
+    host: 192.168.10.76
+  - platform: ping
+    name: NZBGet
+    host: 192.168.10.51
+  - platform: ping
+    name: Radarr
+    host: 192.168.10.52
+  - platform: ping
+    name: Sonarr
+    host: 192.168.10.53
+  - platform: ping
+    name: Sonoff Toilette
+    host: 192.168.10.91
+  - platform: ping
+    name: Sonoff Kueche
+    host: 192.168.10.96
+  - platform: ping
+    name: Sonoff Flur
+    host: 192.168.10.90
+  - platform: ping
+    name: Sonoff Esszimmer
+    host: 192.168.10.94
+  - platform: ping
+    name: Tado Bridge
+    host: 192.168.10.88
+  - platform: ping
+    name: Yeelight Flur
+    host: 192.168.10.87
+  - platform: ping
+    name: Kodi Schlafzimmer
+    host: 192.168.10.71
+  - platform: ping
+    name: Kodi Wohnzimmer
+    host: 192.168.10.62
+  - platform: ping
+    name: ER-X-Main
+    host: 192.168.99.1
+  - platform: ping
+    name: UAP-Outdoor
+    host: 192.168.99.10
+  - platform: ping
+    name: UAP-Flur
+    host: 192.168.99.11
+
+group:
+  network_view:
+    name: Netzwerk
+    view: yes
+    entities:
+      - group.network_devices
+      - group.network_devices_mgmt
+      - group.network_devices_download
+      - group.network_iot_devices
+
+  network_devices:
+    name: Netzwerk Devices
+    entities:
+      - binary_sensor.lg_tv
+      - binary_sensor.emby_server
+      - binary_sensor.freenas
+      - binary_sensor.micam_arthur
+      - binary_sensor.kodi_wohnzimmer
+      - binary_sensor.kodi_schlafzimmer
+
+  network_devices_download:
+    name: Downloader
+    entities:
+      - binary_sensor.nzbget
+      - binary_sensor.radarr
+      - binary_sensor.sonarr
+
+  network_devices_mgmt:
+    name: LAN Infrastruktur
+    entities:
+      - binary_sensor.erxmain
+      - binary_sensor.uapoutdoor
+      - binary_sensor.uapflur
+      - binary_sensor.fritzrepeater
+
+  network_iot_devices:
+    name: IoT Devices
+    entities:
+      - binary_sensor.sonoff_toilette
+      - binary_sensor.sonoff_kueche
+      - binary_sensor.sonoff_flur
+      - binary_sensor.sonoff_esszimmer
+      - binary_sensor.tado_bridge
+      - binary_sensor.yeelight_flur
