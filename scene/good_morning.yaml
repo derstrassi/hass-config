@@ -7,5 +7,5 @@
       transition: 30
       color_temp: 200
       brightness_pct: 80
-    light.beleuchtung_kuche:
+    light.beleuchtung_kueche:
       state: 'on'
