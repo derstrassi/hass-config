@@ -62,7 +62,7 @@ automation: !include_dir_merge_list automations
 binary_sensor: !include_dir_merge_list binary_sensor
 device_tracker: !include_dir_merge_list device_tracker
 group: !include_dir_merge_named groups
-#input_boolean: !include_dir_merge_named input_boolean
+input_boolean: !include_dir_merge_named input_boolean
 light: !include_dir_merge_list lights
 media_player: !include_dir_merge_list media_player
 scene: !include_dir_merge_list scene

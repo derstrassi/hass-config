@@ -1,0 +1,4 @@
+night_mode:
+    name: Nacht Modus
+    initial: off
+    icon: mdi:weather-night
