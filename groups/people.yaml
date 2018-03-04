@@ -2,8 +2,9 @@ Familie:
   entities:
     - device_tracker.iphonevondennislocal
     - device_tracker.iphonevonmarylocal
+    - device_tracker.iphone_von_dennis
 
 Eltern:
   entities:
-    - device_tracker.dieter
-    - device_tracker.sylvia
+    - device_tracker.dietersiphonelocal
+    - device_tracker.iphonevonsylvialocal

@@ -1,9 +1,15 @@
-# default_view:
-#   name: Home
-#   view: yes
-#   icon: mdi:home
-#   entities:
-#     - climate.heizung
-#     - group.all_lights
-#     - group.weather
-#     - media_player.lg_tv
+default_view:
+  name: Home
+  view: yes
+  icon: mdi:home
+  entities:
+    - camera.ffmpeg
+    - climate.heizung
+    - group.familie
+    - group.flur
+    - group.kueche
+    - group.scenes
+    - group.toilette
+    - group.weather
+    - media_player.emby__kodi__kodi_libreelecwz
+    - media_player.lg_tv

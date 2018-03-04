@@ -5,11 +5,7 @@ homeassistant:
   elevation: 350
   unit_system: metric
   time_zone: Europe/Berlin
-  # customize: !include_dir_merge_named customize
   customize: !include customize.yaml
-  customize_glob:
-    "sensor.heizung_*":
-      hidden: true
   packages: !include_dir_named packages
 
 http:
@@ -20,18 +16,13 @@ http:
   login_attempts_threshold: 3
 
 map:
-
 config:
-
 history:
-
 logbook:
+updater:
 
 frontend:
   themes: !include_dir_merge_named themes
-
-updater:
-  include_used_components: true
 
 discovery:
   ignore:

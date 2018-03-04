@@ -1,0 +1,12 @@
+- alias: Gute morgen (Aufstehen)
+  trigger:
+    platform: state
+    entity_id: input_boolean.wake_up
+    to: 'on'
+  action:
+    - service: scene.turn_off
+      entity_id: scene.gute_nacht
+    - delay:
+        seconds: 2
+    - service: scene.turn_on
+      entity_id: scene.guten_morgen

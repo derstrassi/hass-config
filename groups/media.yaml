@@ -3,5 +3,4 @@ media_view:
   view: yes
   entities:
     - group.emby
-    - group.schalter
     - media_player.lg_tv

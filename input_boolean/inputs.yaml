@@ -1,4 +1,9 @@
 night_mode:
-    name: Nacht Modus
-    initial: off
-    icon: mdi:weather-night
+  name: Nacht Modus
+  initial: off
+  icon: mdi:weather-night
+
+wake_up:
+  name: Aufstehen
+  initial: off
+  icon: mdi:alarm

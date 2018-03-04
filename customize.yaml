@@ -3,10 +3,6 @@ group.all_lights:
   hidden: false
 sensor.dennis_und_maria_tado_bridge_status:
   hidden: true
-group.weather:
-  hidden: false
-group.all_automations:
-  hidden: false
 light.beleuchtung_flur:
   friendly_name: Beleuchtung Flur
 light.beleuchtung_toilette:
@@ -15,11 +11,41 @@ light.beleuchtung_esszimmer:
   friendly_name: Beleuchtung Esszimmer
 light.beleuchtung_kueche:
   friendly_name: Beleuchtung Küche
+sensor.weather_symbol:
+  friendly_name: Symbol
 sensor.weather_temperature:
   friendly_name: Temperatur
 sensor.weather_cloudiness:
   friendly_name: Wolken
 sensor.weather_dewpoint_temperature:
   friendly_name: Taupunkt
+sensor.weather_wind_speed:
+  friendly_name: Windgeschwindigkeit
+device_tracker.iphone_von_dennis:
+  friendly_name: Dennis_BT
+device_tracker.iphonevondennislocal:
+  friendly_name: Dennis
+device_tracker.iphonevonmarylocal:
+  friendly_name: Mary
+device_tracker.galaxys6local:
+  friendly_name: Ron
+
+# Gruppen anordnen
+group.flur:
+  order: 1
+group.kueche:
+  order: 2
+group.toilette:
+  order: 3
 camera.ffmpeg:
   friendly_name: Arthur CAM
+  order: 4
+media_player.lg_tv:
+  order: 5
+group.scenes:
+  order: 6
+climate.heizung:
+  order: 8
+group.weather:
+  hidden: false
+  order: 9
