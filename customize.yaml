@@ -1,8 +1,4 @@
-group.all_lights:
-  friendly_name: Lichter
-  hidden: false
-sensor.dennis_und_maria_tado_bridge_status:
-  hidden: true
+# Lichter
 light.beleuchtung_flur:
   friendly_name: Beleuchtung Flur
 light.beleuchtung_toilette:
@@ -11,6 +7,8 @@ light.beleuchtung_esszimmer:
   friendly_name: Beleuchtung Esszimmer
 light.beleuchtung_kueche:
   friendly_name: Beleuchtung Küche
+
+# Wetter
 sensor.weather_symbol:
   friendly_name: Symbol
 sensor.weather_temperature:
@@ -21,14 +19,32 @@ sensor.weather_dewpoint_temperature:
   friendly_name: Taupunkt
 sensor.weather_wind_speed:
   friendly_name: Windgeschwindigkeit
-device_tracker.iphone_von_dennis:
-  friendly_name: Dennis_BT
-device_tracker.iphonevondennislocal:
-  friendly_name: Dennis
-device_tracker.iphonevonmarylocal:
-  friendly_name: Mary
-device_tracker.galaxys6local:
-  friendly_name: Ron
+
+# Personen
+group.person_dennis:
+  entity_picture: /local/dennis.jpg
+group.person_mary:
+  entity_picture: /local/mary.jpg
+
+# Device Tracker
+binary_sensor.device_tracker_embylocal:
+  friendly_name: Emby
+binary_sensor.device_tracker_freenaslocal:
+  friendly_name: FreeNAS
+binary_sensor.device_tracker_micamlocal:
+  friendly_name: MiCAM
+binary_sensor.device_tracker_libreelecwzlocal:
+  friendly_name: Kodi WZ
+binary_sensor.device_tracker_libreeleclocal:
+  friendly_name: Kodi SZ
+binary_sensor.device_tracker_nzbgetlocal:
+  friendly_name: NZBGet
+binary_sensor.device_tracker_radarrlocal:
+  friendly_name: Radarr
+binary_sensor.device_tracker_sonarrlocal:
+  friendly_name: Sonarr
+binary_sensor.device_tracker_yeelinklightcolor1_miio56540983local:
+  friendly_name: YeeLight Flur
 
 # Gruppen anordnen
 group.flur:

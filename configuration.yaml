@@ -47,7 +47,7 @@ mqtt:
 
 camera:
   - platform: ffmpeg
-    input: rtsp://192.168.10.76/unicast
+    input: -rtsp_transport tcp -i rtsp://192.168.10.76/unicast
 
 automation: !include_dir_merge_list automations
 binary_sensor: !include_dir_merge_list binary_sensor

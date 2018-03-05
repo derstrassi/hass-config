@@ -11,5 +11,5 @@ default_view:
     - group.scenes
     - group.toilette
     - group.weather
-    - media_player.emby__kodi__kodi_libreelecwz
+    # - media_player.emby__kodi__kodi_libreelecwz
     - media_player.lg_tv
