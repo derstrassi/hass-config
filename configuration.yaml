@@ -49,6 +49,11 @@ camera:
   - platform: ffmpeg
     input: -rtsp_transport tcp -i rtsp://192.168.10.76/unicast
 
+pilight:
+  host: pilight.local
+  port: 5000
+  send_delay: 0.8
+
 automation: !include_dir_merge_list automations
 binary_sensor: !include_dir_merge_list binary_sensor
 device_tracker: !include_dir_merge_list device_tracker
