@@ -4,3 +4,6 @@
 deps
 known_devices.yaml
 secrets.yaml
+/.HA_VERSION
+/home-assistant.sublime-project
+/home-assistant.sublime-workspace
