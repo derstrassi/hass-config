@@ -46,6 +46,10 @@ binary_sensor.device_tracker_sonarrlocal:
 binary_sensor.device_tracker_yeelinklightcolor1_miio56540983local:
   friendly_name: YeeLight Flur
 
+# All Automations
+group.all_automations:
+  hidden: false
+
 # Gruppen anordnen
 group.flur:
   order: 1

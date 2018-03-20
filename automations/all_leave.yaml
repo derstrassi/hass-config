@@ -1,0 +1,21 @@
+- alias: Schalte alles aus wenn alle weg sind
+  trigger:
+    platform: state
+    entity_id: group.familie
+    from: 'home'
+    to: 'not_home'
+    for:
+      minutes: 5
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.all_lights
+    - service: media_player.turn_off
+      entity_id: media_player.lg_tv
+    - service: media_player.turn_off
+      entity_id: media_player.volumio
+    - service: notify.slack
+      data_template:
+        title: "Niemand mehr da!"
+        message: "Das Haus schaltet jetzt alle Verbraucher aus."
+
+

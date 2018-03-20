@@ -12,4 +12,5 @@ default_view:
     - group.toilette
     - group.weather
     # - media_player.emby__kodi__kodi_libreelecwz
-    - media_player.lg_tv
+    - group.tv
+    - media_player.volumio

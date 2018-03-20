@@ -4,3 +4,9 @@ media_view:
   entities:
     - group.emby
     - media_player.lg_tv
+    - media_player.volumio
+
+tv:
+  name: TV
+  entities:
+    - media_player.lg_tv

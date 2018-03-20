@@ -1,16 +1,21 @@
-- alias: Media Update Active Group
+- alias: Verstecke LG TV wenn aus
   trigger:
-  - entity_id: sensor.media_players_active
-    platform: state
+    - platform: state
+      entity_id: media_player.lg_tv
+      to: 'off'
   action:
-  - service_template: "{% if trigger.to_state.state != '' %}\n  group.set\n{% endif\
-      \ %}\n"
-    data_template:
-      object_id: media_players_active
-      visible: true
-      entities: '{{ trigger.to_state.state }}'
-  - service_template: "{% if trigger.to_state.state == '' %}\n  group.set\n{% endif\
-      \ %}\n"
+    service: group.set_visibility
+    entity_id: group.tv
     data:
-      object_id: media_players_active
       visible: false
+
+- alias: Zeige LG TV wenn eingeschaltet
+  trigger:
+    - platform: state
+      entity_id: media_player.lg_tv
+      to: 'playing'
+  action:
+    service: group.set_visibility
+    entity_id: group.tv
+    data:
+      visible: true

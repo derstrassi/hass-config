@@ -54,8 +54,14 @@ pilight:
   port: 5000
   send_delay: 0.8
 
+notify:
+  - name: slack
+    platform: slack
+    api_key: !secret SLACK_API_KEY
+    default_channel: 'automation'
+
 automation: !include_dir_merge_list automations
-binary_sensor: !include_dir_merge_list binary_sensor
+#binary_sensor: !include_dir_merge_list binary_sensor
 device_tracker: !include_dir_merge_list device_tracker
 group: !include_dir_merge_named groups
 input_boolean: !include_dir_merge_named input_boolean

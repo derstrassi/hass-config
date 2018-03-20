@@ -2,7 +2,6 @@ person_dennis:
   name: Dennis
   entities:
     - device_tracker.dennis_iphone # Tado
-    - device_tracker.iphone_von_dennis # BT
 
 person_mary:
   name: Mary
