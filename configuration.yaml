@@ -12,8 +12,6 @@ http:
   api_password: !secret HTTP_API_PASSWORD
   trusted_networks:
     - 192.168.10.0/24
-  ip_ban_enabled: True
-  login_attempts_threshold: 3
 
 map:
 config:
