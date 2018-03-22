@@ -1,0 +1,20 @@
+- platform: bayesian
+  prior: 0.5
+  name: 'Alle Schlafen'
+  probability_threshold: 0.85
+  observations:
+      - entity_id: 'group.familie'
+        prob_given_true: 0.99
+        prob_given_false: 0.5
+        platform: 'state'
+        to_state: 'home'
+      - entity_id: 'sensor.sun'
+        prob_given_true: 0.9
+        prob_given_false: 0.2
+        platform: 'state'
+        to_state: 'below_horizon'
+      - entity_id: 'group.all_lights'
+        prob_given_true: 0.9
+        prob_given_false: 0.4
+        platform: 'state'
+        to_state: 'off'
