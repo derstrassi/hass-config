@@ -8,6 +8,10 @@ light.beleuchtung_esszimmer:
 light.beleuchtung_kueche:
   friendly_name: Beleuchtung Küche
 
+# Schalter
+switch.rf_kueche2:
+  friendly_name: Küche Ambiente
+
 # Wetter
 sensor.weather_symbol:
   friendly_name: Symbol
