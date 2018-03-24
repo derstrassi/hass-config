@@ -1,12 +1,5 @@
-media_view:
-  name: Media
-  view: yes
-  entities:
-    - group.emby
-    - media_player.lg_tv
-    - media_player.volumio
-
 tv:
   name: TV
   entities:
     - media_player.lg_tv
+    - input_boolean.tv_mode

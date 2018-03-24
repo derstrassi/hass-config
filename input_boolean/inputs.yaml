@@ -7,3 +7,13 @@ wake_up:
   name: Aufstehen
   initial: off
   icon: mdi:alarm
+
+all_off:
+  name: Alles aus
+  initial: off
+  icon: mdi:power
+
+tv_mode:
+  name: TV Abend
+  initial: off
+  icon: mdi:youtube-tv

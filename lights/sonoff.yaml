@@ -1,7 +1,6 @@
 - platform: mqtt
   name: "beleuchtung_flur"
-  state_topic: "tele/floor/light/STATE"
-  value_template: '{{ value_json["POWER"] }}'
+  state_topic: "stat/floor/light/POWER"
   command_topic: "cmnd/floor/light/POWER"
   availability_topic: "tele/floor/light/LWT"
   qos: 1
@@ -9,10 +8,10 @@
   payload_off: "OFF"
   payload_available: "Online"
   payload_not_available: "Offline"
+  retain: true
 - platform: mqtt
   name: "beleuchtung_toilette"
-  state_topic: "tele/toilett/light/STATE"
-  value_template: '{{ value_json["POWER"] }}'
+  state_topic: "stat/toilett/light/POWER"
   command_topic: "cmnd/toilett/light/POWER"
   availability_topic: "tele/toilett/light/LWT"
   qos: 1
@@ -20,10 +19,10 @@
   payload_off: "OFF"
   payload_available: "Online"
   payload_not_available: "Offline"
+  retain: true
 - platform: mqtt
   name: "beleuchtung_esszimmer"
-  state_topic: "tele/floor/light2/STATE"
-  value_template: '{{ value_json["POWER"] }}'
+  state_topic: "stat/floor/light2/POWER"
   command_topic: "cmnd/floor/light2/POWER"
   availability_topic: "tele/floor/light2/LWT"
   qos: 1
@@ -31,10 +30,10 @@
   payload_off: "OFF"
   payload_available: "Online"
   payload_not_available: "Offline"
+  retain: true
 - platform: mqtt
   name: "beleuchtung_kueche"
-  state_topic: "tele/kitchen/light/STATE"
-  value_template: '{{ value_json["POWER"] }}'
+  state_topic: "stat/kitchen/light/POWER"
   command_topic: "cmnd/kitchen/light/POWER"
   availability_topic: "tele/kitchen/light/LWT"
   qos: 1
@@ -42,3 +41,4 @@
   payload_off: "OFF"
   payload_available: "Online"
   payload_not_available: "Offline"
+  retain: true

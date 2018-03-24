@@ -7,10 +7,24 @@ light.beleuchtung_esszimmer:
   friendly_name: Beleuchtung Esszimmer
 light.beleuchtung_kueche:
   friendly_name: Beleuchtung Küche
+  icon: 'mid:ceiling-light'
 
 # Schalter
 switch.rf_kueche2:
   friendly_name: Küche Ambiente
+  assumed_state: false
+  initial_state: false
+  icon: 'mdi:lightbulb'
+switch.rf_wz_stehlampe:
+  friendly_name: Wohnzimmer Stehlampe
+  assumed_state: false
+  initial_state: false
+  icon: 'mdi:lightbulb'
+switch.rf_arthur_lichterkette:
+  friendly_name: Arthur Lichterkette
+  assumed_state: false
+  initial_state: false
+  icon: 'mdi:lightbulb'
 
 # Wetter
 sensor.weather_symbol:

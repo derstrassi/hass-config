@@ -11,6 +11,13 @@ default_view:
     - group.scenes
     - group.toilette
     - group.weather
-    # - media_player.emby__kodi__kodi_libreelecwz
+    - group.wohnzimmer
+    - media_player.volumio
+
+media_view:
+  name: Media
+  view: yes
+  entities:
+    - group.emby
     - group.tv
     - media_player.volumio

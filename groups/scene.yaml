@@ -4,3 +4,5 @@ scenes:
   entities:
     - input_boolean.night_mode
     - input_boolean.wake_up
+    - input_boolean.all_off
+    - input_boolean.tv_mode

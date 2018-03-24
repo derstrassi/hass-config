@@ -1,0 +1,4 @@
+wohnzimmer:
+  name: Wohnzimmer
+  entities:
+    - switch.rf_wz_stehlampe
