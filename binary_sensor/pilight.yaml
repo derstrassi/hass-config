@@ -1,5 +1,5 @@
 - platform: template
   sensors:
     motion:
-      value_template: "{{ states.switch.motion.state == 'on' }}"
+      value_template: "{{ states.switch.rf_motion.state == 'on' }}"
       device_class: motion
