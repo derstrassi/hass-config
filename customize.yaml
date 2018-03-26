@@ -16,6 +16,8 @@ switch.rf_kueche2:
   friendly_name: Küche Ambiente
 switch.rf_wz_stehlampe:
   friendly_name: Wohnzimmer Stehlampe
+switch.rf_wz_lichtkugel:
+  friendly_name: Wohnzimmer Lichtkugel
 switch.rf_arthur_lichterkette:
   friendly_name: Arthur Lichterkette
 
