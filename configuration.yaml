@@ -7,7 +7,11 @@ homeassistant:
   time_zone: Europe/Berlin
   customize: !include customize.yaml
   packages: !include_dir_named packages
-
+  customize_glob:
+    'switch.rf_*':
+      assumed_state: false
+      initial_state: false
+      icon: 'mdi:lightbulb'
 http:
   api_password: !secret HTTP_API_PASSWORD
   trusted_networks:
@@ -45,6 +49,7 @@ mqtt:
 
 camera:
   - platform: ffmpeg
+    name: arthur_cam
     input: -rtsp_transport tcp -i rtsp://192.168.10.76/unicast
 
 pilight:

@@ -1,0 +1,5 @@
+arthur_zimmer:
+  name: Arthur
+  entities:
+    - camera.arthur_cam
+    - switch.rf_arthur_lichterkette

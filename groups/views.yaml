@@ -3,16 +3,19 @@ default_view:
   view: yes
   icon: mdi:home
   entities:
-    - camera.ffmpeg
     - climate.heizung
     - group.familie
+    - binary_sensor.alle_schlafen
+    - group.arthur_zimmer
     - group.flur
     - group.kueche
+    - group.esszimmer
     - group.scenes
     - group.toilette
     - group.weather
     - group.wohnzimmer
     - media_player.volumio
+    - binary_sensor.motion
 
 media_view:
   name: Media

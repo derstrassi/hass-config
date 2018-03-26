@@ -1,6 +1,5 @@
 kueche:
   name: Küche
   entities:
-    - light.beleuchtung_esszimmer
     - light.beleuchtung_kueche
     - switch.rf_kueche2

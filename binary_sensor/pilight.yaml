@@ -1,0 +1,8 @@
+- platform: pilight
+  name: Motion
+  variable: 'state'
+  payload:
+    id: 21633024
+    unit: 1
+  payload_on: 'on'
+  disarm_after_trigger: true

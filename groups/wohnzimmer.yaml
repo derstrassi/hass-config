@@ -1,4 +1,7 @@
 wohnzimmer:
   name: Wohnzimmer
   entities:
+    - media_player.lg_tv
+    - input_boolean.tv_mode
     - switch.rf_wz_stehlampe
+    - switch.rf_wz_lichtkugel

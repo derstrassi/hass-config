@@ -1,30 +1,23 @@
 # Lichter
 light.beleuchtung_flur:
   friendly_name: Beleuchtung Flur
+  icon: 'mdi:ceiling-light'
 light.beleuchtung_toilette:
   friendly_name: Beleuchtung Toilette
+  icon: 'mdi:ceiling-light'
 light.beleuchtung_esszimmer:
   friendly_name: Beleuchtung Esszimmer
 light.beleuchtung_kueche:
   friendly_name: Beleuchtung Küche
-  icon: 'mid:ceiling-light'
+  icon: 'mdi:ceiling-light'
 
 # Schalter
 switch.rf_kueche2:
   friendly_name: Küche Ambiente
-  assumed_state: false
-  initial_state: false
-  icon: 'mdi:lightbulb'
 switch.rf_wz_stehlampe:
   friendly_name: Wohnzimmer Stehlampe
-  assumed_state: false
-  initial_state: false
-  icon: 'mdi:lightbulb'
 switch.rf_arthur_lichterkette:
   friendly_name: Arthur Lichterkette
-  assumed_state: false
-  initial_state: false
-  icon: 'mdi:lightbulb'
 
 # Wetter
 sensor.weather_symbol:
@@ -64,10 +57,6 @@ binary_sensor.device_tracker_sonarrlocal:
 binary_sensor.device_tracker_yeelinklightcolor1_miio56540983local:
   friendly_name: YeeLight Flur
 
-# All Automations
-group.all_automations:
-  hidden: false
-
 # Gruppen anordnen
 group.flur:
   order: 1
@@ -75,7 +64,7 @@ group.kueche:
   order: 2
 group.toilette:
   order: 3
-camera.ffmpeg:
+camera.arthur_cam:
   friendly_name: Arthur CAM
   order: 4
 media_player.lg_tv:

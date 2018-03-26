@@ -1,0 +1,4 @@
+esszimmer:
+  name: Esszimmer
+  entities:
+    - light.beleuchtung_esszimmer
