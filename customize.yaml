@@ -22,22 +22,17 @@ switch.rf_arthur_lichterkette:
   friendly_name: Arthur Lichterkette
 
 # Wetter
-sensor.weather_symbol:
-  friendly_name: Symbol
-sensor.weather_temperature:
-  friendly_name: Temperatur
-sensor.weather_cloudiness:
-  friendly_name: Wolken
-sensor.weather_dewpoint_temperature:
-  friendly_name: Taupunkt
-sensor.weather_wind_speed:
-  friendly_name: Windgeschwindigkeit
+input_text.weather:
+  name: Weather
+  custom_ui_state_card: custom-weather-card
+  config:
+    weather: weather.yweather
 
 # Personen
 group.person_dennis:
-  entity_picture: /local/dennis.jpg
+  entity_picture: /local/people/dennis.jpg
 group.person_mary:
-  entity_picture: /local/mary.jpg
+  entity_picture: /local/people/mary.jpg
 
 # Device Tracker
 binary_sensor.device_tracker_embylocal:

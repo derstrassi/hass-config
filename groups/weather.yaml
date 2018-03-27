@@ -1,8 +1,4 @@
 weather:
   name: Wetter
   entities:
-    - sensor.weather_symbol
-    - sensor.weather_temperature
-    - sensor.weather_wind_speed
-    - sensor.weather_cloudiness
-    - sensor.weather_dewpoint_temperature
+    - input_text.weather

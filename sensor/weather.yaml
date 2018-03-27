@@ -1,8 +1,0 @@
-- platform: yr
-  name: weather
-  monitored_conditions:
-    - temperature
-    - symbol
-    - windSpeed
-    - cloudiness
-    - dewpointTemperature
