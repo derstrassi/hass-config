@@ -55,6 +55,7 @@ camera:
   - platform: ffmpeg
     name: arthur_cam
     input: -rtsp_transport tcp -i rtsp://192.168.10.76/unicast
+    extra_arguments: '-c:v h264_mmal'
 
 pilight:
   host: pilight.local
