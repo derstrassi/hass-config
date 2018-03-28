@@ -1,11 +1,9 @@
 - name: Gute Nacht
   entities:
-    input_boolean.night_mode:
-      state: 'on'
-    group.all_lights:
-      state: 'off'
     light.stehlampe_flur:
       state: 'on'
-      transition: 30
-      color_temp: 200
-      brightness_pct: 80
+      rgb_color: 255,36,146
+      brightness: 150
+    group.all_lights: off
+    group.all_switches: off
+    media_player.lg_tv: off

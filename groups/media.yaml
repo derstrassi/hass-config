@@ -1,5 +1,0 @@
-tv:
-  name: TV
-  entities:
-    - media_player.lg_tv
-    - input_boolean.tv_mode

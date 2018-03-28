@@ -5,22 +5,19 @@ default_view:
   entities:
     - climate.heizung
     - group.familie
-    - binary_sensor.alle_schlafen
     - group.arthur_zimmer
     - group.flur
     - group.kueche
     - group.esszimmer
-    - group.scenes
     - group.toilette
     - group.weather
     - group.wohnzimmer
     - media_player.volumio
-    - binary_sensor.motion
 
 media_view:
   name: Media
   view: yes
   entities:
     - group.emby
-    - group.tv
+    - media_player.lg_tv
     - media_player.volumio
