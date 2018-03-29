@@ -1,25 +1,27 @@
 # Lichter
 light.beleuchtung_flur:
-  friendly_name: Beleuchtung Flur
-  icon: 'mdi:ceiling-light'
+  friendly_name: Beleuchtung
+light.stehlampe_flur:
+  friendly_name: Stehlampe
 light.beleuchtung_toilette:
-  friendly_name: Beleuchtung Toilette
+  friendly_name: Beleuchtung
   icon: 'mdi:ceiling-light'
 light.beleuchtung_esszimmer:
-  friendly_name: Beleuchtung Esszimmer
+  friendly_name: Beleuchtung
 light.beleuchtung_kueche:
-  friendly_name: Beleuchtung Küche
+  friendly_name: Beleuchtung
   icon: 'mdi:ceiling-light'
+
 
 # Schalter
 switch.rf_kueche2:
-  friendly_name: Küche Ambiente
+  friendly_name: Ambiente-Beleuchtung
 switch.rf_wz_stehlampe:
-  friendly_name: Wohnzimmer Stehlampe
+  friendly_name: Stehlampe
 switch.rf_wz_lichtkugel:
-  friendly_name: Wohnzimmer Lichtkugel
+  friendly_name: Lichtkugel
 switch.rf_arthur_lichterkette:
-  friendly_name: Arthur Lichterkette
+  friendly_name: Lichterkette
 
 # Wetter
 input_text.weather:

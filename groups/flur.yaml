@@ -3,3 +3,5 @@ flur:
   entities:
     - light.beleuchtung_flur
     - light.stehlampe_flur
+    - script.yeelight_flur_pink
+    - script.yeelight_flur_weiss

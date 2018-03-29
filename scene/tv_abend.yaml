@@ -4,7 +4,7 @@
     switch.rf_wz_lichtkugel: on
     light.stehlampe_flur:
       state: 'on'
-      rgb_color: 255,36,146
+      rgb_color: [255,36,146]
       brightness: 150
     light.beleuchtung_flur: off
     light.beleuchtung_kueche: off
