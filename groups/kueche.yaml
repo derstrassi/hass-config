@@ -1,5 +1,6 @@
 kueche:
   name: Küche
   entities:
+    - input_boolean.motion_sensor_kueche_aktiv
     - light.beleuchtung_kueche
     - switch.rf_kueche2

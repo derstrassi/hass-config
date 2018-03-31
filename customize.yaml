@@ -1,17 +1,20 @@
 # Lichter
 light.beleuchtung_flur:
-  friendly_name: Beleuchtung
+  friendly_name: Decken-Spots
 light.stehlampe_flur:
   friendly_name: Stehlampe
 light.beleuchtung_toilette:
   friendly_name: Beleuchtung
   icon: 'mdi:ceiling-light'
 light.beleuchtung_esszimmer:
-  friendly_name: Beleuchtung
+  friendly_name: Esszimmer
 light.beleuchtung_kueche:
   friendly_name: Beleuchtung
   icon: 'mdi:ceiling-light'
 
+# Xiaomi Sensoren
+binary_sensor.motion_sensor_158d000113dee1:
+  friendly_name: Bewegung
 
 # Schalter
 switch.rf_kueche2:
@@ -22,6 +25,21 @@ switch.rf_wz_lichtkugel:
   friendly_name: Lichtkugel
 switch.rf_arthur_lichterkette:
   friendly_name: Lichterkette
+switch.plug_158d0001530b1b:
+  friendly_name: Nachttisch
+
+# Sensoren
+sensor.temperature_158d0001a4c74d:
+  friendly_name: Außentemperatur
+sensor.heizung_temperature:
+  friendly_name: Innentemperatur
+sensor.heizung_humidity:
+  friendly_name: Luftfeuchtigkeit
+sensor.heizung_power:
+  friendly_name: Heizung
+binary_sensor.door_window_sensor_158d00014dbac9:
+  friendly_name: Eingangstür
+  icon: 'mdi:door'
 
 # Wetter
 input_text.weather:
@@ -57,6 +75,8 @@ binary_sensor.device_tracker_yeelinklightcolor1_miio56540983local:
   friendly_name: YeeLight Flur
 
 # Gruppen anordnen
+group.zuhause:
+  order: 1
 group.flur:
   order: 1
 group.kueche:

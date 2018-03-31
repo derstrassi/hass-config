@@ -1,0 +1,4 @@
+motion_sensors:
+  entities:
+    - binary_sensor.motion_sensor_158d000113dee1
+

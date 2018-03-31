@@ -12,16 +12,24 @@ homeassistant:
       assumed_state: false
       initial_state: false
       icon: 'mdi:lightbulb'
+    'sensor.temperature_*':
+      friendly_name: Temperatur
+    'sensor.pressure_*':
+      friendly_name: Luftdruck
+    'sensor.humidity_*':
+      friendly_name: Luftfeuchtigkeit
 http:
   api_password: !secret HTTP_API_PASSWORD
   trusted_networks:
     - 192.168.10.0/24
 
+ios:
 map:
 config:
 history:
 logbook:
 updater:
+sun:
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -62,6 +70,12 @@ pilight:
   port: 5000
   send_delay: 0.8
 
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - mac: !secret XIAOMI_GATEWAY_MAC
+      key: !secret XIAOMI_GATEWAY_KEY
+
 notify:
   - name: slack
     platform: slack
@@ -77,7 +91,7 @@ panel_iframe:
 weather:
   - platform: yweather
 
-input_boolean:
+input_boolean: !include_dir_merge_named inputs
 input_text:
   weather:
     name: weather
@@ -89,6 +103,6 @@ group: !include_dir_merge_named groups
 light: !include_dir_merge_list lights
 media_player: !include_dir_merge_list media_player
 scene: !include_dir_merge_list scene
-script: !include_dir_merge_list scripts
+script: !include_dir_merge_named scripts
 sensor: !include_dir_merge_list sensor
 switch: !include_dir_merge_list switch

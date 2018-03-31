@@ -1,0 +1,23 @@
+- platform: template
+  sensors:
+    battery_level_door_main:
+      friendly_name: 'Tür-Sensor'
+      value_template: '{{ states.binary_sensor.door_window_sensor_158d00014dbac9.attributes.battery_level }} %'
+      icon_template: >-
+        {% if states('binary_sensor.door_window_sensor_158d00014dbac9.attributes.battery_level') != "unknown" %}
+          {% set battery_level = states('binary_sensor.door_window_sensor_158d00014dbac9.attributes.battery_level')|int (-1)%}
+          {% set battery_round = (battery_level|int / 10)|int * 10 %}
+          {% if battery_level == -1 %}
+            mdi:battery-unknown
+          {% else %}
+            {% if battery_round >= 100 %}
+              mdi:battery
+            {% elif battery_round > 0 %}
+              mdi:battery-{{ battery_round }}
+            {% else %}
+              mdi:battery-alert
+            {% endif %}
+          {% endif %}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}

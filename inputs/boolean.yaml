@@ -1,0 +1,14 @@
+motion_sensor_flur_aktiv:
+  name: Bewegungsmelder aktiv
+  initial: on
+  icon: mdi:radar
+
+motion_sensor_toilette_aktiv:
+  name: Bewegungsmelder aktiv
+  initial: on
+  icon: mdi:radar
+
+motion_sensor_kueche_aktiv:
+  name: Bewegungsmelder aktiv
+  initial: on
+  icon: mdi:radar

@@ -1,7 +1,11 @@
 flur:
   name: Flur
   entities:
+    - sensor.temperature_158d00018734bb
+    - sensor.humidity_158d00018734bb
+    - input_boolean.motion_sensor_flur_aktiv
     - light.beleuchtung_flur
+    - light.beleuchtung_esszimmer
     - light.stehlampe_flur
     - script.yeelight_flur_pink
     - script.yeelight_flur_weiss

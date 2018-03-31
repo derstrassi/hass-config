@@ -1,0 +1,10 @@
+- platform: template
+  sensors:
+    motion_sensor_toilette_last_seen:
+      friendly_name: 'Letzter Klo-Besuch'
+      icon_template: 'mdi:clock-alert'
+      value_template: '{{ as_timestamp(states.binary_sensor.motion_sensor_158d000113dee1.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
+    door_sensor_eingang_last_open:
+      friendly_name: 'Tür Zuletzt geöffnet'
+      icon_template: 'mdi:clock-alert'
+      value_template: '{{ as_timestamp(states.binary_sensor.door_window_sensor_158d00014dbac9.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'

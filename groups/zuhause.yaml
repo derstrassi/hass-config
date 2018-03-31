@@ -1,0 +1,27 @@
+person_dennis:
+  name: Dennis
+  entities:
+    - device_tracker.dennis_iphone # Tado
+
+person_mary:
+  name: Mary
+  entities:
+    - device_tracker.marys_iphone # Tado
+
+familie:
+  entities:
+    - group.person_dennis
+    - group.person_mary
+
+zuhause:
+  name: Zuhause
+  entities:
+    - group.person_dennis
+    - group.person_mary
+    - binary_sensor.door_window_sensor_158d00014dbac9
+    - sensor.door_sensor_eingang_last_open
+    - sensor.temperature_158d0001a4c74d
+    - sensor.pressure_158d0001a4c74d
+    - sensor.heizung_temperature
+    - sensor.heizung_humidity
+    - sensor.heizung_power

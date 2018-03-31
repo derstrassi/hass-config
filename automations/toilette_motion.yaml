@@ -1,0 +1,32 @@
+- alias: toilett_movement_on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d000113dee1
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.motion_sensor_toilette_aktiv
+        state: 'on'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.beleuchtung_toilette
+
+- alias: toilett_movement_off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d000113dee1
+    to: 'off'
+    for:
+      minutes: 5
+  condition:
+    - condition: state
+      entity_id: input_boolean.motion_sensor_toilette_aktiv
+      state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.beleuchtung_toilette

@@ -2,4 +2,6 @@ arthur_zimmer:
   name: Arthur
   entities:
     - camera.arthur_cam
+    - sensor.temperature_158d0001574111
+    - sensor.humidity_158d0001574111
     - switch.rf_arthur_lichterkette
