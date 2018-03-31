@@ -27,3 +27,9 @@ devices_view:
   view: yes
   entities:
     - group.battery_status
+
+automations_view:
+  name: Automatisierung
+  view: yes
+  entities:
+    #- group.battery_status

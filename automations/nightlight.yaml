@@ -1,0 +1,27 @@
+- alias: nightlight_on
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:30:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.familie
+        state: 'home'
+  action:
+    - service: light.turn_on
+      entity_id: light.gateway_light_286c0788a9dd
+      data:
+        rgb_color: [255,100,100]
+        brightness_pct: 50
+        transition: 15
+
+- alias: nightlight_off
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '01:00:00'
+  action:
+    - service: light.turn_off
+      entity_id: light.gateway_light_286c0788a9dd
