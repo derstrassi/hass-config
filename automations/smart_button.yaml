@@ -17,5 +17,4 @@
       entity_id: binary_sensor.switch_158d00013f85d3
       click_type: long_click_press
   action:
-    service: switch.toggle
-    entity_id: switch.plug_158d0001530b1b
+    service: script.all_off

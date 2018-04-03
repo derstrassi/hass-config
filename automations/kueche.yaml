@@ -9,9 +9,16 @@
       - condition: state
         entity_id: input_boolean.motion_sensor_kueche_aktiv
         state: 'on'
-      - condition: state
+      # - condition: state
+      #   entity_id: sun.sun
+      #   state: 'below_horizon'
+      - condition: numeric_state
         entity_id: sun.sun
-        state: 'below_horizon'
+        value_template: '{{ state.attributes.elevation }}'
+        below: 2
+      - condition: state
+        entity_id: switch.rf_kueche2
+        state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: light.beleuchtung_kueche

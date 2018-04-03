@@ -26,7 +26,7 @@
         ringtone_id: 8
         ringtone_vol: 50
     - delay:
-        seconds: 30
+        minutes: 10
     - service: light.turn_off
       entity_id: light.stehlampe_flur
     - service: light.turn_off
@@ -38,7 +38,7 @@
     entity_id: binary_sensor.door_window_sensor_158d00014dbac9
     to: 'on'
     for:
-      minutes: 2
+      minutes: 5
   action:
     - service: notify.notify
       data:

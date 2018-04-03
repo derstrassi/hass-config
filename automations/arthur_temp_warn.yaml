@@ -2,7 +2,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.temperature_158d0001574111
-    below: 19
+    below: 18
   condition:
     condition: and
     conditions:
@@ -15,6 +15,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: switch.plug_158d0001530b1b
-    - service: notify.slack
+    - service: notify.notify
       data:
-        message: 'Warnung: Es ist zu kalt in Arthurs Zimmer!'
+        title: 'Warnung!'
+        message: 'Es ist zu kalt in Arthurs Zimmer!'
