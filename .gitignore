@@ -7,3 +7,4 @@ secrets.yaml
 /.HA_VERSION
 /home-assistant.sublime-project
 /home-assistant.sublime-workspace
+__pycache__
