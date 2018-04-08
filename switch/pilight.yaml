@@ -105,3 +105,24 @@
         id: C7
         unit: 24
         state: 'off'
+    rf_sz_nachttisch:
+      on_code:
+        protocol: clarus_switch
+        id: A3
+        unit: 24
+        'on': 1
+      off_code:
+        protocol: clarus_switch
+        id: A3
+        unit: 24
+        'off': 0
+      on_code_receive:
+        protocol: clarus_switch
+        id: A3
+        unit: 24
+        state: 'on'
+      off_code_receive:
+        protocol: clarus_switch
+        id: A3
+        unit: 24
+        state: 'off'

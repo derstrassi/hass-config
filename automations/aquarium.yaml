@@ -15,5 +15,5 @@
     platform: template
     value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_light_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
   action:
-    service: switch.turn_on
+    service: switch.turn_off
     entity_id: switch.plug_158d0001530b1b

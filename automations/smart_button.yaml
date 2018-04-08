@@ -7,7 +7,7 @@
       click_type: single
   action:
     service: switch.toggle
-    entity_id: switch.plug_158d0001530b1b
+    entity_id: switch.rf_sz_nachttisch
 
 - alias: smart_button_long_press
   trigger:

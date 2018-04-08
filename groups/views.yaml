@@ -29,6 +29,7 @@ media_view:
     - group.emby
     - media_player.lg_tv
     - media_player.volumio
+    - media_player.playstation_4
 
 devices_view:
   name: Geräte
