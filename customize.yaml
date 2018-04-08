@@ -36,6 +36,9 @@ switch.sonoff_wz_1:
 switch.sonoff_wz_2:
   friendly_name: Beleuchtung Nähzimmer
   icon: 'mdi:ceiling-light'
+switch.rf_sz_nachttisch:
+  friendly_name: Nachttisch
+  icon: 'mdi:lightbulb-on-outline'
 
 # Sensoren
 sensor.temperature_158d0001a4c74d:

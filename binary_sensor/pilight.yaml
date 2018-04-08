@@ -3,6 +3,7 @@
   device_class: motion
   variable: 'state'
   payload:
+    protocol: 'arctech_switch'
     id: 21633024
     unit: 1
   payload_on: 'on'
