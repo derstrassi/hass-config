@@ -1,0 +1,33 @@
+- alias: wohnzimmer_auto_off
+  trigger:
+    platform: state
+    entity_id: group.wz_ambiente
+    to: 'on'
+    for:
+      hours: 4
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.wz_ambiente
+
+- alias: wohnzimmer_tv_lights_on
+  trigger:
+    platform: state
+    entity_id: media_player.lg_tv
+    to: 'playing'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.wz_ambiente
+
+- alias: wohnzimmer_tv_lights_off
+  trigger:
+    platform: state
+    entity_id: media_player.lg_tv
+    to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.wz_ambiente
+

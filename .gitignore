@@ -8,3 +8,7 @@ secrets.yaml
 /home-assistant.sublime-project
 /home-assistant.sublime-workspace
 __pycache__
+/.cloud
+/.homekit.state
+/.ios.conf
+/.ps4-wake.credentials.json

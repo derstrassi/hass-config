@@ -12,7 +12,7 @@
       - condition: numeric_state
         entity_id: sun.sun
         value_template: '{{ state.attributes.elevation }}'
-        below: 8
+        below: 10
       - condition: state
         entity_id: switch.rf_kueche2
         state: 'off'
@@ -34,6 +34,21 @@
   action:
     service: homeassistant.turn_off
     entity_id: light.beleuchtung_kueche
+
+- alias: kueche_movement_ambiente_off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00012326f7
+    to: 'off'
+    for:
+      minutes: 30
+  condition:
+    - condition: state
+      entity_id: input_boolean.motion_sensor_kueche_aktiv
+      state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.rf_kueche2
 
 - alias: kueche_movement_volumio_on
   trigger:
