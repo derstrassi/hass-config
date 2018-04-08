@@ -1,0 +1,18 @@
+- alias: "Ändere Beleuchtung wenn Film startet"
+  trigger:
+    - platform: state
+      entity_id: media_player.emby__kodi__kodi_libreelecwz
+      from: 'idle'
+      to: 'playing'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: media_player.lg_tv
+        state: 'playing'
+  action:
+      service: scene.turn_on
+      entity_id: scene.tv_abend

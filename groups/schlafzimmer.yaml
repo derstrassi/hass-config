@@ -3,4 +3,3 @@ schlafzimmer:
   entities:
     - sensor.temperature_158d000182580d
     - sensor.humidity_158d000182580d
-    - switch.plug_158d0001530b1b

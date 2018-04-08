@@ -1,11 +1,11 @@
 - name: TV Abend
   entities:
-    switch.rf_wz_stehlampe: on
-    switch.rf_wz_lichtkugel: on
-    light.stehlampe_flur:
-      state: 'on'
-      rgb_color: [255,36,146]
-      brightness: 150
+    group.wz_ambiente: on
     light.beleuchtung_flur: off
-    light.beleuchtung_kueche: off
-    light.beleuchtung_esszimmer: off
+    switch.sonoff_wz_1: off
+    switch.sonoff_wz_2: off
+    switch.volumio: off
+    light.stehlampe_flur:
+      state: on
+      brightness: 199
+      color_temp: 333

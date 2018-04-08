@@ -26,7 +26,16 @@ switch.rf_wz_lichtkugel:
 switch.rf_arthur_lichterkette:
   friendly_name: Lichterkette
 switch.plug_158d0001530b1b:
-  friendly_name: Nachttisch
+  friendly_name: Beleuchtung
+  icon: 'mdi:lightbulb-on-outline'
+switch.volumio_kueche:
+  icon: 'mdi:radio'
+switch.sonoff_wz_1:
+  friendly_name: Beleuchtung Couch
+  icon: 'mdi:ceiling-light'
+switch.sonoff_wz_2:
+  friendly_name: Beleuchtung Nähzimmer
+  icon: 'mdi:ceiling-light'
 
 # Sensoren
 sensor.temperature_158d0001a4c74d:

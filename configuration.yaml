@@ -24,6 +24,27 @@ http:
     - 192.168.10.0/24
 
 cloud:
+  alexa:
+    filter:
+      include_domains:
+        - light
+        - media_player
+        - scene
+        - script
+        - switch
+      exclude_entities:
+        - switch.example
+    entity_config:
+      light.kitchen:
+        name: Custom Name for Alexa
+      switch.stairs:
+        display_categories: LIGHT
+      switch.volumio_kueche:
+        name: Radio Küche
+      media_player.lg_tv:
+        name: TV
+        display_categories: TV
+
 config:
 history:
 homekit:
@@ -65,7 +86,7 @@ camera:
   - platform: ffmpeg
     name: arthur_cam
     input: -rtsp_transport tcp -i rtsp://192.168.10.76/unicast
-    extra_arguments: '-c:v h264_mmal'
+    extra_arguments: '-c:v h264_omx'
 
 pilight:
   host: 192.168.10.93
@@ -93,18 +114,17 @@ panel_iframe:
 weather:
   - platform: yweather
 
-input_boolean: !include_dir_merge_named inputs
-input_text:
-  weather:
-    name: weather
-
 automation: !include_dir_merge_list automations
 binary_sensor: !include_dir_merge_list binary_sensor
 device_tracker: !include_dir_merge_list device_tracker
 group: !include_dir_merge_named groups
+input_boolean: !include inputs/boolean.yaml
+input_datetime: !include inputs/datetime.yaml
+input_text: !include inputs/text.yaml
 light: !include_dir_merge_list lights
 media_player: !include_dir_merge_list media_player
 scene: !include_dir_merge_list scene
 script: !include_dir_merge_named scripts
 sensor: !include_dir_merge_list sensor
 switch: !include_dir_merge_list switch
+

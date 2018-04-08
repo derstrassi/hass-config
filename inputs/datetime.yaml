@@ -1,0 +1,13 @@
+aquarium_light_start:
+  name: Uhrzeit ein
+  has_date: false
+  has_time: true
+  initial: '08:00'
+  icon: mdi:clock-start
+
+aquarium_light_end:
+  name: Uhrzeit aus
+  has_date: false
+  has_time: true
+  initial: '20:00'
+  icon: mdi:clock-end

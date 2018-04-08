@@ -1,7 +1,16 @@
 arthur_zimmer:
   name: Arthur
+  control: hidden
   entities:
-    - camera.arthur_cam
     - sensor.temperature_158d0001574111
     - sensor.humidity_158d0001574111
     - switch.rf_arthur_lichterkette
+
+aquarium:
+  name: Aquarium
+  control: hidden
+  entities:
+    - input_boolean.aquarium_light_timer_aktiv
+    - input_datetime.aquarium_light_start
+    - input_datetime.aquarium_light_end
+    - switch.plug_158d0001530b1b

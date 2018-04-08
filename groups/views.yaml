@@ -5,14 +5,22 @@ default_view:
   entities:
     - group.zuhause
     - climate.heizung
-    - group.arthur_zimmer
+    # - group.arthur_zimmer
     - group.flur
     - group.kueche
     - group.toilette
     # - group.weather
     - group.wohnzimmer
     - group.schlafzimmer
-    - media_player.volumio
+    # - media_player.volumio
+
+kinderzimmer_view:
+  name: Kinderzimmer
+  view: yes
+  entities:
+    - group.arthur_zimmer
+    - group.aquarium
+    - camera.arthur_cam
 
 media_view:
   name: Media
@@ -28,8 +36,8 @@ devices_view:
   entities:
     - group.battery_status
 
-automations_view:
-  name: Automatisierung
-  view: yes
-  entities:
-    #- group.battery_status
+# automations_view:
+#   name: Automatisierung
+#   view: yes
+#   entities:
+#     #- group.battery_status

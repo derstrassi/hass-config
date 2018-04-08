@@ -1,5 +1,8 @@
-- platform: template
-  sensors:
-    motion:
-      value_template: "{{ states.switch.rf_motion.state == 'on' }}"
-      device_class: motion
+- platform: pilight
+  name: rf_motion_flur
+  device_class: motion
+  variable: 'state'
+  payload:
+    id: 21633024
+    unit: 1
+  disarm_after_trigger: true

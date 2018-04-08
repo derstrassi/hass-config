@@ -1,9 +1,11 @@
 flur:
   name: Flur
+  control: hidden
   entities:
     - sensor.temperature_158d00018734bb
     - sensor.humidity_158d00018734bb
     - input_boolean.motion_sensor_flur_aktiv
+    - binary_sensor.rf_motion_flur
     - light.beleuchtung_flur
     - light.beleuchtung_esszimmer
     - light.stehlampe_flur
