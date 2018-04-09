@@ -14,7 +14,7 @@
         before: '06:00:00'
   action:
     - service: homeassistant.turn_on
-      entity_id: switch.plug_158d0001530b1b
+      entity_id: switch.rf_sz_nachttisch
     - service: notify.notify
       data:
         title: 'Warnung!'
