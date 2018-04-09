@@ -1,0 +1,8 @@
+gateway_nightlight_on:
+  sequence:
+    - service: light.turn_on
+      entity_id: light.gateway_light_286c0788a9dd
+      data:
+        rgb_color: [255,100,100]
+        brightness_pct: 50
+        transition: 15

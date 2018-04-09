@@ -2,7 +2,7 @@
   trigger:
     platform: sun
     event: sunset
-    offset: '00:30:00'
+    offset: '02:00:00'
   condition:
     condition: and
     conditions:
@@ -10,12 +10,7 @@
         entity_id: group.familie
         state: 'home'
   action:
-    - service: light.turn_on
-      entity_id: light.gateway_light_286c0788a9dd
-      data:
-        rgb_color: [255,100,100]
-        brightness_pct: 50
-        transition: 15
+    - service: script.gateway_nightlight_on
 
 - alias: nightlight_off
   trigger:
