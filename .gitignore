@@ -12,3 +12,4 @@ __pycache__
 /.homekit.state
 /.ios.conf
 /.ps4-wake.credentials.json
+/.ps4.conf
