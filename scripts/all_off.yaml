@@ -1,5 +1,5 @@
 all_off:
-  alias: Alles ausschalten
+  alias: Alles aus
   sequence:
     - service: homeassistant.turn_off
       entity_id: group.all_lights
