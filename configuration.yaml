@@ -105,12 +105,6 @@ notify:
     api_key: !secret SLACK_API_KEY
     default_channel: 'automation'
 
-panel_iframe:
- nodered:
-   title: 'Node-RED'
-   icon: 'mdi:shuffle-variant'
-   url: 'http://192.168.10.95:1880/'
-
 weather:
   - platform: yweather
 
