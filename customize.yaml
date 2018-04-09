@@ -25,9 +25,6 @@ switch.rf_wz_lichtkugel:
   friendly_name: Lichtkugel
 switch.rf_arthur_lichterkette:
   friendly_name: Lichterkette
-switch.plug_158d0001530b1b:
-  friendly_name: Beleuchtung
-  icon: 'mdi:lightbulb-on-outline'
 switch.volumio_kueche:
   icon: 'mdi:radio'
 switch.sonoff_wz_1:

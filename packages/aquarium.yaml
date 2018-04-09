@@ -1,0 +1,57 @@
+homeassistant:
+  customize:
+    switch.plug_158d0001530b1b:
+      friendly_name: Beleuchtung
+      icon: 'mdi:lightbulb-on-outline'
+
+group:
+  aquarium:
+    name: Aquarium
+    control: hidden
+    entities:
+      - input_boolean.aquarium_light_timer_aktiv
+      - input_datetime.aquarium_light_start
+      - input_datetime.aquarium_light_end
+      - switch.plug_158d0001530b1b
+
+input_boolean:
+  aquarium_light_timer_aktiv:
+    name: Timer aktiv
+    initial: on
+    icon: mdi:clock
+
+input_datetime:
+  aquarium_light_start:
+    name: Uhrzeit ein
+    has_date: false
+    has_time: true
+    initial: '08:00'
+    icon: mdi:clock-start
+
+  aquarium_light_end:
+    name: Uhrzeit aus
+    has_date: false
+    has_time: true
+    initial: '20:00'
+    icon: mdi:clock-end
+
+automation:
+  - alias: aquarium_light_timer_on
+    trigger:
+      platform: template
+      value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_light_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+    condition:
+      condition: state
+      entity_id: input_boolean.aquarium_light_timer_aktiv
+      state: 'on'
+    action:
+      service: switch.turn_on
+      entity_id: switch.plug_158d0001530b1b
+
+  - alias: aquarium_light_timer_off
+    trigger:
+      platform: template
+      value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_light_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+    action:
+      service: switch.turn_off
+      entity_id: switch.plug_158d0001530b1b

@@ -12,8 +12,3 @@ motion_sensor_kueche_aktiv:
   name: Bewegungsmelder aktiv
   initial: on
   icon: mdi:radar
-
-aquarium_light_timer_aktiv:
-  name: Timer aktiv
-  initial: on
-  icon: mdi:clock
