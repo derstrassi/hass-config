@@ -1,0 +1,9 @@
+volumio_play:
+  alias: Starte Radio
+  sequence:
+    - service: media_player.volume_set
+      entity_id: media_player.volumio
+      data_template:
+        volume_level: 0.25
+    - service: media_player.media_play
+      entity_id: media_player.volumio
