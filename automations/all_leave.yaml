@@ -1,8 +1,14 @@
 - alias: all_off_when_nobody_home
   trigger:
     platform: state
-    entity_id: group.familie
-    to: 'not_home'
+    entity_id: group.motion_sensors
+    to: 'off'
+    for:
+      minutes: 15
+  condition:
+    - condition: state
+      entity_id: group.familie
+      state: 'not_home'
   action:
     - service: script.flash_floor_lights
     - delay:
