@@ -39,7 +39,8 @@ cloud:
     entity_config:
       light.kitchen:
         name: Custom Name for Alexa
-      switch.stairs:
+      switch.plug_158d0001530b1b:
+        name: Aquarium Beleuchtung
         display_categories: LIGHT
       media_player.volumio:
         name: Radio Küche

@@ -7,10 +7,12 @@ light.beleuchtung_toilette:
   friendly_name: Beleuchtung
   icon: 'mdi:ceiling-light'
 light.beleuchtung_esszimmer:
-  friendly_name: Esszimmer
+  friendly_name: Wandbeleuchtung
 light.beleuchtung_kueche:
   friendly_name: Beleuchtung
   icon: 'mdi:ceiling-light'
+light.gateway_light_286c0788a9dd:
+  friendly_name: Gateway Licht
 
 # Xiaomi Sensoren
 binary_sensor.motion_sensor_158d000113dee1:

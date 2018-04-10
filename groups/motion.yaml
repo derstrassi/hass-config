@@ -1,4 +1,6 @@
 motion_sensors:
   entities:
     - binary_sensor.motion_sensor_158d000113dee1
+    - binary_sensor.motion_sensor_158d00012326f7
+    - binary_sensor.rf_motion_flur
 

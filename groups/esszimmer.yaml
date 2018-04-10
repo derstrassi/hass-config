@@ -1,0 +1,6 @@
+esszimmer:
+  name: Esszimmer
+  control: hidden
+  entities:
+    - light.beleuchtung_esszimmer
+    - light.gateway_light_286c0788a9dd
