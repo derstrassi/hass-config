@@ -4,6 +4,6 @@ volumio_play:
     - service: media_player.volume_set
       entity_id: media_player.volumio
       data_template:
-        volume_level: 0.25
+        volume_level: 0.2
     - service: media_player.media_play
       entity_id: media_player.volumio
