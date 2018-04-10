@@ -56,6 +56,19 @@ map:
 sun:
 updater:
 
+# Example configuration.yaml entry with exclude
+recorder:
+  purge_keep_days: 30
+  db_url: mysql://192.168.10.95/homeassistant?charset=utf8
+  exclude:
+    domains:
+      - automation
+      - updater
+    entities:
+      - sun.sun # Don't record sun data
+      - sensor.last_boot # Comes from 'systemmonitor' sensor platform
+      - sensor.date
+
 frontend:
   themes: !include_dir_merge_named themes
   extra_html_url:
