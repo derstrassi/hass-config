@@ -1,0 +1,10 @@
+- platform: template
+  sensors:
+    last_person:
+      value_template: >-
+        {% set persons = [group.person_dennis, group.person_mary] %}
+        {% for person in persons %}
+          {% if as_timestamp(person.last_changed) == as_timestamp(persons | map(attribute='last_changed') | max) %}
+            {{ person }}
+          {% endif %}
+        {% endfor %}

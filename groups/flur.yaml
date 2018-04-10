@@ -7,7 +7,6 @@ flur:
     - input_boolean.motion_sensor_flur_aktiv
     - sensor.motion_sensor_flur_last_seen
     - light.beleuchtung_flur
-    - light.beleuchtung_esszimmer
     - light.stehlampe_flur
     - script.yeelight_flur_pink
     - script.yeelight_flur_weiss

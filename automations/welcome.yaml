@@ -1,0 +1,20 @@
+- alias: welcome_arriving_person
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d00014dbac9
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: group.familie
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.rf_motion_flur
+      state: 'off'
+      for:
+        hours: 1
+  action:
+    - service: notify.ios_iphone_von_dennis
+      data_template:
+        title: "Tür wurde geöffnet"
+        message: "{{ states.sensor.last_person.name }} hat das Haus betreten."
+
