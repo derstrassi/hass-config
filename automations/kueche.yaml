@@ -58,6 +58,11 @@
   condition:
     - condition: time
       after: '06:00:00'
-      before: '20:00:00'
+      before: '08:00:00'
+    - condition: state
+      entity_id: media_player.volumio
+      state: 'idle'
+      for:
+        hours: 1
   action:
     service: script.volumio_play

@@ -1,33 +1,35 @@
-- alias: toilett_movement_on
+- alias: flur_movement_on
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_sensor_158d000113dee1
+    entity_id: binary_sensor.rf_motion_flur
     to: 'on'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: input_boolean.motion_sensor_toilette_aktiv
+        entity_id: light.stehlampe_flur
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.motion_sensor_flur_aktiv
         state: 'on'
       - condition: numeric_state
         entity_id: sun.sun
         value_template: '{{ state.attributes.elevation }}'
         below: 8
   action:
-    service: homeassistant.turn_on
-    entity_id: light.beleuchtung_toilette
+    service: script.yeelight_flur_weiss
 
-- alias: toilett_movement_off
+- alias: flur_movement_off
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_sensor_158d000113dee1
+    entity_id: binary_sensor.rf_motion_flur
     to: 'off'
     for:
-      minutes: 5
+      hours: 1
   condition:
     - condition: state
-      entity_id: input_boolean.motion_sensor_toilette_aktiv
+      entity_id: input_boolean.motion_sensor_flur_aktiv
       state: 'on'
   action:
     service: homeassistant.turn_off
-    entity_id: light.beleuchtung_toilette
+    entity_id: light.stehlampe_flur
