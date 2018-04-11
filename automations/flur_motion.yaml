@@ -31,5 +31,7 @@
       entity_id: input_boolean.motion_sensor_flur_aktiv
       state: 'on'
   action:
-    service: homeassistant.turn_off
-    entity_id: light.stehlampe_flur
+    - service: homeassistant.turn_off
+      entity_id:
+        - light.stehlampe_flur
+        - light.beleuchtung_flur
