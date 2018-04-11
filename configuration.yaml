@@ -83,6 +83,7 @@ discovery:
 
 tts:
   - platform: google
+    language: 'de'
 
 tado:
   username: !secret TADO_USERNAME
