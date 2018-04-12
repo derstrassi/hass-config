@@ -7,5 +7,5 @@ all_off:
       entity_id: group.all_switches
     - service: media_player.turn_off
       entity_id: media_player.lg_tv
-    - service: media_player.media_play_pause
+    - service: media_player.media_pause
       entity_id: media_player.volumio
