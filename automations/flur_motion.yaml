@@ -34,4 +34,4 @@
     - service: homeassistant.turn_off
       entity_id:
         - light.stehlampe_flur
-        - light.beleuchtung_flur
+        - switch.beleuchtung_flur

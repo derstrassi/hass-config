@@ -4,5 +4,5 @@ kueche:
   entities:
     - input_boolean.motion_sensor_kueche_aktiv
     - switch.volumio_kueche
-    - light.beleuchtung_kueche
+    - switch.beleuchtung_kueche
     - switch.rf_kueche2

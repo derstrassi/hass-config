@@ -18,7 +18,7 @@
         state: 'off'
   action:
     service: homeassistant.turn_on
-    entity_id: light.beleuchtung_kueche
+    entity_id: switch.beleuchtung_kueche
 
 - alias: kueche_movement_off
   trigger:
@@ -33,7 +33,7 @@
       state: 'on'
   action:
     service: homeassistant.turn_off
-    entity_id: light.beleuchtung_kueche
+    entity_id: switch.beleuchtung_kueche
 
 - alias: kueche_movement_ambiente_off
   trigger:

@@ -5,4 +5,4 @@ toilette:
     - input_boolean.motion_sensor_toilette_aktiv
     #- binary_sensor.motion_sensor_158d000113dee1
     - sensor.motion_sensor_toilette_last_seen
-    - light.beleuchtung_toilette
+    - switch.beleuchtung_toilette

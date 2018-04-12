@@ -1,18 +1,22 @@
 # Lichter
-light.beleuchtung_flur:
+switch.beleuchtung_flur:
   friendly_name: Decken-Spots
+  icon: 'mdi:ceiling-light'
 light.stehlampe_flur:
   friendly_name: Stehlampe
-light.beleuchtung_toilette:
+  icon: 'mdi:lightbulb-on-outline'
+switch.beleuchtung_toilette:
   friendly_name: Beleuchtung
   icon: 'mdi:ceiling-light'
-light.beleuchtung_esszimmer:
+switch.beleuchtung_esszimmer:
   friendly_name: Wandbeleuchtung
-light.beleuchtung_kueche:
+  icon: 'mdi:lightbulb-on-outline'
+switch.beleuchtung_kueche:
   friendly_name: Beleuchtung
   icon: 'mdi:ceiling-light'
 light.gateway_light_286c0788a9dd:
   friendly_name: Gateway Licht
+  icon: 'mdi:lightbulb-on-outline'
 
 # Xiaomi Sensoren
 binary_sensor.motion_sensor_158d000113dee1:

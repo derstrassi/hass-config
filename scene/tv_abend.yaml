@@ -1,7 +1,7 @@
 - name: TV Abend
   entities:
     group.wz_ambiente: on
-    light.beleuchtung_flur: off
+    switch.beleuchtung_flur: off
     switch.sonoff_wz_1: off
     switch.sonoff_wz_2: off
     switch.volumio: off

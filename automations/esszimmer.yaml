@@ -1,10 +1,10 @@
 - alias: esszimmer_auto_off
   trigger:
     platform: state
-    entity_id: light.beleuchtung_esszimmer
+    entity_id: switch.beleuchtung_esszimmer
     to: 'on'
     for:
       hours: 4
   action:
     service: homeassistant.turn_off
-    entity_id: light.beleuchtung_esszimmer
+    entity_id: switch.beleuchtung_esszimmer
