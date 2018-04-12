@@ -13,3 +13,4 @@ __pycache__
 /.ios.conf
 /.ps4-wake.credentials.json
 /.ps4.conf
+/tts

@@ -4,7 +4,22 @@
     entity_id: switch.beleuchtung_esszimmer
     to: 'on'
     for:
-      hours: 4
+      hours: 1
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.rf_motion_flur
+        state: 'off'
+        for:
+          minutes: 30
+      - condition: state
+        entity_id: binary_sensor.motion_sensor_158d00012326f7
+        state: 'off'
+        for:
+          minutes: 30
+      # - condition: template
+      #   value_template: '{{(as_timestamp(now())-as_timestamp(states.binary_sensor.motion_sensor_158d00012326f7.last_changed)) > 1800 }}'
   action:
     service: homeassistant.turn_off
     entity_id: switch.beleuchtung_esszimmer

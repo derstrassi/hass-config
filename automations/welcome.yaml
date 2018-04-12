@@ -1,4 +1,4 @@
-- alias: welcome_arriving_person
+- alias: Begruesse die Person die gerade nach Hause kommt
   trigger:
     platform: state
     entity_id: binary_sensor.door_window_sensor_158d00014dbac9
@@ -16,5 +16,49 @@
     - service: notify.ios_iphone_von_dennis
       data_template:
         title: "Tür wurde geöffnet"
-        message: "{{ states.sensor.last_person.name }} hat das Haus betreten."
+        message: "{{ states.sensor.last_person }} hat das Haus betreten."
+    ############# Ab hier nur vor 20:00 Uhr ####################################
+    - condition: time
+      before: '20:00:00'
+    - service: media_player.volume_set
+      entity_id: media_player.volumio
+      data_template:
+        volume_level: 0.65
+    - service: media_player.media_play
+      data:
+        entity_id: media_player.volumio_mpd
+        media_content_id: "http://hassbian.local:8123/sounds/two-tone-chime.mp3"
+        media_content_type: "music"
+    - service: tts.google_say
+      entity_id: media_player.volumio_mpd
+      data_template:
+        message: "Hallo {{ states.sensor.last_person }}, ich freue mich dass du wieder hier bist."
+    - service: media_player.volume_set
+      entity_id: media_player.volumio
+      data_template:
+        volume_level: 0.2
 
+- alias: Schalte die Decken-Spots im Flur an wenn man spaet nach Hause kommt
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d00014dbac9
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: group.familie
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.rf_motion_flur
+      state: 'off'
+      for:
+        hours: 1
+    - condition: numeric_state
+      entity_id: sun.sun
+      value_template: '{{ state.attributes.elevation }}'
+      below: 5
+    - condition: state
+      entity_id: light.stehlampe_flur
+      state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.beleuchtung_flur

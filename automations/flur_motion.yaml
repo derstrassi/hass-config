@@ -6,16 +6,19 @@
   condition:
     condition: and
     conditions:
-      - condition: state
-        entity_id: light.stehlampe_flur
-        state: 'off'
-      - condition: state
-        entity_id: input_boolean.motion_sensor_flur_aktiv
-        state: 'on'
       - condition: numeric_state
         entity_id: sun.sun
         value_template: '{{ state.attributes.elevation }}'
         below: 8
+      - condition: state
+        entity_id: input_boolean.motion_sensor_flur_aktiv
+        state: 'on'
+      - condition: state
+        entity_id: light.stehlampe_flur
+        state: 'off'
+      - condition: state
+        entity_id: switch.beleuchtung_flur
+        state: 'off'
   action:
     service: script.yeelight_flur_weiss
 
