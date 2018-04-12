@@ -5,6 +5,6 @@
         {% set persons = [states.group.person_dennis, states.group.person_mary] %}
         {% for person in persons %}
           {% if as_timestamp(person.last_changed) == as_timestamp(persons | map(attribute='last_changed') | max) %}
-            {{ person }}
+            {{ person.name }}
           {% endif %}
         {% endfor %}
