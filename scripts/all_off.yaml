@@ -4,7 +4,16 @@ all_off:
     - service: homeassistant.turn_off
       entity_id: group.all_lights
     - service: homeassistant.turn_off
-      entity_id: group.all_switches
+      data_template:
+        entity_id: >-
+          {% set excludes = [
+            'switch.plug_158d0001530b1b'
+          ] %}
+          {%- for switch in states.switch %}
+          {%- if switch.entity_id not in excludes %}
+          - {{ switch.entity_id }}
+          {%- endif %}
+          {%- endfor %}
     - service: media_player.turn_off
       entity_id: media_player.lg_tv
     - service: media_player.media_pause

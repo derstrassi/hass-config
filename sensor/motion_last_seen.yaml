@@ -8,6 +8,10 @@
       friendly_name: 'Letzte Bewegung'
       icon_template: 'mdi:clock-alert'
       value_template: '{{ as_timestamp(states.binary_sensor.rf_motion_flur.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
+    motion_sensor_bad_last_seen:
+      friendly_name: 'Letzte Bewegung'
+      icon_template: 'mdi:clock-alert'
+      value_template: '{{ as_timestamp(states.binary_sensor.motion_sensor_158d0001e516a5.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
     door_sensor_eingang_last_open:
       friendly_name: 'Tür Zuletzt geöffnet'
       icon_template: 'mdi:clock-alert'

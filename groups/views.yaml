@@ -10,6 +10,7 @@ default_view:
     - group.esszimmer
     - group.kueche
     - group.toilette
+    - group.bad
     # - group.weather
     - group.wohnzimmer
     - group.schlafzimmer

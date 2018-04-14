@@ -1,0 +1,11 @@
+bad:
+  name: Badezimmer
+  control: hidden
+  entities:
+    - sensor.temperature_158d0001c2c57f
+    - sensor.humidity_158d0001c2c57f
+    - input_boolean.motion_sensor_bad_aktiv
+    - binary_sensor.door_window_sensor_158d0001f3a0f0
+    - sensor.motion_sensor_bad_last_seen
+    - switch.sonoff_bad_1
+    - switch.sonoff_bad_2

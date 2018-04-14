@@ -1,0 +1,70 @@
+- alias: bad_movement_on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001e516a5
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.motion_sensor_bad_aktiv
+        state: 'on'
+      - condition: numeric_state
+        entity_id: sun.sun
+        value_template: '{{ state.attributes.elevation }}'
+        below: 8
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.sonoff_bad_1
+
+- alias: bad_movement_off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001e516a5
+    to: 'off'
+    for:
+      minutes: 45
+  condition:
+    - condition: state
+      entity_id: input_boolean.motion_sensor_bad_aktiv
+      state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.sonoff_bad_1
+
+- alias: bad_humidity_too_high
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.humidity_158d0001c2c57f
+    above: 60
+    for:
+      minutes: 30
+  condition:
+    - condition: state
+      entity_id: binary_sensor.door_window_sensor_158d0001f3a0f0
+      state: 'off'
+  action:
+    ############# Ab hier nur vor 20:00 Uhr ####################################
+    - condition: time
+      before: '20:00:00'
+    - service: media_player.volume_set
+      entity_id: media_player.volumio
+      data_template:
+        volume_level: 0.65
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.volumio_mpd
+        media_content_id: "http://192.168.10.95:8123/local/sounds/two-tone-chime.mp3"
+        media_content_type: "music"
+    - delay:
+        seconds: 5
+    - service: tts.google_say
+      entity_id: media_player.volumio_mpd
+      data_template:
+        message: "Die Luftfeuchtigkeit im Bad ist aktuell bei {{ states.sensor.humidity_158d0001c2c57f.state }}%, bitte lüften!"
+    - delay:
+        seconds: 10
+    - service: media_player.volume_set
+      entity_id: media_player.volumio
+      data_template:
+        volume_level: 0.2
