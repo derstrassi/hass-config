@@ -2,11 +2,13 @@ person_dennis:
   name: Dennis
   entities:
     - device_tracker.dennis_iphone # Tado
+    - device_tracker.iphonevondennis # Unifi
 
 person_mary:
   name: Mary
   entities:
     - device_tracker.marys_iphone # Tado
+    - device_tracker.iphonevonmary # Unifi
 
 familie:
   entities:
