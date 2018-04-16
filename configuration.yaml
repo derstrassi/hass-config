@@ -23,32 +23,7 @@ http:
     - 192.168.10.0/24
 
 cloud:
-  alexa:
-    filter:
-      include_domains:
-        - light
-        - media_player
-        - scene
-        - script
-        - switch
-      include_entities:
-        - group.kueche
-      exclude_entities:
-        - switch.volumio_kueche
-    entity_config:
-      light.kitchen:
-        name: Custom Name for Alexa
-      switch.plug_158d0001530b1b:
-        name: Aquarium Beleuchtung
-        description: Aquarium Beleuchtung in Arthurs Kinderzimmer
-        display_categories: LIGHT
-      media_player.volumio:
-        name: Radio Küche
-        description: Volumio in der Küche
-      media_player.lg_tv:
-        name: Fernseher
-        description: Fernseher im Wohnzimmer
-        display_categories: TV
+  alexa: !include alexa.yaml
 
 config:
 history:
