@@ -1,0 +1,32 @@
+- alias: kz_left_single
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d00012a7f6a
+      click_type: single
+  action:
+    service: switch.toggle
+    entity_id: switch.sonoff_kz_1
+
+- alias: kz_right_single
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d00012a7f6a
+      click_type: single
+  action:
+    service: switch.toggle
+    entity_id: switch.sonoff_kz_2
+
+- alias: kz_aquarium_toggle
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_both_158d00012a7f6a
+      click_type: both
+  action:
+    service: switch.toggle
+    entity_id: switch.plug_158d0001530b1b
