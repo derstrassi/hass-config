@@ -36,7 +36,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.humidity_158d0001c2c57f
-    above: 60
+    above: 75
     for:
       minutes: 30
   condition:
