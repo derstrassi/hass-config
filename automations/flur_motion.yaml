@@ -1,7 +1,7 @@
 - alias: flur_movement_on
   trigger:
     platform: state
-    entity_id: binary_sensor.rf_motion_flur
+    entity_id: binary_sensor.motion_sensor_158d0001e562ad
     to: 'on'
   condition:
     condition: and
@@ -25,7 +25,7 @@
 - alias: flur_movement_off
   trigger:
     platform: state
-    entity_id: binary_sensor.rf_motion_flur
+    entity_id: binary_sensor.motion_sensor_158d0001e562ad
     to: 'off'
     for:
       hours: 1

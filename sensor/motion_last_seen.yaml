@@ -7,7 +7,7 @@
     motion_sensor_flur_last_seen:
       friendly_name: 'Letzte Bewegung'
       icon_template: 'mdi:clock-alert'
-      value_template: '{{ as_timestamp(states.binary_sensor.rf_motion_flur.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
+      value_template: '{{ as_timestamp(states.binary_sensor.motion_sensor_158d0001e562ad.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
     motion_sensor_bad_last_seen:
       friendly_name: 'Letzte Bewegung'
       icon_template: 'mdi:clock-alert'

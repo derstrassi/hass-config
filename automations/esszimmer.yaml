@@ -9,7 +9,7 @@
     condition: or
     conditions:
       - condition: state
-        entity_id: binary_sensor.rf_motion_flur
+        entity_id: binary_sensor.motion_sensor_158d0001e562ad
         state: 'off'
         for:
           minutes: 30
