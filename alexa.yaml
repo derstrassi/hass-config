@@ -46,7 +46,6 @@ entity_config:
     name: Lichterkette
   switch.sonoff_wz_1:
     name: Beleuchtung Couch
-    icon: 'mdi:ceiling-light'
   switch.sonoff_wz_2:
     name: Beleuchtung Nähzimmer
   switch.rf_sz_nachttisch:
