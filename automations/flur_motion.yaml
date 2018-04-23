@@ -6,10 +6,15 @@
   condition:
     condition: and
     conditions:
-      - condition: numeric_state
-        entity_id: sun.sun
-        value_template: '{{ state.attributes.elevation }}'
-        below: 8
+      - condition: or
+        conditions:
+          - condition: numeric_state
+            entity_id: sun.sun
+            value_template: '{{ state.attributes.elevation }}'
+            below: 8
+          - condition: numeric_state
+            entity_id: sensor.illumination_158d0001e562ad
+            below: 20
       - condition: state
         entity_id: input_boolean.motion_sensor_flur_aktiv
         state: 'on'

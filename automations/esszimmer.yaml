@@ -6,7 +6,7 @@
     for:
       hours: 1
   condition:
-    condition: or
+    condition: and
     conditions:
       - condition: state
         entity_id: binary_sensor.motion_sensor_158d0001e562ad
@@ -18,8 +18,6 @@
         state: 'off'
         for:
           minutes: 30
-      # - condition: template
-      #   value_template: '{{(as_timestamp(now())-as_timestamp(states.binary_sensor.motion_sensor_158d00012326f7.last_changed)) > 1800 }}'
   action:
     service: homeassistant.turn_off
     entity_id: switch.beleuchtung_esszimmer
