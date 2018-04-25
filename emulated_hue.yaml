@@ -1,23 +1,14 @@
-filter:
-  include_domains:
-    - light
-    - media_player
-    - scene
-    - script
-    - switch
-  include_entities:
-    - group.kueche
-  exclude_entities:
-    - switch.volumio_kueche
-entity_config:
+exposed_domains:
+  - switch
+  - light
+  - media_player
+entities:
   switch.plug_158d0001530b1b:
-    name: Aquarium
+    name: Aquarium Beleuchtung
   media_player.volumio:
     name: Radio
-    display_categories: TV
   media_player.lg_tv:
     name: Fernseher
-    display_categories: TV
   light.stehlampe_flur:
     name: Stehlampe Flur
   switch.beleuchtung_toilette:
