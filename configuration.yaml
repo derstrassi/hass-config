@@ -88,10 +88,12 @@ pilight:
   send_delay: 0.8
 
 xiaomi_aqara:
-  discovery_retry: 5
+  discovery_retry: 10
   gateways:
-    - mac: !secret XIAOMI_GATEWAY_MAC
-      key: !secret XIAOMI_GATEWAY_KEY
+    - mac: !secret XIAOMI_GATEWAY_1_MAC
+      key: !secret XIAOMI_GATEWAY_1_KEY
+    - mac: !secret XIAOMI_GATEWAY_2_MAC
+      key: !secret XIAOMI_GATEWAY_2_KEY
 
 notify:
   - name: slack
