@@ -13,4 +13,4 @@ after_success: ./travis_automerge.sh
 
 install: pip3 install homeassistant
 
-script: hass -c . --script check_config --info all
+script: hass -c . --script check_config

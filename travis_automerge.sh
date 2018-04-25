@@ -1,4 +1,4 @@
-#!/bin/bash -ev
+#!/bin/bash -e
 
 : "${BRANCH_TO_MERGE_INTO?}"
 : "${GITHUB_SECRET_TOKEN?}"
