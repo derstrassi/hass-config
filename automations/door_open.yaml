@@ -22,7 +22,7 @@
         color_name: red
     - service: xiaomi_aqara.play_ringtone
       data:
-        gw_mac: !secret XIAOMI_GATEWAY_MAC
+        gw_mac: !secret XIAOMI_GATEWAY_1_MAC
         ringtone_id: 8
         ringtone_vol: 50
     - delay:
@@ -53,6 +53,6 @@
         seconds: 2
     - service: xiaomi_aqara.play_ringtone
       data:
-        gw_mac: !secret XIAOMI_GATEWAY_MAC
+        gw_mac: !secret XIAOMI_GATEWAY_1_MAC
         ringtone_id: 11
         ringtone_vol: 50
