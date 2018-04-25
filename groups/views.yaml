@@ -4,7 +4,6 @@ default_view:
   icon: mdi:home
   entities:
     - group.zuhause
-    - group.ha
     - climate.heizung
     # - group.arthur_zimmer
     - group.flur

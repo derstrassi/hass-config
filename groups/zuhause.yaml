@@ -24,3 +24,4 @@ zuhause:
     - sensor.door_sensor_eingang_last_open
     - sensor.temperature_158d0001a4c74d
     - sensor.pressure_158d0001a4c74d
+    - group.ha

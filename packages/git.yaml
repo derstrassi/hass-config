@@ -1,8 +1,9 @@
 homeassistant:
   customize:
-    sensor.new_commits:
-      friendly_name: Config-Updates
-      # icon: 'mdi:lightbulb-on-outline'
+    script.update_config:
+      icon: 'mdi:cloud-download'
+    input_boolean.git_auto_update:
+      icon: 'mdi:git'
 
 group:
   ha:
@@ -10,14 +11,12 @@ group:
     control: hidden
     entities:
       - input_boolean.git_auto_update
-      - sensor.new_commits
       - script.update_config
 
 input_boolean:
   git_auto_update:
-    name: Auto-Update Config
-    initial: 'off'
-    # icon: mdi:radar
+    name: Auto-Update HA Config
+    icon: mdi:git
 
 script:
   check_for_updates:
@@ -32,7 +31,7 @@ script:
           message: "Bitte Konfiguration updaten!"
           notification_id: "update_avail"
   update_config:
-    alias: Update Config
+    alias: Update HA Config
     sequence:
       - service: persistent_notification.dismiss
         data:
