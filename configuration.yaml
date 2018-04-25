@@ -22,10 +22,11 @@ http:
   trusted_networks:
     - 192.168.10.0/24
 
-cloud:
-  alexa: !include alexa.yaml
+# cloud:
+#   alexa: !include alexa.yaml
 
 config:
+emulated_hue:
 history:
 homekit:
 ios:
