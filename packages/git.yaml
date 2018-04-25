@@ -1,6 +1,6 @@
 homeassistant:
   customize:
-    script.update_config:
+    script.git_update_config:
       icon: 'mdi:cloud-download'
     input_boolean.git_auto_update:
       icon: 'mdi:git'
@@ -11,7 +11,7 @@ group:
     control: hidden
     entities:
       - input_boolean.git_auto_update
-      - script.update_config
+      - script.git_update_config
 
 input_boolean:
   git_auto_update:
@@ -30,7 +30,7 @@ script:
           title: "Update verfügbar!"
           message: "Bitte Konfiguration updaten!"
           notification_id: "update_avail"
-  update_config:
+  git_update_config:
     alias: Update HA Config
     sequence:
       - service: persistent_notification.dismiss
@@ -70,6 +70,9 @@ automation:
       - condition: state
         entity_id: input_boolean.git_auto_update
         state: 'on'
-      - service: script.update_config
+      - condition: numeric_state
+        entity_id: sensor.new_commits
+        above: 0
+      - service: script.git_update_config
 
 
