@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd ~/.homeassistant
-git fetch
+git fetch origin master
 commits="$(git rev-list --count master..origin/master)"
 pw="$(grep HTTP_API_PASSWORD secrets.yaml | sed 's/HTTP_API_PASSWORD://')"
 
