@@ -5,6 +5,12 @@ python: "3.6.4"
 before_install:
   - mv travis_secrets.yaml secrets.yaml
 
+branches:
+  only:
+    - develop
+
+after_success: ./travis_automerge.sh
+
 install: pip3 install homeassistant
 
 script: hass -c . --script check_config --info all
