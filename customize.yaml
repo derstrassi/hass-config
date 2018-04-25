@@ -108,10 +108,12 @@ binary_sensor.device_tracker_yeelinklightcolor1_miio56540983local:
 # Gruppen anordnen
 group.zuhause:
   order: 1
-group.flur:
-  order: 1
-group.kueche:
+group.ha:
   order: 2
+group.flur:
+  order: 3
+group.kueche:
+  order: 3
 group.toilette:
   order: 3
 camera.arthur_cam:

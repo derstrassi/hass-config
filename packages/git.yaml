@@ -1,0 +1,72 @@
+homeassistant:
+  customize:
+    sensor.new_commits:
+      friendly_name: Config-Updates
+      # icon: 'mdi:lightbulb-on-outline'
+
+group:
+  ha:
+    name: Home-Assistant
+    control: hidden
+    entities:
+      - input_boolean.git_auto_update
+      - sensor.new_commits
+      - automation.update_config
+
+input_boolean:
+  git_auto_update:
+    name: Auto-Update Config
+    initial: 'off'
+    # icon: mdi:radar
+
+script:
+  update_config:
+    alias: Update Config
+    sequence:
+      - service: persistent_notification.dismiss
+        data:
+          notification_id: "update_avail"
+      - service: shell_command.update_config_from_github
+      - service: homeassistant.restart
+
+sensor:
+  - platform: template
+    sensors:
+      new_commits:
+        value_template: >-
+          {{ states("sensor.new_commits") }}
+
+shell_command:
+  git_pull: /bin/bash ~/.homeassistant/shell_scripts/git_pull.sh
+  git_update_new_commits_sensor: /bin/bash ~/.homeassistant/shell_scripts/git_update_new_commits_sensor.sh
+
+automation:
+  - alias: git_update_check
+    trigger:
+      platform: time
+      minutes: '/1'
+    condition:
+      condition: or
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.new_commits
+          below: 1
+        - condition: state
+          entity_id: sensor.new_commits
+          state: 'unknown'
+    action:
+      - service: shell_command.git_update_new_commits_sensor
+      - condition: numeric_state
+        entity_id: sensor.new_commits
+        above: 0
+      - service: persistent_notification.create
+        data:
+          title: "Update verfügbar!"
+          message: "Bitte Konfiguration updaten!"
+          notification_id: "update_avail"
+      - condition: state
+        entity_id: input_boolean.git_auto_update
+        state: 'on'
+      - service: shell_command.update_config
+
+
