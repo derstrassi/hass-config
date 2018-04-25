@@ -11,7 +11,7 @@ group:
     entities:
       - input_boolean.git_auto_update
       - sensor.new_commits
-      - automation.update_config
+      - script.update_config
 
 input_boolean:
   git_auto_update:
@@ -20,13 +20,24 @@ input_boolean:
     # icon: mdi:radar
 
 script:
+  check_for_updates:
+    sequence:
+      - service: shell_command.git_update_new_commits_sensor
+      - condition: numeric_state
+        entity_id: sensor.new_commits
+        above: 0
+      - service: persistent_notification.create
+        data:
+          title: "Update verfügbar!"
+          message: "Bitte Konfiguration updaten!"
+          notification_id: "update_avail"
   update_config:
     alias: Update Config
     sequence:
       - service: persistent_notification.dismiss
         data:
           notification_id: "update_avail"
-      - service: shell_command.update_config_from_github
+      - service: shell_command.git_pull
       - service: homeassistant.restart
 
 sensor:
@@ -45,6 +56,7 @@ automation:
     trigger:
       platform: time
       minutes: '/1'
+      seconds: 0
     condition:
       condition: or
       conditions:
@@ -55,18 +67,10 @@ automation:
           entity_id: sensor.new_commits
           state: 'unknown'
     action:
-      - service: shell_command.git_update_new_commits_sensor
-      - condition: numeric_state
-        entity_id: sensor.new_commits
-        above: 0
-      - service: persistent_notification.create
-        data:
-          title: "Update verfügbar!"
-          message: "Bitte Konfiguration updaten!"
-          notification_id: "update_avail"
+      - service: script.check_for_updates
       - condition: state
         entity_id: input_boolean.git_auto_update
         state: 'on'
-      - service: shell_command.update_config
+      - service: script.update_config
 
 
