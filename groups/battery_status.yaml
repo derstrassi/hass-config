@@ -1,4 +1,0 @@
-battery_status:
-  name: Batterie Status
-  entities:
-    - sensor.battery_level_door_main
