@@ -73,8 +73,6 @@ mqtt:
   username: !secret MQTT_USERNAME
   password: !secret MQTT_PASSWORD
 
-doesntexist:
-
 camera:
   - platform: ffmpeg
     name: arthur_cam
