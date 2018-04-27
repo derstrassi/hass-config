@@ -1,5 +1,5 @@
 all_off:
-  alias: Alles aus
+  alias: Alles ausschalten
   sequence:
     - service: homeassistant.turn_off
       entity_id: group.all_lights
@@ -16,5 +16,3 @@ all_off:
           {%- endfor %}
     - service: media_player.turn_off
       entity_id: media_player.lg_tv
-    - service: media_player.media_pause
-      entity_id: media_player.volumio
