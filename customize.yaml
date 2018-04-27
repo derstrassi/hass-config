@@ -68,9 +68,11 @@ sensor.heizung_power:
 binary_sensor.door_window_sensor_158d00014dbac9:
   friendly_name: Eingangstür
   icon: 'mdi:door'
+  show_last_changed: true
 binary_sensor.door_window_sensor_158d0001f3a0f0:
   friendly_name: Fenster
   icon: 'mdi:window-closed'
+  show_last_changed: true
 
 # Wetter
 # input_text.weather:
@@ -82,8 +84,10 @@ binary_sensor.door_window_sensor_158d0001f3a0f0:
 # Personen
 group.person_dennis:
   entity_picture: /local/people/dennis.jpg
+  show_last_changed: true
 group.person_mary:
   entity_picture: /local/people/mary.jpg
+  show_last_changed: true
 
 # Device Tracker
 binary_sensor.device_tracker_embylocal:
@@ -104,6 +108,16 @@ binary_sensor.device_tracker_sonarrlocal:
   friendly_name: Sonarr
 binary_sensor.device_tracker_yeelinklightcolor1_miio56540983local:
   friendly_name: YeeLight Flur
+
+# Scripts
+script.all_off:
+  icon: mdi:power
+script.yeelight_flur_pink:
+  icon: mdi:checkbox-blank-circle
+  icon_color: pink
+script.yeelight_flur_weiss:
+  icon: mdi:checkbox-blank-circle
+  icon_color: orange
 
 # Gruppen anordnen
 group.zuhause:
