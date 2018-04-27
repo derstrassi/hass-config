@@ -2,14 +2,19 @@
   switches:
     volumio_kueche:
       friendly_name: Radio
-      entity_id:
-        - media_player.volumio
+      entity_id: media_player.volumio
       value_template: "{{ is_state('media_player.volumio', 'playing') }}"
       turn_on:
-        service: media_player.media_play
-        data:
-          entity_id: media_player.volumio
+        - service: media_player.media_play
+          data:
+            entity_id: media_player.volumio
+        - wait_template: "{{ is_state('media_player.volumio', 'playing') }}"
+          timeout:
+            seconds: 10
       turn_off:
-        service: media_player.media_pause
-        data:
-          entity_id: media_player.volumio
+        - service: media_player.media_pause
+          data:
+            entity_id: media_player.volumio
+        - wait_template: "{{ is_state('media_player.volumio', 'idle') }}"
+          timeout:
+            seconds: 10
