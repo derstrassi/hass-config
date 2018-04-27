@@ -17,6 +17,7 @@ familie:
 
 zuhause:
   name: Zuhause
+  control: hidden
   entities:
     - group.person_dennis
     - group.person_mary
