@@ -1,0 +1,35 @@
+sensor:
+  - platform: template
+    sensors:
+      low_battery:
+        friendly_name: 'Low Battery'
+        value_template: >
+          {%- set threshold = 15 -%}
+          {%- set domains = ['sensor', 'binary_sensor'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] if (item.attributes.battery_level is defined and item.attributes['battery_level'] | int < threshold) -%}
+              {{ item.attributes.friendly_name }} ({{ item.attributes.battery_level }}%)
+              {%- if not loop.last -%}
+                {{', '}}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endfor -%}
+
+automation:
+  - alias: 'Battery Alert'
+    trigger:
+      - platform: time
+        at: '10:00:00'
+    condition:
+      condition: template
+      value_template: "{% if states('sensor.low_battery') %}true{% endif %}"
+    action:
+      - service: persistent_notification.create
+        data_template:
+          title: Niedriger Batteriestand
+          message: "{{ states('sensor.low_battery') }}"
+          notification_id: low-battery-alert
+      - service: notify.ios_iphone_von_dennis
+        data_template:
+          title: "Niedriger Batteriestand"
+          message: "{{ states('sensor.low_battery') }}"

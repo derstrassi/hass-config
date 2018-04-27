@@ -10,11 +10,4 @@
       entity_id: group.familie
       state: 'not_home'
   action:
-    - service: script.flash_floor_lights
-    - delay:
-        seconds: 5
-    - service: notify.ios_iphone_von_dennis
-      data:
-        title: 'Niemand mehr Zuhause'
-        message: 'Das Haus schaltet jetzt alle Verbraucher aus.'
     - service: script.all_off

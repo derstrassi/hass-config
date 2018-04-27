@@ -2,6 +2,7 @@ exposed_domains:
   - switch
   - light
   - media_player
+  - script
 entities:
   switch.plug_158d0001530b1b:
     name: Aquarium Beleuchtung
