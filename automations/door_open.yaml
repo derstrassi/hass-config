@@ -38,16 +38,12 @@
     entity_id: binary_sensor.door_window_sensor_158d00014dbac9
     to: 'on'
     for:
-      minutes: 5
+      minutes: 8
   action:
     - service: notify.notify
       data:
         title: 'Eingangstür offen'
         message: 'Bitte schließen!'
-    - service: media_player.media_pause
-      entity_id: media_player.lg_tv
-    - service: media_player.media_play_pause
-      entity_id: media_player.volumio
     - service: script.flash_floor_lights
     - delay:
         seconds: 2
