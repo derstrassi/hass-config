@@ -73,11 +73,11 @@ binary_sensor.door_window_sensor_158d0001f3a0f0:
   icon: 'mdi:window-closed'
 
 # Wetter
-input_text.weather:
-  name: Weather
-  custom_ui_state_card: custom-weather-card
-  config:
-    weather: weather.yweather
+# input_text.weather:
+#   name: Weather
+#   custom_ui_state_card: custom-weather-card
+#   config:
+#     weather: weather.yweather
 
 # Personen
 group.person_dennis:
