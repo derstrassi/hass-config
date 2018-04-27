@@ -8,6 +8,8 @@ homeassistant:
   customize: !include customize.yaml
   packages: !include_dir_named packages
   customize_glob:
+    "*.*":
+      custom_ui_state_card: state-card-custom-ui
     'switch.rf_*':
       assumed_state: false
       icon: 'mdi:lightbulb'
@@ -17,10 +19,14 @@ homeassistant:
       friendly_name: Luftdruck
     'sensor.humidity_*':
       friendly_name: Luftfeuchtigkeit
+
 http:
   api_password: !secret HTTP_API_PASSWORD
   trusted_networks:
     - 192.168.10.0/24
+
+customizer:
+  custom_ui: local
 
 config:
 history:
