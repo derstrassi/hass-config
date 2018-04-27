@@ -1,5 +1,5 @@
 yeelight_flur_pink:
-  alias: Pink
+  alias: Stehlampe Pink
   sequence:
     - service: homeassistant.turn_on
       entity_id: light.stehlampe_flur
@@ -8,7 +8,7 @@ yeelight_flur_pink:
         rgb_color: [255,36,146]
 
 yeelight_flur_weiss:
-  alias: Weiß
+  alias: Stehlampe Weiß
   sequence:
     - service: homeassistant.turn_on
       entity_id: light.stehlampe_flur
