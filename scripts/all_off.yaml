@@ -5,7 +5,7 @@ all_off:
       entity_id: group.all_lights
     - service: switch.turn_off
       data_template:
-        entity_id: >-
+        entity_id: >
           {% set excludes = [
             'switch.plug_158d0001530b1b',
             'switch.sonoff'
