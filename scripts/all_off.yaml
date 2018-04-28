@@ -3,11 +3,12 @@ all_off:
   sequence:
     - service: homeassistant.turn_off
       entity_id: group.all_lights
-    - service: homeassistant.turn_off
+    - service: switch.turn_off
       data_template:
         entity_id: >-
           {% set excludes = [
-            'switch.plug_158d0001530b1b'
+            'switch.plug_158d0001530b1b',
+            'switch.sonoff'
           ] %}
           {%- for switch in states.switch %}
           {%- if switch.entity_id not in excludes %}
