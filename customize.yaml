@@ -6,6 +6,7 @@ switch.beleuchtung_flur:
 light.stehlampe_flur:
   friendly_name: Stehlampe
   icon: 'mdi:lightbulb-on-outline'
+  state_card_mode: single-line
 switch.beleuchtung_toilette:
   friendly_name: Beleuchtung
   icon: 'mdi:ceiling-light'
