@@ -3,28 +3,28 @@ all_off:
   sequence:
     - service: homeassistant.turn_off
       data_template:
-        entity_id: >-
+        entity_id: >
           {% set excludes = [
             'light.gateway_light_286c0788a9dd',
             'light.gateway_light_7811dcb8c5ed'
           ] %}
           [{%- for light in states.light -%}
           {%- if light.entity_id not in excludes -%}
-            "{{ light.entity_id }}"
+            {{ light.entity_id }}
             {%- if not loop.last -%}
-              {{', '}}
+              {{','}}
             {%- endif -%}
           {%- endif -%}
           {%- endfor -%}]
     - service: homeassistant.turn_off
       data_template:
-        entity_id: >-
+        entity_id: >
           {% set excludes = [
             'switch.plug_158d0001530b1b'
           ] %}
           [{%- for switch in states.switch -%}
           {%- if switch.entity_id not in excludes -%}
-            "{{ switch.entity_id }}"
+            {{ switch.entity_id }}
             {%- if not loop.last -%}
               {{','}}
             {%- endif -%}
