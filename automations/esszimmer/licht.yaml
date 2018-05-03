@@ -1,4 +1,25 @@
-- alias: esszimmer_auto_off
+- alias: ez_nightlight_on
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '01:00:00'
+  condition:
+    - condition: state
+      entity_id: group.familie
+      state: 'home'
+  action:
+    - service: script.gateway_nightlight_on
+
+- alias: ez_nightlight_off
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '01:00:00'
+  action:
+    - service: light.turn_off
+      entity_id: light.gateway_light_286c0788a9dd
+
+- alias: ez_auto_off
   trigger:
     platform: state
     entity_id: switch.beleuchtung_esszimmer
