@@ -1,34 +1,30 @@
 all_off:
   alias: Alles ausschalten
   sequence:
-    - service: homeassistant.turn_off
-      data_template:
-        entity_id: >
-          {% set excludes = [
-            'light.gateway_light_286c0788a9dd',
-            'light.gateway_light_7811dcb8c5ed'
-          ] %}
-          [{%- for light in states.light -%}
-          {%- if light.entity_id not in excludes -%}
-            {{ light.entity_id }}
-            {%- if not loop.last -%}
-              {{','}}
-            {%- endif -%}
-          {%- endif -%}
-          {%- endfor -%}]
-    - service: homeassistant.turn_off
-      data_template:
-        entity_id: >
-          {% set excludes = [
-            'switch.plug_158d0001530b1b'
-          ] %}
-          [{%- for switch in states.switch -%}
-          {%- if switch.entity_id not in excludes -%}
-            {{ switch.entity_id }}
-            {%- if not loop.last -%}
-              {{','}}
-            {%- endif -%}
-          {%- endif -%}
-          {%- endfor -%}]
+    - service: switch.turn_off
+      data:
+        entity_id:
+          - switch.beleuchtung_esszimmer
+          - switch.beleuchtung_flur
+          - switch.beleuchtung_kueche
+          - switch.beleuchtung_toilette
+          - switch.rf_arthur_lichterkette
+          - switch.rf_kueche1
+          - switch.rf_kueche2
+          - switch.rf_sz_nachttisch
+          - switch.rf_wz_lichtkugel
+          - switch.rf_wz_stehlampe
+          - switch.sonoff_bad_1
+          - switch.sonoff_bad_2
+          - switch.sonoff_kz_1
+          - switch.sonoff_kz_2
+          - switch.sonoff_wz_1
+          - switch.sonoff_wz_2
+          - switch.volumio_kueche
+    - service: light.turn_off
+      data:
+        entity_id: light.stehlampe_flur
+    - delay:
+        seconds: 5
     - service: media_player.turn_off
       entity_id: media_player.lg_tv
