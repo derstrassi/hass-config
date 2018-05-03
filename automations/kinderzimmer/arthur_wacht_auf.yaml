@@ -1,0 +1,21 @@
+- alias: Arthur macht in der Nacht das Licht an
+  trigger:
+    - platform: state
+      entity_id: switch.sonoff_kz_1
+      to: 'on'
+    - platform: state
+      entity_id: switch.sonoff_kz_2
+      to: 'on'
+  condition:
+    - condition: time
+      after: '23:00:00'
+      before: '05:30:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.gateway_light_286c0788a9dd
+      data:
+        rgb_color: [255,100,100]
+        brightness_pct: 100
+    - service: script.yeelight_flur_weiss
+    - service: homeassistant.turn_on
+      entity_id: switch.rf_sz_nachttisch
