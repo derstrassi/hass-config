@@ -4,6 +4,7 @@ arthur_zimmer:
   entities:
     - sensor.temperature_158d0001574111
     - sensor.humidity_158d0001574111
-    - switch.rf_arthur_lichterkette
     - switch.sonoff_kz_1
     - switch.sonoff_kz_2
+    - light.gateway_light_7811dcb8c5ed
+    - switch.rf_arthur_lichterkette

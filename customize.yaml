@@ -25,6 +25,11 @@ switch.sonoff_bad_2:
 light.gateway_light_286c0788a9dd:
   friendly_name: Gateway Licht
   icon: 'mdi:lightbulb-on-outline'
+  state_card_mode: single-line
+light.gateway_light_7811dcb8c5ed:
+  friendly_name: Nachtlicht
+  icon: 'mdi:lightbulb-on-outline'
+  state_card_mode: single-line
 switch.sonoff_kz_1:
   friendly_name: Spielbereich
   icon: 'mdi:ceiling-light'
