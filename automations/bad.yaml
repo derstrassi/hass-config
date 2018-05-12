@@ -23,7 +23,7 @@
     entity_id: binary_sensor.motion_sensor_158d0001e516a5
     to: 'off'
     for:
-      minutes: 45
+      minutes: 30
   condition:
     - condition: state
       entity_id: input_boolean.motion_sensor_bad_aktiv
