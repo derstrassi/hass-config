@@ -22,7 +22,7 @@ zuhause:
     - group.person_dennis
     - group.person_mary
     - binary_sensor.door_window_sensor_158d00014dbac9
-    - sensor.door_sensor_eingang_last_open
+    - switch.tuer_oeffner
     - sensor.temperature_158d0001a4c74d
     - sensor.pressure_158d0001a4c74d
     - input_boolean.git_auto_update

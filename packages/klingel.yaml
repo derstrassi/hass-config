@@ -1,0 +1,53 @@
+homeassistant:
+  customize:
+    switch.klingel:
+      friendly_name: Tür-Klingel
+    switch.tuer_oeffner:
+      friendly_name: Tür-Öffner
+      icon: 'mdi:door-open'
+
+input_boolean:
+  klingel_entprell:
+    name: Klingel Entsprellschutz
+
+automation:
+  - alias: klingeling_notify
+    trigger:
+      platform: state
+      entity_id: switch.klingel
+      to: 'on'
+    action:
+      - condition: state
+        entity_id: input_boolean.klingel_entprell
+        state: 'off'
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.klingel_entprell
+      - service: notify.notify
+        data:
+          title: 'Klingeling...'
+          message: 'Jemand hat die Klingel betätigt'
+      - delay:
+          seconds: 3
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.klingel_entprell
+
+  - alias: klingeling
+    trigger:
+      platform: state
+      entity_id: switch.klingel
+      to: 'on'
+    action:
+      - condition: state
+        entity_id: input_boolean.klingel_entprell
+        state: 'off'
+      - condition: time
+        before: '20:00:00'
+      - condition: state
+        entity_id: group.familie
+        state: 'home'
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret XIAOMI_GATEWAY_1_MAC
+          ringtone_id: 10
+          ringtone_vol: 40
+
