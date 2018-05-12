@@ -1,0 +1,11 @@
+- alias: klingeling
+  trigger:
+    platform: state
+    entity_id: switch.klingel
+    to: 'on'
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret XIAOMI_GATEWAY_1_MAC
+        ringtone_id: 10
+        ringtone_vol: 75
