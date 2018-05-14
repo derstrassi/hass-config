@@ -18,9 +18,11 @@ ios:
             authenticationRequired: yes
             destructive: yes
             behavior: 'default'
+          - identifier: 'IGNORE'
+            title: 'Ignorieren'
 
 automation:
-  - alias: klingeling_open_door
+  - alias: klingel_open_door
     trigger:
       platform: event
       event_type: ios.notification_action_fired
@@ -30,7 +32,20 @@ automation:
       - service: switch.turn_on
         entity_id: switch.tuer_oeffner
 
-  - alias: klingeling_notify
+  - alias: klingel_me_at_home
+    trigger:
+      platform: state
+      entity_id: device_tracker.iphone_von_dennis
+      to: 'home'
+    action:
+      - service: notify.ios_iphone_von_dennis
+        data:
+          title: 'Welcome Home'
+          message: 'Möchtest du die Tür öffnen?'
+          push:
+            category: "KLINGEL"
+
+  - alias: klingel_notify
     trigger:
       platform: state
       entity_id: switch.klingel
@@ -39,9 +54,14 @@ automation:
       - service: notify.notify
         data:
           title: 'Klingeling...'
-          message: 'Jemand hat die Klingel betätigt'
+          message: 'Jemand hat die Türklingel betätigt'
+          push:
+            category: "KLINGEL"
+          attachment:
+            content-type: jpeg
+          entity_id: camera.arthur_cam
 
-  - alias: klingeling_sound
+  - alias: klingel_sound
     trigger:
       platform: state
       entity_id: switch.klingel
@@ -59,7 +79,7 @@ automation:
           ringtone_id: 10
           ringtone_vol: 40
 
-  - alias: klingeling_nachts
+  - alias: klingel_nachts
     trigger:
       platform: state
       entity_id: switch.klingel
