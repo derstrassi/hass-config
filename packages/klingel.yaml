@@ -6,41 +6,49 @@ homeassistant:
       friendly_name: Tür-Öffner
       icon: 'mdi:door-open'
 
-input_boolean:
-  klingel_entprell:
-    name: Klingel Entsprellschutz
+ios:
+  push:
+    categories:
+      - name: Klingel
+        identifier: 'KLINGEL'
+        actions:
+          - identifier: 'OPEN_DOOR'
+            title: 'Tür Öffnen'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
 
 automation:
+  - alias: klingeling_open_door
+    trigger:
+      platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: OPEN_DOOR
+    action:
+      - service: switch.turn_on
+        entity_id: switch.tuer_oeffner
+
   - alias: klingeling_notify
     trigger:
       platform: state
       entity_id: switch.klingel
       to: 'on'
     action:
-      - condition: state
-        entity_id: input_boolean.klingel_entprell
-        state: 'off'
-      - service: homeassistant.turn_on
-        entity_id: input_boolean.klingel_entprell
       - service: notify.notify
         data:
           title: 'Klingeling...'
           message: 'Jemand hat die Klingel betätigt'
-      - delay:
-          seconds: 3
-      - service: homeassistant.turn_off
-        entity_id: input_boolean.klingel_entprell
 
-  - alias: klingeling
+  - alias: klingeling_sound
     trigger:
       platform: state
       entity_id: switch.klingel
       to: 'on'
     action:
-      - condition: state
-        entity_id: input_boolean.klingel_entprell
-        state: 'off'
       - condition: time
+        after: '06:00:00'
         before: '20:00:00'
       - condition: state
         entity_id: group.familie
@@ -51,3 +59,21 @@ automation:
           ringtone_id: 10
           ringtone_vol: 40
 
+  - alias: klingeling_nachts
+    trigger:
+      platform: state
+      entity_id: switch.klingel
+      to: 'on'
+    action:
+      - condition: time
+        after: '20:00:00'
+        before: '06:00:00'
+      - condition: state
+        entity_id: group.familie
+        state: 'home'
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret XIAOMI_GATEWAY_1_MAC
+          ringtone_id: 10
+          ringtone_vol: 2
+      ## Licht blinken lassen
