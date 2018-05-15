@@ -26,6 +26,8 @@ http:
   api_password: !secret HTTP_API_PASSWORD
   trusted_networks:
     - 192.168.10.0/24
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
 
 customizer:
   custom_ui: local
