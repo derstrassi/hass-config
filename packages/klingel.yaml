@@ -55,8 +55,9 @@ automation:
         data:
           title: 'Klingeling...'
           message: 'Jemand hat die Türklingel betätigt'
-          push:
-            category: "KLINGEL"
+          data:
+            push:
+              category: "KLINGEL"
           # attachment:
           #   content-type: jpeg
           # entity_id: camera.arthur_cam
