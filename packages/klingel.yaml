@@ -57,9 +57,9 @@ automation:
           message: 'Jemand hat die Türklingel betätigt'
           push:
             category: "KLINGEL"
-          attachment:
-            content-type: jpeg
-          entity_id: camera.arthur_cam
+          # attachment:
+          #   content-type: jpeg
+          # entity_id: camera.arthur_cam
 
   - alias: klingel_sound
     trigger:
