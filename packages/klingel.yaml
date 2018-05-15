@@ -6,6 +6,25 @@ homeassistant:
       friendly_name: Tür-Öffner
       icon: 'mdi:door-open'
 
+ios:
+  push:
+    categories:
+      - name: Klingel
+        identifier: 'klingel'
+        actions:
+          - identifier: 'OPEN_DOOR'
+            title: 'Tür Öffnen'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'IGNORE'
+            title: 'Ignorieren'
+            activationMode: 'background'
+            authenticationRequired: no
+            destructive: no
+            behavior: 'default'
+
 automation:
   - alias: klingel_open_door
     trigger:
