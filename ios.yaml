@@ -1,0 +1,13 @@
+push:
+  categories:
+    - name: Klingel
+      identifier: 'klingel'
+      actions:
+        - identifier: 'OPEN_DOOR'
+          title: 'Tür Öffnen'
+          activationMode: 'background'
+          authenticationRequired: yes
+          destructive: yes
+          behavior: 'default'
+        - identifier: 'IGNORE'
+          title: 'Ignorieren'

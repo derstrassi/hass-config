@@ -6,21 +6,6 @@ homeassistant:
       friendly_name: Tür-Öffner
       icon: 'mdi:door-open'
 
-ios:
-  push:
-    categories:
-      - name: Klingel
-        identifier: 'KLINGEL'
-        actions:
-          - identifier: 'OPEN_DOOR'
-            title: 'Tür Öffnen'
-            activationMode: 'background'
-            authenticationRequired: yes
-            destructive: yes
-            behavior: 'default'
-          - identifier: 'IGNORE'
-            title: 'Ignorieren'
-
 automation:
   - alias: klingel_open_door
     trigger:
@@ -42,8 +27,9 @@ automation:
         data:
           title: 'Welcome Home'
           message: 'Möchtest du die Tür öffnen?'
-          push:
-            category: "KLINGEL"
+          data:
+            push:
+              category: "klingel"
 
   - alias: klingel_notify
     trigger:
@@ -57,10 +43,7 @@ automation:
           message: 'Jemand hat die Türklingel betätigt'
           data:
             push:
-              category: "KLINGEL"
-          # attachment:
-          #   content-type: jpeg
-          # entity_id: camera.arthur_cam
+              category: "klingel"
 
   - alias: klingel_sound
     trigger:
