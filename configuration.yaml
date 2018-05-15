@@ -19,6 +19,8 @@ homeassistant:
       friendly_name: Luftdruck
     'sensor.humidity_*':
       friendly_name: Luftfeuchtigkeit
+  whitelist_external_dirs:
+    - '/home/homeassistant/.homeassistant/data'
 
 http:
   api_password: !secret HTTP_API_PASSWORD

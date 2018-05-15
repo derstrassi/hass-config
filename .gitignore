@@ -1,6 +1,7 @@
 *.db
 *.log
 .uuid
+data
 deps
 known_devices.yaml
 secrets.yaml
