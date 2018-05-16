@@ -40,7 +40,7 @@ automation:
       - service: camera.snapshot
         entity_id: camera.arthur_cam
         data:
-          filename: "/home/homeassistant/.homeassistant/www/snapshots/camera-{{ now().strftime("%d%h%Y_%H%M") }}.jpg"
+          filename: '/home/homeassistant/.homeassistant/www/snapshots/camera-{{ now().strftime("%d%h%Y_%H%M") }}.jpg'
       - delay:
           seconds: 3
       # - service: notify.notify
@@ -52,7 +52,7 @@ automation:
             push:
               category: klingel
             attachment:
-              url: "https://hass.derstrassi.net/local/snapshots/camera-{{ now().strftime("%d%h%Y_%H%M") }}.jpg"
+              url: 'https://hass.derstrassi.net/local/snapshots/camera-{{ now().strftime("%d%h%Y_%H%M") }}.jpg'
               content-type: jpg
 
   - alias: klingel_sound
