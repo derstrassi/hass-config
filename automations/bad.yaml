@@ -54,7 +54,7 @@
     - service: media_player.play_media
       data:
         entity_id: media_player.volumio_mpd
-        media_content_id: "http://192.168.10.95:8123/local/sounds/two-tone-chime.mp3"
+        media_content_id: "https://hass.derstrassi.net/local/sounds/two-tone-chime.mp3"
         media_content_type: "music"
     - delay:
         seconds: 5
