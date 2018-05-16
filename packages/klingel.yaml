@@ -40,20 +40,20 @@ automation:
       - service: camera.snapshot
         entity_id: camera.arthur_cam
         data:
-          filename: '/home/homeassistant/.homeassistant/www/snapshots/camera-{{ now().strftime("%Y") }}{{ now().strftime("%m") }}{{ now().strftime("%d") }}{{ now().strftime("%H") }}{{ now().strftime("%M") }}.jpg'
+          filename: "/home/homeassistant/.homeassistant/www/snapshots/camera-{{ now().strftime("%d%h%Y_%H%M") }}.jpg"
       - delay:
           seconds: 3
       # - service: notify.notify
       - service: notify.ios_iphone_von_dennis
-        data:
+        data_template:
           title: 'Klingeling...'
           message: 'Jemand hat die Türklingel betätigt'
           data:
             push:
-              category: 'klingel'
+              category: klingel
             attachment:
-              url: 'https://hass.derstrassi.net/local/snapshots/camera-{{ now().strftime("%Y") }}{{ now().strftime("%m") }}{{ now().strftime("%d") }}{{ now().strftime("%H") }}{{ now().strftime("%M") }}.jpg'
-              hide-thumbnail: false
+              url: "https://hass.derstrassi.net/local/snapshots/camera-{{ now().strftime("%d%h%Y_%H%M") }}.jpg"
+              content-type: jpg
 
   - alias: klingel_sound
     trigger:
