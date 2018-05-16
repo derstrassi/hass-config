@@ -69,13 +69,14 @@ automation:
       platform: state
       entity_id: switch.klingel
       to: 'on'
-    action:
+    condition:
       - condition: time
         after: '06:00:00'
         before: '20:00:00'
       - condition: state
         entity_id: group.familie
         state: 'home'
+    action:
       - service: xiaomi_aqara.play_ringtone
         data:
           gw_mac: !secret XIAOMI_GATEWAY_1_MAC
@@ -87,13 +88,14 @@ automation:
       platform: state
       entity_id: switch.klingel
       to: 'on'
-    action:
+    condition:
       - condition: time
         after: '20:00:00'
         before: '06:00:00'
       - condition: state
         entity_id: group.familie
         state: 'home'
+    action:
       - service: xiaomi_aqara.play_ringtone
         data:
           gw_mac: !secret XIAOMI_GATEWAY_1_MAC
