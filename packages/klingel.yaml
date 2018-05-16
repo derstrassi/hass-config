@@ -48,7 +48,7 @@ automation:
           message: 'Möchtest du die Tür öffnen?'
           data:
             push:
-              category: "klingel"
+              category: 'klingel'
 
   - alias: klingel_notify
     trigger:
@@ -56,13 +56,24 @@ automation:
       entity_id: switch.klingel
       to: 'on'
     action:
-      - service: notify.notify
+      - service: camera.snapshot
+        entity_id: camera.arthur_cam
+        data_template:
+          filename: '/home/homeassistant/.homeassistant/www/snapshots/camera-204b0898-96ed-4a9a-b682-6ace289cc76b.jpeg'
+      - delay:
+          seconds: 1
+      # - service: notify.notify
+      - service: notify.ios_iphone_von_dennis
         data:
           title: 'Klingeling...'
           message: 'Jemand hat die Türklingel betätigt'
           data:
             push:
-              category: "klingel"
+              category: 'klingel'
+            attachment:
+              url: '/home/homeassistant/.homeassistant/www/snapshots/camera-204b0898-96ed-4a9a-b682-6ace289cc76b.jpeg'
+              content-type: jpeg
+              hide-thumbnail: false
 
   - alias: klingel_sound
     trigger:
