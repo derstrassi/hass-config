@@ -41,8 +41,6 @@ automation:
         entity_id: camera.arthur_cam
         data:
           filename: '/home/homeassistant/.homeassistant/www/snapshots/camera-{{ now().strftime("%Y%m%d_%H%M") }}.jpg'
-      - delay:
-          seconds: 3
       # - service: notify.notify
       - service: notify.ios_iphone_von_dennis
         data_template:
