@@ -6,6 +6,10 @@ homeassistant:
       friendly_name: Tür-Öffner
       icon: 'mdi:door-open'
 
+input_text:
+  klingel_random:
+    name: klingel_random
+
 automation:
   - alias: klingel_open_door
     trigger:
@@ -37,10 +41,21 @@ automation:
       entity_id: switch.klingel
       to: 'on'
     action:
+      - service: input_text.set_value
+        entity_id: input_text.klingel_random
+        data_template:
+          value: >-
+            {%- macro random_int(len) -%}
+              {%- for n in range(len) -%}
+                {{ [0,1,2,3,4,5,6,7,8,9]|random }}
+              {%- endfor -%}
+            {%- endmacro -%}
+            {%- set parts = [random_int(8), random_int(4), random_int(4), random_int(4), random_int(12)] -%}
+            {{ parts|join('-') }}
       - service: camera.snapshot
         entity_id: camera.arthur_cam
         data:
-          filename: '/home/homeassistant/.homeassistant/www/snapshots/camera-{{ now().strftime("%Y%m%d_%H%M") }}.jpg'
+          filename: '/home/homeassistant/.homeassistant/www/snapshots/camera-{{ states("input_text.klingel_random") }}.jpg'
       # - service: notify.notify
       - service: notify.ios_iphone_von_dennis
         data_template:
@@ -50,7 +65,7 @@ automation:
             push:
               category: klingel
             attachment:
-              url: 'https://hass.derstrassi.net/local/snapshots/camera-{{ now().strftime("%Y%m%d_%H%M") }}.jpg'
+              url: 'https://hass.derstrassi.net/local/snapshots/camera-{{ states("input_text.klingel_random") }}.jpg'
               content-type: jpg
 
   - alias: klingel_sound
