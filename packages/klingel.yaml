@@ -39,10 +39,10 @@ automation:
     action:
       - service: camera.snapshot
         entity_id: camera.arthur_cam
-        data_template:
-          filename: '/home/homeassistant/.homeassistant/www/snapshots/camera-204b0898-96ed-4a9a-b682-6ace289cc76b.jpeg'
+        data:
+          filename: '/home/homeassistant/.homeassistant/www/snapshots/camera-{{ now().strftime("%Y") }}{{ now().strftime("%m") }}{{ now().strftime("%d") }}{{ now().strftime("%H") }}{{ now().strftime("%M") }}.jpg'
       - delay:
-          seconds: 1
+          seconds: 3
       # - service: notify.notify
       - service: notify.ios_iphone_von_dennis
         data:
@@ -52,8 +52,7 @@ automation:
             push:
               category: 'klingel'
             attachment:
-              url: 'https://hass.derstrassi.net/local/snapshots/camera-204b0898-96ed-4a9a-b682-6ace289cc76b.jpeg'
-              content-type: jpeg
+              url: 'https://hass.derstrassi.net/local/snapshots/camera-{{ now().strftime("%Y") }}{{ now().strftime("%m") }}{{ now().strftime("%d") }}{{ now().strftime("%H") }}{{ now().strftime("%M") }}.jpg'
               hide-thumbnail: false
 
   - alias: klingel_sound
