@@ -55,9 +55,9 @@ automation:
       - service: camera.snapshot
         entity_id: camera.arthur_cam
         data:
-          filename: '/home/homeassistant/.homeassistant/www/snapshots/camera-{{ states("input_text.klingel_random") }}.jpg'
-      # - service: notify.notify
-      - service: notify.ios_iphone_von_dennis
+          filename: '/home/homeassistant/.homeassistant/www/snapshots/front_door/cam_{{ states("input_text.klingel_random") }}.jpg'
+      - service: notify.notify
+      # - service: notify.ios_iphone_von_dennis
         data_template:
           title: 'Klingeling...'
           message: 'Jemand hat die Türklingel betätigt'
@@ -65,7 +65,7 @@ automation:
             push:
               category: klingel
             attachment:
-              url: 'https://hass.derstrassi.net/local/snapshots/camera-{{ states("input_text.klingel_random") }}.jpg'
+              url: 'https://hass.derstrassi.net/local/snapshots/front_door/cam_{{ states("input_text.klingel_random") }}.jpg'
               content-type: jpg
 
   - alias: klingel_sound
