@@ -52,7 +52,7 @@ automation:
             push:
               category: 'klingel'
             attachment:
-              url: '/home/homeassistant/.homeassistant/www/snapshots/camera-204b0898-96ed-4a9a-b682-6ace289cc76b.jpeg'
+              url: 'https://hass.derstrassi.net/local/snapshots/camera-204b0898-96ed-4a9a-b682-6ace289cc76b.jpeg'
               content-type: jpeg
               hide-thumbnail: false
 
