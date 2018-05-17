@@ -1,0 +1,20 @@
+home_assistant:
+  name: Home-Assistant
+  control: hidden
+  entities:
+    - input_boolean.git_auto_update
+    - script.git_update_config
+    - script.gw_add_device
+    #- uptime, prozessor usw
+    #
+
+bewegungsmelder:
+  name: Bewegungsmelder
+  control: hidden
+  entities:
+
+my_automations:
+  name: Automatisierungen
+  control: hidden
+  entities:
+

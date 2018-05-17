@@ -1,0 +1,6 @@
+gw_add_device:
+  alias: Gateway Pairing-Mode
+  sequence:
+    - service: xiaomi_aqara.add_device
+      data:
+        gw_mac: !secret XIAOMI_GATEWAY_1_MAC

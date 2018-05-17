@@ -5,7 +5,6 @@ default_view:
   entities:
     - group.zuhause
     - climate.heizung
-    # - group.arthur_zimmer
     - group.flur
     - group.esszimmer
     - group.kueche
@@ -14,7 +13,6 @@ default_view:
     # - group.weather
     - group.wohnzimmer
     - group.schlafzimmer
-    # - media_player.volumio
 
 kinderzimmer_view:
   name: Kinderzimmer
@@ -28,6 +26,7 @@ kinderzimmer_view:
 media_view:
   name: Media
   view: yes
+  icon: mdi:television
   entities:
     - group.emby
     - media_player.lg_tv
@@ -35,14 +34,24 @@ media_view:
     - media_player.volumio_mpd
     - media_player.playstation_4
 
-devices_view:
-  name: Geräte
+cameras_view:
+  name: Cameras
+  view: yes
+  icon: mdi:camcorder
+  entities:
+    - camera.arthur_cam
+
+garten_view:
+  name: Garten
   view: yes
   entities:
-    - group.battery_status
 
-# automations_view:
-#   name: Automatisierung
-#   view: yes
-#   entities:
-#     #- group.battery_status
+settings_view:
+  name: Einstellungen
+  view: yes
+  icon: mdi:settings
+  entities:
+    - group.home_assistant
+    - group.bewegungsmelder
+    - group.my_automations
+

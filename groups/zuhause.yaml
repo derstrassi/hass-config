@@ -25,6 +25,4 @@ zuhause:
     - switch.tuer_oeffner
     - sensor.temperature_158d0001a4c74d
     - sensor.pressure_158d0001a4c74d
-    - input_boolean.git_auto_update
-    - script.git_update_config
     - script.all_off
