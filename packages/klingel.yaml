@@ -85,7 +85,7 @@ automation:
         data:
           gw_mac: !secret XIAOMI_GATEWAY_1_MAC
           ringtone_id: 10
-          ringtone_vol: 40
+          ringtone_vol: 35
 
   - alias: klingel_nachts
     trigger:
