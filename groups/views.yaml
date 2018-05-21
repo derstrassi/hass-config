@@ -44,7 +44,9 @@ cameras_view:
 garten_view:
   name: Garten
   view: yes
+  icon: mdi:pool
   entities:
+    - group.pool
 
 settings_view:
   name: Einstellungen
