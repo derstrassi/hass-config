@@ -10,7 +10,6 @@ all_off:
           - switch.beleuchtung_toilette
           - switch.rf_arthur_lichterkette
           - switch.rf_kueche1
-          - switch.rf_kueche2
           - switch.rf_sz_nachttisch
           - switch.rf_wz_lichtkugel
           - switch.rf_wz_stehlampe

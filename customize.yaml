@@ -42,8 +42,6 @@ binary_sensor.motion_sensor_158d000113dee1:
   friendly_name: Bewegung
 
 # Schalter
-switch.rf_kueche2:
-  friendly_name: Ambiente-Beleuchtung
 switch.rf_wz_stehlampe:
   friendly_name: Stehlampe
 switch.rf_wz_lichtkugel:

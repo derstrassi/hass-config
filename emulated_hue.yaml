@@ -28,8 +28,6 @@ entities:
     name: Spielbereich
   switch.sonoff_kz_2:
     name: Schlafbereich
-  switch.rf_kueche2:
-    name: Küche Rückwand
   switch.rf_wz_stehlampe:
     name: Stehlampe
   switch.rf_wz_lichtkugel:

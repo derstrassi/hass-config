@@ -3,6 +3,5 @@ kueche:
   control: hidden
   entities:
     - input_boolean.motion_sensor_kueche_aktiv
-    - switch.volumio_kueche
     - switch.beleuchtung_kueche
-    - switch.rf_kueche2
+    - switch.volumio_kueche
