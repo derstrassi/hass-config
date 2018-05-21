@@ -2,6 +2,9 @@ homeassistant:
   customize:
     sensor.pool_temperatur:
       friendly_name: Wassertemperatur
+    switch.pool:
+      friendly_name: Filterpumpe
+      icon: mdi:gauge
 
 sensor:
   - platform: mqtt
@@ -21,7 +24,7 @@ group:
     control: hidden
     entities:
       - input_boolean.pool_timer_aktiv
-      - sensor.wassertemperatur
+      - sensor.pool_temperatur
       - input_datetime.pool_timer1_start
       - input_datetime.pool_timer1_stop
       - input_datetime.pool_timer2_start
