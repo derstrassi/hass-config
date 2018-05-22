@@ -48,7 +48,7 @@ garten_view:
   icon: mdi:pool
   entities:
     - group.pool
-    - history_graph.pool_temperatur
+    - history_graph.poolstatistiken
     - group.pool_timer
 
 settings_view:
