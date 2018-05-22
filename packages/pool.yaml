@@ -39,7 +39,7 @@ group:
       - switch.pool
 
   pool_timer:
-    name: Timer Filterpumpe
+    name: Filterpumpe Zeitsteuerung
     control: hidden
     entities:
       - input_boolean.pool_timer_aktiv
@@ -81,6 +81,28 @@ input_datetime:
     icon: mdi:clock-end
 
 automation:
+  - alias: cycle_pool_pump
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.pool_temperatur
+      above: 22
+      for:
+        minutes: 30
+    condition:
+      - condition: time
+        after: '06:00:00'
+        before: '21:00:00'
+    action:
+      - service: notify.ios_iphone_von_dennis
+        data_template:
+          title: 'Pool'
+          message: 'Die Temperatur im Pool beträgt aktuell {{ states("sensor.pool_temperatur") }}°C, die Filterpumpe wird jetzt aktiviert'
+      - service: switch.turn_on
+        entity_id: switch.pool
+      - delay:
+          minutes: 15
+      - service: switch.turn_off
+        entity_id: switch.pool
   - alias: pool_timer_start
     trigger:
       - platform: template
