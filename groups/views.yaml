@@ -40,6 +40,7 @@ cameras_view:
   icon: mdi:camcorder
   entities:
     - camera.arthur_cam
+    - camera.camera_hof
 
 garten_view:
   name: Garten

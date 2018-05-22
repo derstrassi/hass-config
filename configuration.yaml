@@ -87,6 +87,13 @@ camera:
     name: arthur_cam
     input: -rtsp_transport tcp -i rtsp://192.168.10.76/unicast
     #extra_arguments: '-c:v h264_omx'
+  - platform: ffmpeg
+    name: camera_hof
+    input: -rtsp_transport tcp -i rtsp://192.168.10.115/unicast
+  # - platform: mjpeg
+  #   name: camera_hof
+  #   mjpeg_url: rtsp://192.168.10.115/unicast
+    #extra_arguments: '-c:v h264_omx'
 
 pilight:
   host: 192.168.10.93
