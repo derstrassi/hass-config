@@ -137,6 +137,8 @@ group.toilette:
 camera.arthur_cam:
   friendly_name: Arthur CAM
   order: 4
+camera.camera_hof:
+  friendly_name: Innenhof
 media_player.lg_tv:
   order: 5
 group.scenes:

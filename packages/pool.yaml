@@ -2,6 +2,7 @@ homeassistant:
   customize:
     sensor.pool_temperatur:
       friendly_name: Wassertemperatur
+      icon: mdi:oil-temperature
     switch.pool:
       friendly_name: Filterpumpe
       icon: mdi:gauge
@@ -12,26 +13,36 @@ sensor:
     availability_topic: "tele/garden/pool/LWT"
     state_topic: "tele/garden/pool/SENSOR"
     unit_of_measurement: "°C"
-    icon: mdi:oil-temperature
     expire_after: 600
     value_template: "{{ value_json.DS18B20.Temperature }}"
     json_attributes:
       - DS18B20
+
+history_graph:
+  pool:
+    name: Pool-Statistiken
+    entities:
+      - sensor.pool_temperatur
+      - switch.pool
+    hours_to_show: 168
+    refresh: 60
 
 group:
   pool:
     name: Pool
     control: hidden
     entities:
-      - input_boolean.pool_timer_aktiv
       - sensor.pool_temperatur
+      - switch.pool
+
+  pool_timer:
+    control: hidden
+    entities:
+      - input_boolean.pool_timer_aktiv
       - input_datetime.pool_timer1_start
       - input_datetime.pool_timer1_stop
       - input_datetime.pool_timer2_start
       - input_datetime.pool_timer2_stop
-      - input_datetime.pool_timer3_start
-      - input_datetime.pool_timer3_stop
-      - switch.pool
 
 input_boolean:
   pool_timer_aktiv:
@@ -44,34 +55,22 @@ input_datetime:
     name: Timer 1 ein
     has_date: false
     has_time: true
-    initial: '08:00'
+    initial: '10:30'
     icon: mdi:clock-start
   pool_timer1_stop:
     name: Timer 1 aus
     has_date: false
     has_time: true
-    initial: '10:00'
+    initial: '14:00'
     icon: mdi:clock-end
   pool_timer2_start:
     name: Timer 2 ein
     has_date: false
     has_time: true
-    initial: '14:00'
+    initial: '16:00'
     icon: mdi:clock-start
   pool_timer2_stop:
     name: Timer 2 aus
-    has_date: false
-    has_time: true
-    initial: '16:00'
-    icon: mdi:clock-end
-  pool_timer3_start:
-    name: Timer 3 ein
-    has_date: false
-    has_time: true
-    initial: '18:00'
-    icon: mdi:clock-start
-  pool_timer3_stop:
-    name: Timer 3 aus
     has_date: false
     has_time: true
     initial: '20:00'
@@ -84,8 +83,6 @@ automation:
         value_template: "{{ states('sensor.time') == (states.input_datetime.pool_timer1_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
       - platform: template
         value_template: "{{ states('sensor.time') == (states.input_datetime.pool_timer2_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
-      - platform: template
-        value_template: "{{ states('sensor.time') == (states.input_datetime.pool_timer3_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
     condition:
       condition: state
       entity_id: input_boolean.pool_timer_aktiv
@@ -100,8 +97,6 @@ automation:
         value_template: "{{ states('sensor.time') == (states.input_datetime.pool_timer1_stop.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
       - platform: template
         value_template: "{{ states('sensor.time') == (states.input_datetime.pool_timer2_stop.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
-      - platform: template
-        value_template: "{{ states('sensor.time') == (states.input_datetime.pool_timer3_stop.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
     action:
       service: switch.turn_off
       entity_id: switch.pool
