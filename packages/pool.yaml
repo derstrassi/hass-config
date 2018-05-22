@@ -11,12 +11,15 @@ sensor:
   - platform: mqtt
     name: pool_temperatur
     availability_topic: "tele/garden/pool/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
     state_topic: "tele/garden/pool/SENSOR"
     unit_of_measurement: "°C"
     expire_after: 600
     value_template: "{{ value_json.DS18B20.Temperature }}"
     json_attributes:
       - DS18B20
+      - Temperature
 
 history_graph:
   pool:
