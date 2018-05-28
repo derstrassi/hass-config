@@ -10,16 +10,17 @@ homeassistant:
 sensor:
   - platform: mqtt
     name: pool_temperatur
-    # availability_topic: "tele/garden/pool/LWT"
-    # payload_available: "Online"
-    # payload_not_available: "Offline"
     state_topic: "tele/garden/pool/SENSOR"
     unit_of_measurement: "°C"
     expire_after: 600
     value_template: "{{ value_json.DS18B20.Temperature }}"
-    # json_attributes:
-    #   - DS18B20
-    #   - Temperature
+
+binary_sensor:
+  - platform: template
+    sensors:
+      pool_temp_too_high:
+        value_template: >-
+          {{ sensor.pool_temperatur|float > input_number.pool_temp_threshold }}
 
 history_graph:
   pool:
@@ -36,6 +37,7 @@ group:
     control: hidden
     entities:
       - sensor.pool_temperatur
+      - input_number.pool_temp_threshold
       - switch.pool
 
   pool_timer:
@@ -53,6 +55,16 @@ input_boolean:
     name: Timer aktiv
     initial: on
     icon: mdi:clock
+
+input_number:
+  pool_temp_threshold:
+    name: Schwellwert Umwälzung
+    icon: mdi:oil-temperature
+    #initial: 22
+    min: 20.0
+    max: 29.0
+    step: 0.5
+    unit_of_measurement: '°C'
 
 input_datetime:
   pool_timer1_start:
@@ -83,12 +95,15 @@ input_datetime:
 automation:
   - alias: cycle_pool_pump
     trigger:
-      platform: numeric_state
-      entity_id: sensor.pool_temperatur
-      above: 22
+      platform: state
+      entity_id: binary_sensor.pool_temp_too_high
+      to: 'on'
       for:
         minutes: 30
     condition:
+      - condition: state
+        entity_id: switch.pool
+        state: 'off'
       - condition: time
         after: '06:00:00'
         before: '21:00:00'
@@ -103,6 +118,7 @@ automation:
           minutes: 15
       - service: switch.turn_off
         entity_id: switch.pool
+
   - alias: pool_timer_start
     trigger:
       - platform: template
