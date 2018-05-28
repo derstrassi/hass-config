@@ -10,6 +10,10 @@ input_text:
   klingel_random:
     name: klingel_random
 
+# timer:
+#   klingel_cycle:
+#     duration: '00:00:05'
+
 automation:
   - alias: klingel_open_door
     trigger:
@@ -40,7 +44,16 @@ automation:
       platform: state
       entity_id: switch.klingel
       to: 'on'
+    condition:
+      # prevent multiple consecutive presses
+      # disabled: will be done in tasmota
+      #
+      # - condition: state
+      #   entity_id: timer.klingel_cycle
+      #   state: 'idle'
     action:
+      # - service: timer.start
+      #   entity_id: timer.klingel_cycle
       - service: input_text.set_value
         entity_id: input_text.klingel_random
         data_template:
@@ -55,7 +68,7 @@ automation:
       - service: camera.snapshot
         entity_id: camera.arthur_cam
         data:
-          filename: '/home/homeassistant/.homeassistant/www/snapshots/front_door/cam_{{ states("input_text.klingel_random") }}.jpg'
+          filename: '/home/homeassistant/.homeassistant/www/snapshots/front_door/{{ states("input_text.klingel_random") }}.jpg'
       - service: notify.notify
       # - service: notify.ios_iphone_von_dennis
         data_template:
@@ -65,44 +78,19 @@ automation:
             push:
               category: klingel
             attachment:
-              url: 'https://hass.derstrassi.net/local/snapshots/front_door/cam_{{ states("input_text.klingel_random") }}.jpg'
+              url: 'https://hass.derstrassi.net/local/snapshots/front_door/{{ states("input_text.klingel_random") }}.jpg'
               content-type: jpg
-
-  - alias: klingel_sound
-    trigger:
-      platform: state
-      entity_id: switch.klingel
-      to: 'on'
-    condition:
-      - condition: time
-        after: '06:00:00'
-        before: '20:00:00'
       - condition: state
         entity_id: group.familie
         state: 'home'
-    action:
       - service: xiaomi_aqara.play_ringtone
-        data:
+        data_template:
           gw_mac: !secret XIAOMI_GATEWAY_1_MAC
           ringtone_id: 10
-          ringtone_vol: 35
-
-  - alias: klingel_nachts
-    trigger:
-      platform: state
-      entity_id: switch.klingel
-      to: 'on'
-    condition:
-      - condition: time
-        after: '20:00:00'
-        before: '06:00:00'
-      - condition: state
-        entity_id: group.familie
-        state: 'home'
-    action:
-      - service: xiaomi_aqara.play_ringtone
-        data:
-          gw_mac: !secret XIAOMI_GATEWAY_1_MAC
-          ringtone_id: 10
-          ringtone_vol: 2
+          ringtone_vol: >-
+            {%- if states('sensor.time') > '05:59' and states('sensor.time') < '20:00' -%}
+              35
+            {%- else -%}
+              2
+            {%- endif -%}
       ## Licht blinken lassen
