@@ -1,0 +1,9 @@
+- alias: hass_reboot
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: notify.ios_iphone_von_dennis
+      data_template:
+        title: "HASS Restart"
+        message: "Home Assistant wurde neu gestartet"
