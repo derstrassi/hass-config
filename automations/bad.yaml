@@ -69,18 +69,14 @@
       data_template:
         volume_level: 0.2
 
-- alias: bad_zahnbuerste_laden_on
+- alias: bad_zahnbuerste_laden
   trigger:
     platform: time
     at: '10:00:00'
   action:
-    service: homeassistant.turn_on
-    entity_id: switch.sonoff_bad_2
-
-- alias: bad_zahnbuerste_laden_off
-  trigger:
-    platform: time
-    at: '13:00:00'
-  action:
-    service: homeassistant.turn_off
-    entity_id: switch.sonoff_bad_2
+    - service: homeassistant.turn_on
+      entity_id: switch.sonoff_bad_2
+    - delay:
+        hours: 3
+    - service: homeassistant.turn_off
+      entity_id: switch.sonoff_bad_2
