@@ -48,8 +48,6 @@ switch.rf_wz_lichtkugel:
   friendly_name: Lichtkugel
 switch.rf_arthur_lichterkette:
   friendly_name: Lichterkette
-switch.volumio_kueche:
-  icon: 'mdi:radio'
 switch.sonoff_wz_1:
   friendly_name: Beleuchtung Couch
   icon: 'mdi:ceiling-light'

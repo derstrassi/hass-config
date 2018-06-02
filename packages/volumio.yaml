@@ -1,0 +1,47 @@
+homeassistant:
+  customize:
+    switch.volumio_kueche:
+    icon: 'mdi:radio'
+
+media_player:
+  - platform: volumio
+    host: 192.168.10.99
+    port: 3000
+  - platform: mpd
+    name: volumio_mpd
+    host: 192.168.10.99
+
+switch:
+  - platform: template
+    switches:
+      volumio_kueche:
+        friendly_name: Radio
+        entity_id: media_player.volumio
+        value_template: "{{ is_state('media_player.volumio', 'playing') }}"
+        turn_on:
+          - service: media_player.media_play
+            data:
+              entity_id: media_player.volumio
+          - wait_template: "{{ is_state('media_player.volumio', 'playing') }}"
+            timeout:
+              seconds: 10
+        turn_off:
+          - service: media_player.media_pause
+            data:
+              entity_id: media_player.volumio
+          - wait_template: "{{ is_state('media_player.volumio', 'idle') }}"
+            timeout:
+              seconds: 10
+
+automation:
+  - alias: kueche_volumio_aqara_button
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000213540d
+        click_type: single
+    action:
+      service: switch.toggle
+      entity_id: switch.volumio_kueche
+

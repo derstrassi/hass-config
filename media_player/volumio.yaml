@@ -1,7 +1,0 @@
-- platform: volumio
-  host: 192.168.10.99
-  port: 3000
-
-- platform: mpd
-  name: volumio_mpd
-  host: 192.168.10.99
