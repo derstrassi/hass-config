@@ -11,7 +11,7 @@ all_off:
           - switch.rf_arthur_lichterkette
           - switch.rf_kueche1
           - switch.rf_sz_nachttisch
-          - switch.rf_wz_lichtkugel
+          - switch.lichtkugel
           - switch.rf_wz_stehlampe
           - switch.sonoff_bad_1
           - switch.sonoff_bad_2

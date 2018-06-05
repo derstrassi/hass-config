@@ -44,7 +44,7 @@ binary_sensor.motion_sensor_158d000113dee1:
 # Schalter
 switch.rf_wz_stehlampe:
   friendly_name: Stehlampe
-switch.rf_wz_lichtkugel:
+switch.lichtkugel:
   friendly_name: Lichtkugel
 switch.rf_arthur_lichterkette:
   friendly_name: Lichterkette

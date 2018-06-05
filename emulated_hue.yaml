@@ -30,7 +30,7 @@ entities:
     name: Schlafbereich
   switch.rf_wz_stehlampe:
     name: Stehlampe
-  switch.rf_wz_lichtkugel:
+  switch.lichtkugel:
     name: Lichtkugel
   switch.rf_arthur_lichterkette:
     name: Lichterkette

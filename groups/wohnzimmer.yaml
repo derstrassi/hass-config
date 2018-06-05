@@ -6,11 +6,11 @@ wohnzimmer:
     - switch.sonoff_wz_1
     - switch.sonoff_wz_2
     - switch.rf_wz_stehlampe
-    - switch.rf_wz_lichtkugel
+    - switch.lichtkugel
     - media_player.lg_tv
 
 wz_ambiente:
   name: Ambiente Beleuchtung
   entities:
     - switch.rf_wz_stehlampe
-    - switch.rf_wz_lichtkugel
+    - switch.lichtkugel
