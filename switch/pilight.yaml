@@ -63,27 +63,6 @@
         id: B3
         unit: 24
         state: 'off'
-    rf_wz_lichtkugel:
-      on_code:
-        protocol: kaku_switch
-        id: 32969728
-        unit: 1
-        'on': 1
-      off_code:
-        protocol: kaku_switch
-        id: 32969728
-        unit: 1
-        'off': 0
-      on_code_receive:
-        protocol: arctech_switch
-        id: 32969728
-        unit: 1
-        state: 'on'
-      off_code_receive:
-        protocol: arctech_switch
-        id: 32969728
-        unit: 1
-        state: 'off'
     rf_arthur_lichterkette:
       on_code:
         protocol: clarus_switch
