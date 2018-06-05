@@ -72,7 +72,6 @@ automation:
         entity_id:
           - light.gateway_light_286c0788a9dd
           - light.stehlampe_flur
-
   - alias: Kinderzimmer Schlafbereich Nachts Licht AUS
     trigger:
       platform: time
@@ -80,7 +79,6 @@ automation:
     action:
       service: homeassistant.turn_off
       entity_id: switch.sonoff_kz_2
-
   - alias: Kinderzimmer Nachtlicht
     trigger:
       platform: time
@@ -99,7 +97,6 @@ automation:
           hours: 10
       - service: light.turn_off
         entity_id: light.gateway_light_7811dcb8c5ed
-
   - alias: arthur_temp_warn
     trigger:
       platform: numeric_state
@@ -125,7 +122,6 @@ automation:
           minutes: 5
       - service: homeassistant.turn_off
         entity_id: switch.rf_sz_nachttisch
-
   - alias: kz_left_single
     trigger:
       platform: event
@@ -136,7 +132,6 @@ automation:
     action:
       service: switch.toggle
       entity_id: switch.sonoff_kz_1
-
   - alias: kz_right_single
     trigger:
       platform: event
@@ -147,7 +142,6 @@ automation:
     action:
       service: switch.toggle
       entity_id: switch.sonoff_kz_2
-
   - alias: kz_aquarium_toggle
     trigger:
       platform: event

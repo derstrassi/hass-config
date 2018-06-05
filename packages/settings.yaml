@@ -73,8 +73,9 @@ group:
       - sensor.speedtest_ping
       - sensor.speedtest_download
       - sensor.speedtest_upload
+      - sensor.nzbget_download_paused
       - sensor.nzbget_speed
-      - switch.nzbget_switch
+      - sensor.nzbget_queue_size
 
   bewegungsmelder:
     name: Bewegungsmelder
