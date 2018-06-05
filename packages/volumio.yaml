@@ -1,7 +1,7 @@
 homeassistant:
   customize:
     switch.volumio_kueche:
-    icon: 'mdi:radio'
+      icon: 'mdi:radio'
 
 media_player:
   - platform: volumio
