@@ -1,0 +1,160 @@
+homeassistant:
+  customize:
+    light.gateway_light_7811dcb8c5ed:
+      friendly_name: Nachtlicht
+      icon: 'mdi:lightbulb-on-outline'
+      state_card_mode: single-line
+    switch.sonoff_kz_1:
+      friendly_name: Spielbereich
+      icon: 'mdi:ceiling-light'
+    switch.sonoff_kz_2:
+      friendly_name: Schlafbereich
+      icon: 'mdi:ceiling-light'
+
+group:
+  kinderzimmer_view:
+    name: Kinderzimmer
+    view: yes
+    entities:
+      - group.kz_status
+      - group.kz_licht
+      - group.aquarium
+      - camera.arthur_cam
+
+  kz_status:
+    name: Kinderzimmer
+    control: hidden
+    entities:
+      - sensor.temperature_158d0001574111
+      - sensor.humidity_158d0001574111
+
+  kz_licht:
+    name: Licht
+    entities:
+      - switch.sonoff_kz_1
+      - switch.sonoff_kz_2
+      - light.gateway_light_7811dcb8c5ed
+      - switch.rf_arthur_lichterkette
+
+automation:
+  - alias: Arthur macht in der Nacht das Licht an
+    trigger:
+      - platform: state
+        entity_id: switch.sonoff_kz_1
+        to: 'on'
+      - platform: state
+        entity_id: switch.sonoff_kz_2
+        to: 'on'
+    condition:
+      - condition: time
+        after: '23:00:00'
+        before: '05:30:00'
+    action:
+      - service: light.turn_on
+        entity_id: light.gateway_light_286c0788a9dd
+        data:
+          rgb_color: [255,100,100]
+          brightness_pct: 100
+      - service: script.yeelight_flur_weiss
+      - service: homeassistant.turn_on
+        entity_id: switch.rf_sz_nachttisch
+      - delay:
+          minutes: 2
+      - service: homeassistant.turn_off
+        entity_id:
+          - switch.sonoff_kz_1
+          - switch.sonoff_kz_2
+          - light.gateway_light_7811dcb8c5ed
+      - delay:
+          minutes: 10
+      - service: homeassistant.turn_off
+        entity_id:
+          - light.gateway_light_286c0788a9dd
+          - light.stehlampe_flur
+
+  - alias: Kinderzimmer Schlafbereich Nachts Licht AUS
+    trigger:
+      platform: time
+      at: '23:00:00'
+    action:
+      service: homeassistant.turn_off
+      entity_id: switch.sonoff_kz_2
+
+  - alias: Kinderzimmer Nachtlicht
+    trigger:
+      platform: time
+      at: '20:00:00'
+    condition:
+      - condition: state
+        entity_id: group.familie
+        state: 'home'
+    action:
+      - service: light.turn_on
+        entity_id: light.gateway_light_7811dcb8c5ed
+        data:
+          brightness: 50
+          rgb_color: [255, 63, 0]
+      - delay:
+          hours: 10
+      - service: light.turn_off
+        entity_id: light.gateway_light_7811dcb8c5ed
+
+  - alias: arthur_temp_warn
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.temperature_158d0001574111
+      below: 18
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.familie
+          state: 'home'
+        - condition: time
+          after: '20:00:00'
+          before: '00:30:00'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: switch.rf_sz_nachttisch
+      - service: notify.notify
+        data:
+          title: 'Warnung!'
+          message: 'Es ist zu kalt in Arthurs Zimmer!'
+      - delay:
+          minutes: 5
+      - service: homeassistant.turn_off
+        entity_id: switch.rf_sz_nachttisch
+
+  - alias: kz_left_single
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_left_158d00012a7f6a
+        click_type: single
+    action:
+      service: switch.toggle
+      entity_id: switch.sonoff_kz_1
+
+  - alias: kz_right_single
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_right_158d00012a7f6a
+        click_type: single
+    action:
+      service: switch.toggle
+      entity_id: switch.sonoff_kz_2
+
+  - alias: kz_aquarium_toggle
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_both_158d00012a7f6a
+        click_type: both
+    action:
+      service: switch.toggle
+      entity_id: switch.plug_158d0001530b1b
+

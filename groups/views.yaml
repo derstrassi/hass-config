@@ -14,15 +14,6 @@ default_view:
     - group.wohnzimmer
     - group.schlafzimmer
 
-kinderzimmer_view:
-  name: Kinderzimmer
-  view: yes
-  entities:
-    - group.kz_status
-    - group.kz_licht
-    - group.aquarium
-    - camera.arthur_cam
-
 media_view:
   name: Media
   view: yes
