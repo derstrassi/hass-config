@@ -15,6 +15,7 @@ group:
   kinderzimmer_view:
     name: Kinderzimmer
     view: yes
+    icon: mdi:puzzle
     entities:
       - group.kz_status
       - group.kz_licht
