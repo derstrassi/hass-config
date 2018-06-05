@@ -20,7 +20,7 @@ binary_sensor:
     sensors:
       pool_temp_too_high:
         value_template: >-
-          {{ sensor.pool_temperatur|float > input_number.pool_temp_threshold }}
+          {{ states("sensor.pool_temperatur")|float > states("input_number.pool_temp_threshold") }}
 
 history_graph:
   pool:
