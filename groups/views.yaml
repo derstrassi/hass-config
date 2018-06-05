@@ -52,12 +52,3 @@ garten_view:
     - history_graph.poolstatistiken
     - group.pool_timer
 
-settings_view:
-  name: Einstellungen
-  view: yes
-  icon: mdi:settings
-  entities:
-    - group.home_assistant
-    - group.bewegungsmelder
-    - group.my_automations
-

@@ -1,0 +1,92 @@
+homeassistant:
+  customize:
+    sensor.speedtest_download:
+     icon: 'mdi:speedometer'
+    sensor.speedtest_upload:
+      icon: 'mdi:speedometer'
+    sensor.speedtest_ping:
+      icon: 'mdi:speedometer'
+    sensor.nzbget_speed:
+      friendly_name: Current NZBGet Speed
+      icon: 'mdi:download'
+
+input_boolean:
+  motion_sensor_flur_aktiv:
+    name: Bewegungsmelder Flur
+    icon: mdi:radar
+  motion_sensor_toilette_aktiv:
+    name: Bewegungsmelder Toilette
+    icon: mdi:radar
+  motion_sensor_bad_aktiv:
+    name: Bewegungsmelder Bad
+    icon: mdi:radar
+  motion_sensor_kueche_aktiv:
+    name: Bewegungsmelder Küche
+    icon: mdi:radar
+
+sensor:
+  - platform: nzbget
+    host: 192.168.10.51
+    username: !secret NZBGET_USERNAME
+    password: !secret NZBGET_PASSWORD
+    monitored_variables:
+      - download_paused
+      - article_cache
+      - download_rate
+      - download_size
+      - remaining_size
+  - platform: speedtest
+    minute: 30
+    hour:
+      - 0
+      - 12
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+
+group:
+  settings_view:
+    name: Einstellungen
+    view: yes
+    icon: mdi:settings
+    entities:
+      - group.home_assistant
+      - group.network
+      - group.bewegungsmelder
+      - group.my_automations
+
+  home_assistant:
+    name: Home-Assistant
+    control: hidden
+    entities:
+      - input_boolean.git_auto_update
+      - script.git_update_config
+      - script.gw_add_device
+      #- uptime, prozessor usw
+      #
+
+  network:
+    name: Netzwerk
+    control: hidden
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.nzbget_speed
+      - switch.nzbget_switch
+
+  bewegungsmelder:
+    name: Bewegungsmelder
+    control: hidden
+    entities:
+      - input_boolean.motion_sensor_flur_aktiv
+      - input_boolean.motion_sensor_kueche_aktiv
+      - input_boolean.motion_sensor_bad_aktiv
+      - input_boolean.motion_sensor_toilette_aktiv
+
+  my_automations:
+    name: Automatisierungen
+    control: hidden
+    entities:
+
