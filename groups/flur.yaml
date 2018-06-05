@@ -4,7 +4,6 @@ flur:
   entities:
     - sensor.temperature_158d00018734bb
     - sensor.humidity_158d00018734bb
-    - input_boolean.motion_sensor_flur_aktiv
     - sensor.motion_sensor_flur_last_seen
     - switch.beleuchtung_flur
     - light.stehlampe_flur

@@ -2,6 +2,5 @@ kueche:
   name: Küche
   control: hidden
   entities:
-    - input_boolean.motion_sensor_kueche_aktiv
     - switch.beleuchtung_kueche
     - switch.volumio_kueche

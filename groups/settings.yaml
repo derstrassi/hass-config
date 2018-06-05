@@ -12,6 +12,10 @@ bewegungsmelder:
   name: Bewegungsmelder
   control: hidden
   entities:
+    - input_boolean.motion_sensor_flur_aktiv
+    - input_boolean.motion_sensor_kueche_aktiv
+    - input_boolean.motion_sensor_bad_aktiv
+    - input_boolean.motion_sensor_toilette_aktiv
 
 my_automations:
   name: Automatisierungen
