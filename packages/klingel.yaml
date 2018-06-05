@@ -10,9 +10,9 @@ input_text:
   klingel_random:
     name: klingel_random
 
-# timer:
-#   klingel_cycle:
-#     duration: '00:00:05'
+timer:
+  klingel_cycle:
+    duration: '00:00:05'
 
 automation:
   - alias: klingel_open_door
@@ -46,14 +46,12 @@ automation:
       to: 'on'
     condition:
       # prevent multiple consecutive presses
-      # disabled: will be done in tasmota
-      #
-      # - condition: state
-      #   entity_id: timer.klingel_cycle
-      #   state: 'idle'
+      - condition: state
+        entity_id: timer.klingel_cycle
+        state: 'idle'
     action:
-      # - service: timer.start
-      #   entity_id: timer.klingel_cycle
+      - service: timer.start
+        entity_id: timer.klingel_cycle
       - service: input_text.set_value
         entity_id: input_text.klingel_random
         data_template:
