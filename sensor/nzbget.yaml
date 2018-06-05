@@ -1,0 +1,8 @@
+- platform: nzbget
+  host: 192.168.10.51
+  monitored_variables:
+    - download_paused
+    - article_cache
+    - download_rate
+    - download_size
+    - remaining_size
