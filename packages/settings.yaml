@@ -24,6 +24,12 @@ input_boolean:
     name: Bewegungsmelder Küche
     icon: mdi:radar
 
+script:
+  update_speedtest:
+    alias: Speedtest starten
+    sequence:
+      - service: sensor.update_speedtest
+
 sensor:
   - platform: nzbget
     host: 192.168.10.51
@@ -70,6 +76,7 @@ group:
     name: Netzwerk
     control: hidden
     entities:
+      - script.update_speedtest
       - sensor.speedtest_ping
       - sensor.speedtest_download
       - sensor.speedtest_upload
