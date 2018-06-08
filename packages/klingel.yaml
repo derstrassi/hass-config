@@ -6,6 +6,13 @@ homeassistant:
       friendly_name: Tür-Öffner
       icon: 'mdi:door-open'
 
+binary_sensor:
+  - platform: ring
+    name: ring
+    monitored_conditions:
+      - ding
+      - motion
+
 input_text:
   klingel_random:
     name: klingel_random
