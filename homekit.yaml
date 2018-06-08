@@ -1,0 +1,25 @@
+filter:
+  include_domains:
+    - light
+    - switch
+  include_entities:
+    - script.all_off
+    - script.volumio_play
+    - sensor.heizung_temperature
+    - sensor.nzbget_queue_size
+    - sensor.pool_temperatur
+  exclude_entities:
+    - switch.klingel
+entity_config:
+  sensor.heizung_temperature:
+    name: Temperatur Wohnzimmer
+  sensor.nzbget_queue_size:
+    name: NZBGet Download Queue
+  sensor.pool_temperatur:
+    name: Wassertemperatur Pool
+  switch.beleuchtung_esszimmer:
+    name: Beleuchtung Esszimmer
+  switch.beleuchtung_flur:
+    name: Beleuchtung Flur
+  switch.beleuchtung_kueche:
+    name: Beleuchtung Küche
