@@ -1,10 +1,16 @@
 homeassistant:
   customize:
     switch.klingel:
-      friendly_name: Tür-Klingel
+      friendly_name: Klingel Wohnung
+      icon: mdi:bell
     switch.tuer_oeffner:
       friendly_name: Tür-Öffner
-      icon: 'mdi:door-open'
+      icon: mdi:door-open
+    binary_sensor.ring_haustur_ding:
+      friendly_name: Klingel Haus
+      icon: mdi:bell
+    binary_sensor.ring_haustur_motion:
+      friendly_name: Bewegung Haustür
 
 binary_sensor:
   - platform: ring
@@ -20,6 +26,8 @@ input_text:
 timer:
   klingel_cycle:
     duration: '00:00:05'
+  return_home:
+    duration: '00:15:00'
 
 automation:
   - alias: klingel_open_door
@@ -32,21 +40,87 @@ automation:
       - service: switch.turn_on
         entity_id: switch.tuer_oeffner
 
+  - alias: start_return_home_timer
+    trigger:
+      platform: state
+      entity_id: group.person_dennis
+      to: 'home'
+    action:
+      - service: timer.start
+        entity_id: timer.return_home
+
   - alias: klingel_me_at_home
     trigger:
       platform: state
-      entity_id: device_tracker.iphone_von_dennis
-      to: 'home'
+      entity_id: binary_sensor.ring_haustur_motion
+      to: 'on'
+    condition:
+      - condition: state
+      # entity_id: device_tracker.iphone_von_dennis
+        entity_id: group.person_dennis
+        state: 'home'
+      - condition: state
+        entity_id: timer.return_home
+        state: 'running'
     action:
       - service: notify.ios_iphone_von_dennis
         data:
-          title: 'Welcome Home'
+          title: 'Wilkommen Zuhause!'
           message: 'Möchtest du die Tür öffnen?'
           data:
             push:
               category: 'klingel'
 
-  - alias: klingel_notify
+  - alias: klingel_download_last_video
+    trigger:
+      platform: state
+      entity_id: binary_sensor.ring_haustur_motion
+      to: 'on'
+    action:
+      - service: downloader.download_file
+        data_template:
+          url: 'states.camera.haustur.attributes.video_url'
+          subdir: 'wwww/downloads'
+          filename: 'last.mpg'
+          overwrite: true
+
+  - alias: klingel_haus_notify
+    trigger:
+      platform: state
+      entity_id: binary_sensor.ring_haustur_ding
+      to: 'on'
+    condition:
+      # prevent multiple consecutive presses
+      - condition: state
+        entity_id: timer.klingel_cycle
+        state: 'idle'
+    action:
+      - service: timer.start
+        entity_id: timer.klingel_cycle
+      - service: notify.notify
+        data_template:
+          title: 'Klingeling...'
+          message: 'Jemand wartet an der Haustür'
+          data:
+            url: https://google.de # ring app url
+            push:
+              category: klingel
+      - condition: state
+        entity_id: group.familie
+        state: 'home'
+      - service: xiaomi_aqara.play_ringtone
+        data_template:
+          gw_mac: !secret XIAOMI_GATEWAY_1_MAC
+          ringtone_id: 10
+          ringtone_vol: >-
+            {%- if states('sensor.time') > '05:59' and states('sensor.time') < '20:00' -%}
+              35
+            {%- else -%}
+              2
+            {%- endif -%}
+      ## Licht blinken lassen
+
+  - alias: klingel_wohnung_notify
     trigger:
       platform: state
       entity_id: switch.klingel
@@ -79,9 +153,9 @@ automation:
         data_template:
           title: 'Klingeling...'
           message: 'Jemand wartet vor der Wohnungstür'
-          data:
-            push:
-              category: klingel
+          # data:
+          #   push:
+          #     category: klingel
             # attachment:
             #   url: 'https://hass.derstrassi.net/local/snapshots/front_door/{{ states("input_text.klingel_random") }}.jpg'
             #   content-type: jpg
