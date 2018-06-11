@@ -44,7 +44,7 @@ script:
             {%- endif -%}
 
 automation:
-  - alias: klingel_open_door
+  - alias: doorbell_open_door
     trigger:
       platform: event
       event_type: ios.notification_action_fired
@@ -63,7 +63,7 @@ automation:
       - service: timer.start
         entity_id: timer.return_home
 
-  - alias: klingel_me_at_home
+  - alias: doorbell_ask_for_door_open
     trigger:
       platform: state
       entity_id: binary_sensor.ring_haustur_motion
@@ -85,17 +85,19 @@ automation:
             push:
               category: 'klingel'
 
-  - alias: klingel_download_last_motion_video
+  - alias: doorbell_download_last_motion_video
     trigger:
       platform: state
       entity_id: binary_sensor.ring_haustur_motion
       to: 'on'
     action:
+      - delay:
+          seconds: 60
       - service: downloader.download_file
         data_template:
-          url: 'states.camera.haustur.attributes.video_url'
+          url: '{{ states.camera.haustur.attributes.video_url }}'
           subdir: 'front_door'
-          filename: 'last_motion.mpg'
+          filename: 'last_motion.mp4'
           overwrite: true
 
   - alias: klingel_haus_notify
