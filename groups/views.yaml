@@ -31,7 +31,7 @@ cameras_view:
   view: yes
   icon: mdi:camcorder
   entities:
-    - camera.ring
+    - camera.haustur
     - camera.arthur_cam
     - camera.camera_hof
 
