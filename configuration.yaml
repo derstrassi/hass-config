@@ -32,6 +32,8 @@ http:
 customizer:
   custom_ui: local
 
+downloader:
+  download_dir: 'www/downloads'
 
 config:
 ffmpeg:
