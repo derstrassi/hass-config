@@ -29,6 +29,20 @@ timer:
   return_home:
     duration: '00:15:00'
 
+script:
+  doorbell:
+    sequence:
+      - service: xiaomi_aqara.play_ringtone
+        data_template:
+          gw_mac: !secret XIAOMI_GATEWAY_1_MAC
+          ringtone_id: 10
+          ringtone_vol: >-
+            {%- if states('sensor.time') > '05:59' and states('sensor.time') < '20:00' -%}
+              35
+            {%- else -%}
+              2
+            {%- endif -%}
+
 automation:
   - alias: klingel_open_door
     trigger:
@@ -108,16 +122,7 @@ automation:
       - condition: state
         entity_id: group.familie
         state: 'home'
-      - service: xiaomi_aqara.play_ringtone
-        data_template:
-          gw_mac: !secret XIAOMI_GATEWAY_1_MAC
-          ringtone_id: 10
-          ringtone_vol: >-
-            {%- if states('sensor.time') > '05:59' and states('sensor.time') < '20:00' -%}
-              35
-            {%- else -%}
-              2
-            {%- endif -%}
+      - service: script.doorbell
       ## Licht blinken lassen
 
   - alias: klingel_wohnung_notify
@@ -162,14 +167,5 @@ automation:
       - condition: state
         entity_id: group.familie
         state: 'home'
-      - service: xiaomi_aqara.play_ringtone
-        data_template:
-          gw_mac: !secret XIAOMI_GATEWAY_1_MAC
-          ringtone_id: 10
-          ringtone_vol: >-
-            {%- if states('sensor.time') > '05:59' and states('sensor.time') < '20:00' -%}
-              35
-            {%- else -%}
-              2
-            {%- endif -%}
+      - service: script.doorbell
       ## Licht blinken lassen
