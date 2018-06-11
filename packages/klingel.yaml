@@ -59,32 +59,32 @@ automation:
     action:
       - service: timer.start
         entity_id: timer.klingel_cycle
-      - service: input_text.set_value
-        entity_id: input_text.klingel_random
-        data_template:
-          value: >-
-            {%- macro random_int(len) -%}
-              {%- for n in range(len) -%}
-                {{ [0,1,2,3,4,5,6,7,8,9]|random }}
-              {%- endfor -%}
-            {%- endmacro -%}
-            {%- set parts = [random_int(8), random_int(4), random_int(4), random_int(4), random_int(12)] -%}
-            {{ parts|join('-') }}
-      - service: camera.snapshot
-        entity_id: camera.arthur_cam
-        data:
-          filename: '/home/homeassistant/.homeassistant/www/snapshots/front_door/{{ states("input_text.klingel_random") }}.jpg'
+      # - service: input_text.set_value
+      #   entity_id: input_text.klingel_random
+      #   data_template:
+      #     value: >-
+      #       {%- macro random_int(len) -%}
+      #         {%- for n in range(len) -%}
+      #           {{ [0,1,2,3,4,5,6,7,8,9]|random }}
+      #         {%- endfor -%}
+      #       {%- endmacro -%}
+      #       {%- set parts = [random_int(8), random_int(4), random_int(4), random_int(4), random_int(12)] -%}
+      #       {{ parts|join('-') }}
+      # - service: camera.snapshot
+      #   entity_id: camera.arthur_cam
+      #   data:
+      #     filename: '/home/homeassistant/.homeassistant/www/snapshots/front_door/{{ states("input_text.klingel_random") }}.jpg'
       - service: notify.notify
       # - service: notify.ios_iphone_von_dennis
         data_template:
           title: 'Klingeling...'
-          message: 'Jemand hat die Türklingel betätigt'
+          message: 'Jemand wartet vor der Wohnungstür'
           data:
             push:
               category: klingel
-            attachment:
-              url: 'https://hass.derstrassi.net/local/snapshots/front_door/{{ states("input_text.klingel_random") }}.jpg'
-              content-type: jpg
+            # attachment:
+            #   url: 'https://hass.derstrassi.net/local/snapshots/front_door/{{ states("input_text.klingel_random") }}.jpg'
+            #   content-type: jpg
       - condition: state
         entity_id: group.familie
         state: 'home'
