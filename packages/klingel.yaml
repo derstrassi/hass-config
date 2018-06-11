@@ -80,7 +80,7 @@ automation:
       - service: downloader.download_file
         data_template:
           url: 'states.camera.haustur.attributes.video_url'
-          subdir: 'wwww/downloads'
+          subdir: 'www/downloads'
           filename: 'last.mpg'
           overwrite: true
 
