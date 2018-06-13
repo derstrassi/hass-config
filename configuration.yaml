@@ -30,7 +30,7 @@ http:
   login_attempts_threshold: 5
 
 customizer:
-  custom_ui: local
+  custom_ui: hosted
 
 downloader:
   download_dir: 'www/downloads'
