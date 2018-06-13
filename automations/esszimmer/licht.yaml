@@ -21,24 +21,26 @@
 
 - alias: ez_auto_off
   trigger:
-    platform: state
-    entity_id: switch.beleuchtung_esszimmer
-    to: 'on'
-    for:
-      hours: 1
+    platform: time
+    hours: '/1'
+    minutes: '/10'
+    seconds: 00
   condition:
     condition: and
     conditions:
       - condition: state
+        entity_id: switch.beleuchtung_esszimmer
+        state: 'on'
+      - condition: state
         entity_id: binary_sensor.motion_sensor_158d0001e562ad
         state: 'off'
         for:
-          minutes: 30
+          minutes: 15
       - condition: state
         entity_id: binary_sensor.motion_sensor_158d00012326f7
         state: 'off'
         for:
-          minutes: 30
+          minutes: 15
   action:
     service: homeassistant.turn_off
     entity_id: switch.beleuchtung_esszimmer
