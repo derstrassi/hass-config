@@ -19,15 +19,15 @@ binary_sensor:
       - ding
       - motion
 
-input_text:
-  klingel_random:
-    name: klingel_random
+# input_text:
+#   klingel_random:
+#     name: klingel_random
 
 timer:
   klingel_cycle:
     duration: '00:00:05'
   return_home:
-    duration: '00:15:00'
+    duration: '00:30:00'
 
 script:
   doorbell:
@@ -42,19 +42,19 @@ script:
             {%- else -%}
               2
             {%- endif -%}
-  doorbell_set_random:
-    sequence:
-      - service: input_text.set_value
-        entity_id: input_text.klingel_random
-        data_template:
-          value: >-
-            {%- macro random_int(len) -%}
-              {%- for n in range(len) -%}
-                {{ [0,1,2,3,4,5,6,7,8,9]|random }}
-              {%- endfor -%}
-            {%- endmacro -%}
-            {%- set parts = [random_int(8), random_int(4), random_int(4), random_int(4), random_int(12)] -%}
-            {{ parts|join('-') }}
+  # doorbell_set_random:
+  #   sequence:
+  #     - service: input_text.set_value
+  #       entity_id: input_text.klingel_random
+  #       data_template:
+  #         value: >-
+  #           {%- macro random_int(len) -%}
+  #             {%- for n in range(len) -%}
+  #               {{ [0,1,2,3,4,5,6,7,8,9]|random }}
+  #             {%- endfor -%}
+  #           {%- endmacro -%}
+  #           {%- set parts = [random_int(8), random_int(4), random_int(4), random_int(4), random_int(12)] -%}
+  #           {{ parts|join('-') }}
 
 automation:
   - alias: doorbell_open_door
@@ -98,35 +98,35 @@ automation:
             push:
               category: 'klingel'
 
-  - alias: doorbell_download_last_motion_video
-    trigger:
-      platform: state
-      entity_id: binary_sensor.ring_haustur_motion
-      to: 'on'
-    action:
-      - delay:
-          seconds: 60
-      - service: downloader.download_file
-        data_template:
-          url: '{{ states.camera.haustur.attributes.video_url }}'
-          subdir: 'front_door'
-          filename: 'last_motion.mp4'
-          overwrite: true
+  # - alias: doorbell_download_last_motion_video
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.ring_haustur_motion
+  #     to: 'on'
+  #   action:
+  #     - delay:
+  #         seconds: 60
+  #     - service: downloader.download_file
+  #       data_template:
+  #         url: '{{ states.camera.haustur.attributes.video_url }}'
+  #         subdir: 'front_door'
+  #         filename: 'last_motion.mp4'
+  #         overwrite: true
 
-  - alias: doorbell_download_last_ring_video
-    trigger:
-      platform: state
-      entity_id: binary_sensor.ring_haustur_ding
-      to: 'on'
-    action:
-      - delay:
-          seconds: 90
-      - service: script.doorbell_set_random
-      - service: downloader.download_file
-        data_template:
-          url: '{{ states.camera.haustur.attributes.video_url }}'
-          subdir: 'front_door'
-          filename: '{{ states("input_text.klingel_random") }}.mp4'
+  # - alias: doorbell_download_last_ring_video
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.ring_haustur_ding
+  #     to: 'on'
+  #   action:
+  #     - delay:
+  #         seconds: 90
+  #     - service: script.doorbell_set_random
+  #     - service: downloader.download_file
+  #       data_template:
+  #         url: '{{ states.camera.haustur.attributes.video_url }}'
+  #         subdir: 'front_door'
+  #         filename: '{{ states("input_text.klingel_random") }}.mp4'
 
   - alias: doorbell_haus_notify
     trigger:
@@ -146,7 +146,7 @@ automation:
           title: 'Klingeling...'
           message: 'Jemand wartet an der Haustür'
           data:
-            url: https://google.de # ring app url, have to reverse-engineer
+            # url: https://google.de # ring app url, have to reverse-engineer
             push:
               category: klingel
       - condition: state
