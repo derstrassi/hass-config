@@ -21,6 +21,9 @@ homeassistant:
       friendly_name: Luftfeuchtigkeit
   whitelist_external_dirs:
     - '/tmp'
+  auth_providers:
+     - type: homeassistant
+     - type: legacy_api_password
 
 http:
   api_password: !secret HTTP_API_PASSWORD
