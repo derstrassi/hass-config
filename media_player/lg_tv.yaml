@@ -1,4 +1,7 @@
-- platform: lg_netcast
+- platform: webostv
   name: LG TV
-  host: 192.168.10.65
-  access_token: !secret LG_TV_ACCESS_TOKEN
+  host: 192.168.10.135
+  turn_on_action:
+    service: wake_on_lan.send_magic_packet
+    data:
+      mac: !secret LG_TV_MAC

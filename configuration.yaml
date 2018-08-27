@@ -45,6 +45,7 @@ logbook:
 map:
 sun:
 updater:
+wake_on_lan:
 
 ring:
   username: !secret RING_USERNAME
@@ -143,4 +144,3 @@ scene: !include_dir_merge_list scene
 script: !include_dir_merge_named scripts
 sensor: !include_dir_merge_list sensor
 switch: !include_dir_merge_list switch
-
