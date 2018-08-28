@@ -4,7 +4,7 @@
     entity_id: binary_sensor.door_window_sensor_158d00014dbac9
     to: 'on'
     for:
-      minutes: 8
+      minutes: 10
   action:
     - service: notify.notify
       data:
@@ -16,5 +16,5 @@
     - service: xiaomi_aqara.play_ringtone
       data:
         gw_mac: !secret XIAOMI_GATEWAY_1_MAC
-        ringtone_id: 11
-        ringtone_vol: 50
+        ringtone_id: 0
+        ringtone_vol: 35
