@@ -1,4 +1,4 @@
 - platform: flux_led
   devices:
-    192.168.0.136:
+    192.168.10.136:
       name: couch_led

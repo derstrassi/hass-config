@@ -5,12 +5,12 @@ wohnzimmer:
     - sensor.heizung_humidity
     - switch.sonoff_wz_1
     - switch.sonoff_wz_2
-    - switch.rf_wz_stehlampe
     - switch.lichtkugel
+    - light.couch_led
     - media_player.lg_tv
 
 wz_ambiente:
   name: Ambiente Beleuchtung
   entities:
-    - switch.rf_wz_stehlampe
     - switch.lichtkugel
+    - light.couch_led
