@@ -126,6 +126,9 @@ notify:
     platform: slack
     api_key: !secret SLACK_API_KEY
     default_channel: 'automation'
+  - platform: webostv
+    host: 192.168.10.135
+    name: livingroom_tv
 
 weather:
   - platform: yweather

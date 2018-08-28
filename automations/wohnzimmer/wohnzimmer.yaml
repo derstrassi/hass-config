@@ -1,13 +1,33 @@
 - alias: wohnzimmer_auto_off
   trigger:
-    platform: state
-    entity_id: group.wz_ambiente
-    to: 'on'
-    for:
-      hours: 4
+    - platform: state
+      entity_id: group.wz_ambiente
+      to: 'on'
+      for:
+        hours: 4
+    - platform: state
+      entity_id: switch.sonoff_wz_1
+      to: 'on'
+      for:
+        hours: 4
+    - platform: state
+      entity_id: switch.sonoff_wz_2
+      to: 'on'
+      for:
+        hours: 4
   action:
-    service: homeassistant.turn_off
-    entity_id: group.wz_ambiente
+    - service: notify.livingroom_tv
+      data:
+        message: 'Achtung: Das Licht schaltet sich in 1 Minute aus'
+        data:
+          icon: '/home/homeassistant/.homeassistant/www/icons/baseline-brightness_low.png'
+    - delay:
+        minutes: 1
+    - service: homeassistant.turn_off
+      entity_id:
+        - group.wz_ambiente
+        - switch.sonoff_wz_1
+        - switch.sonoff_wz_2
 
 - alias: wohnzimmer_tv_lights_on
   trigger:
@@ -28,6 +48,8 @@
     entity_id: media_player.lg_tv
     to: 'off'
   action:
-    service: homeassistant.turn_off
-    entity_id: group.wz_ambiente
+    - delay:
+        seconds: 30
+    - service: homeassistant.turn_off
+      entity_id: group.wz_ambiente
 

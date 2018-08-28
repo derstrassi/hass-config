@@ -35,7 +35,7 @@ script:
       - service: xiaomi_aqara.play_ringtone
         data_template:
           gw_mac: !secret XIAOMI_GATEWAY_1_MAC
-          ringtone_id: 10
+          ringtone_id: '{{ ringtone_id }}'
           ringtone_vol: >-
             {%- if states('sensor.time') > '05:59' and states('sensor.time') < '20:00' -%}
               35
@@ -86,9 +86,9 @@ automation:
       # entity_id: device_tracker.iphone_von_dennis
         entity_id: group.person_dennis
         state: 'home'
-      - condition: state
-        entity_id: timer.return_home
-        state: 'running'
+      # - condition: state
+      #   entity_id: timer.return_home
+      #   state: 'running'
     action:
       - service: notify.ios_iphone_von_dennis
         data:
@@ -153,6 +153,13 @@ automation:
         entity_id: group.familie
         state: 'home'
       - service: script.doorbell
+        data:
+          ringtone_id: 10
+      - service: notify.livingroom_tv
+        data:
+          message: 'Klingel: Haustür unten'
+          data:
+            icon: '/home/homeassistant/.homeassistant/www/icons/baseline-notifications_active.png'
       ## Licht blinken lassen
 
   - alias: doorbell_wohnung_notify
@@ -198,4 +205,11 @@ automation:
         entity_id: group.familie
         state: 'home'
       - service: script.doorbell
+        data:
+          ringtone_id: 11
+      - service: notify.livingroom_tv
+        data:
+          message: 'Klingel: Wohnungstür'
+          data:
+            icon: '/home/homeassistant/.homeassistant/www/icons/baseline-notifications_active.png'
       ## Licht blinken lassen
