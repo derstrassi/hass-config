@@ -79,16 +79,8 @@ automation:
   - alias: doorbell_ask_for_door_open
     trigger:
       platform: state
-      entity_id: binary_sensor.ring_haustur_motion
-      to: 'on'
-    condition:
-      - condition: state
-      # entity_id: device_tracker.iphone_von_dennis
-        entity_id: group.person_dennis
-        state: 'home'
-      # - condition: state
-      #   entity_id: timer.return_home
-      #   state: 'running'
+      entity_id: group.person_dennis
+      to: 'home'
     action:
       - service: notify.ios_iphone_von_dennis
         data:
