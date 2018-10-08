@@ -11,8 +11,10 @@ group:
     control: hidden
     entities:
       - input_boolean.aquarium_light_timer_aktiv
-      - input_datetime.aquarium_light_start
-      - input_datetime.aquarium_light_end
+      - input_datetime.aquarium_timer1_start
+      - input_datetime.aquarium_timer1_end
+      - input_datetime.aquarium_timer2_start
+      - input_datetime.aquarium_timer2_end
       - switch.plug_158d0001530b1b
 
 input_boolean:
@@ -22,15 +24,29 @@ input_boolean:
     icon: mdi:clock
 
 input_datetime:
-  aquarium_light_start:
-    name: Uhrzeit ein
+  aquarium_timer1_start:
+    name: Time 1 ein
     has_date: false
     has_time: true
     initial: '08:00'
     icon: mdi:clock-start
 
-  aquarium_light_end:
-    name: Uhrzeit aus
+  aquarium_timer1_end:
+    name: Time 1 aus
+    has_date: false
+    has_time: true
+    initial: '12:00'
+    icon: mdi:clock-end
+
+  aquarium_timer2_start:
+    name: Time 2 ein
+    has_date: false
+    has_time: true
+    initial: '16:00'
+    icon: mdi:clock-start
+
+  aquarium_timer2_end:
+    name: Time 2 aus
     has_date: false
     has_time: true
     initial: '20:00'
@@ -39,8 +55,10 @@ input_datetime:
 automation:
   - alias: aquarium_light_timer_on
     trigger:
-      platform: template
-      value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_light_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_timer1_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_timer2_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
     condition:
       condition: state
       entity_id: input_boolean.aquarium_light_timer_aktiv
@@ -51,8 +69,14 @@ automation:
 
   - alias: aquarium_light_timer_off
     trigger:
-      platform: template
-      value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_light_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_timer1_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_timer2_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+    condition:
+      condition: state
+      entity_id: input_boolean.aquarium_light_timer_aktiv
+      state: 'on'
     action:
       service: switch.turn_off
       entity_id: switch.plug_158d0001530b1b
