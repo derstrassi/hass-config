@@ -29,6 +29,9 @@ light.gateway_light_286c0788a9dd:
 switch.lichtkugel:
   friendly_name: Lichtkugel
   icon: 'mdi:lightbulb-on-outline'
+light.couch_led:
+  friendly_name: Couch Ambientebeleuchtung
+  icon: 'mdi:sofa'
 
 # Xiaomi Sensoren
 binary_sensor.motion_sensor_158d000113dee1:
@@ -40,10 +43,10 @@ switch.rf_wz_stehlampe:
 switch.rf_arthur_lichterkette:
   friendly_name: Lichterkette
 switch.sonoff_wz_1:
-  friendly_name: Beleuchtung Couch
+  friendly_name: Beleuchtung Esszimmer
   icon: 'mdi:ceiling-light'
 switch.sonoff_wz_2:
-  friendly_name: Beleuchtung Nähzimmer
+  friendly_name: Beleuchtung Couch
   icon: 'mdi:ceiling-light'
 switch.rf_sz_nachttisch:
   friendly_name: Nachttisch
