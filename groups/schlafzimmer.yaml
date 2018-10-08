@@ -3,4 +3,4 @@ schlafzimmer:
   entities:
     - sensor.temperature_158d000182580d
     - sensor.humidity_158d000182580d
-    - switch.rf_sz_nachttisch
+    # - switch.rf_sz_nachttisch
