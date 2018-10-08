@@ -10,6 +10,8 @@ homeassistant:
   customize_glob:
     "*.*":
       custom_ui_state_card: state-card-custom-ui
+    'light.*':
+      state_card_mode: break-slider
     'switch.rf_*':
       assumed_state: false
       icon: 'mdi:lightbulb'
