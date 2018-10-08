@@ -24,8 +24,37 @@
       - condition: state
         entity_id: switch.beleuchtung_flur
         state: 'off'
+      - condition: time
+        after: '09:00:00'
   action:
     service: script.yeelight_flur_weiss
+
+- alias: flur_movement_on_weekdays_morning
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001e562ad
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.motion_sensor_flur_aktiv
+        state: 'on'
+      - condition: numeric_state
+        entity_id: sensor.illumination_158d0001e562ad
+        below: 20
+      - condition: time
+        after: '05:00:00'
+        before: '09:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.beleuchtung_flur
 
 - alias: flur_movement_off
   trigger:

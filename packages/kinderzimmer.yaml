@@ -48,8 +48,8 @@ automation:
         to: 'on'
     condition:
       - condition: time
-        after: '23:00:00'
-        before: '05:30:00'
+        after: '22:00:00'
+        before: '06:00:00'
     action:
       - service: light.turn_on
         entity_id: light.gateway_light_286c0788a9dd
@@ -59,19 +59,7 @@ automation:
       - service: script.yeelight_flur_weiss
       - service: homeassistant.turn_on
         entity_id: switch.rf_sz_nachttisch
-      - delay:
-          minutes: 2
-      - service: homeassistant.turn_off
-        entity_id:
-          - switch.sonoff_kz_1
-          - switch.sonoff_kz_2
-          - light.gateway_light_7811dcb8c5ed
-      - delay:
-          minutes: 10
-      - service: homeassistant.turn_off
-        entity_id:
-          - light.gateway_light_286c0788a9dd
-          - light.stehlampe_flur
+
   - alias: Kinderzimmer Schlafbereich Nachts Licht AUS
     trigger:
       platform: time
@@ -79,10 +67,11 @@ automation:
     action:
       service: homeassistant.turn_off
       entity_id: switch.sonoff_kz_2
+
   - alias: Kinderzimmer Nachtlicht
     trigger:
       platform: time
-      at: '20:00:00'
+      at: '19:00:00'
     condition:
       - condition: state
         entity_id: group.familie
@@ -94,9 +83,10 @@ automation:
           brightness: 50
           rgb_color: [255, 63, 0]
       - delay:
-          hours: 10
+          hours: 12
       - service: light.turn_off
         entity_id: light.gateway_light_7811dcb8c5ed
+
   - alias: arthur_temp_warn
     trigger:
       platform: numeric_state
@@ -118,10 +108,7 @@ automation:
         data:
           title: 'Warnung!'
           message: 'Es ist zu kalt in Arthurs Zimmer!'
-      - delay:
-          minutes: 5
-      - service: homeassistant.turn_off
-        entity_id: switch.rf_sz_nachttisch
+
   - alias: kz_left_single
     trigger:
       platform: event
@@ -132,6 +119,7 @@ automation:
     action:
       service: switch.toggle
       entity_id: switch.sonoff_kz_1
+
   - alias: kz_right_single
     trigger:
       platform: event
@@ -142,6 +130,7 @@ automation:
     action:
       service: switch.toggle
       entity_id: switch.sonoff_kz_2
+
   - alias: kz_aquarium_toggle
     trigger:
       platform: event
