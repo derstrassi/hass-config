@@ -32,7 +32,7 @@ script:
 
 sensor:
   - platform: nzbget
-    host: 192.168.10.51
+    host: 192.168.10.130
     username: !secret NZBGET_USERNAME
     password: !secret NZBGET_PASSWORD
     monitored_variables:
