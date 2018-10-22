@@ -1,11 +1,11 @@
 homeassistant:
   customize:
-    sensor.speedtest_download:
-     icon: 'mdi:speedometer'
-    sensor.speedtest_upload:
-      icon: 'mdi:speedometer'
-    sensor.speedtest_ping:
-      icon: 'mdi:speedometer'
+    # sensor.speedtest_download:
+    #  icon: 'mdi:speedometer'
+    # sensor.speedtest_upload:
+    #   icon: 'mdi:speedometer'
+    # sensor.speedtest_ping:
+    #   icon: 'mdi:speedometer'
     sensor.nzbget_speed:
       friendly_name: Current NZBGet Speed
       icon: 'mdi:download'
@@ -24,11 +24,11 @@ input_boolean:
     name: Bewegungsmelder Küche
     icon: mdi:radar
 
-script:
-  update_speedtest:
-    alias: Speedtest starten
-    sequence:
-      - service: sensor.update_speedtest
+# script:
+#   update_speedtest:
+#     alias: Speedtest starten
+#     sequence:
+#       - service: sensor.update_speedtest
 
 sensor:
   - platform: nzbget
@@ -41,15 +41,15 @@ sensor:
       - download_rate
       - download_size
       - remaining_size
-  - platform: speedtest
-    minute: 30
-    hour:
-      - 0
-      - 12
-    monitored_conditions:
-      - ping
-      - download
-      - upload
+  # - platform: speedtest
+  #   minute: 30
+  #   hour:
+  #     - 0
+  #     - 12
+  #   monitored_conditions:
+  #     - ping
+  #     - download
+  #     - upload
 
 group:
   settings_view:
@@ -76,10 +76,10 @@ group:
     name: Netzwerk
     control: hidden
     entities:
-      - script.update_speedtest
-      - sensor.speedtest_ping
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
+      # - script.update_speedtest
+      # - sensor.speedtest_ping
+      # - sensor.speedtest_download
+      # - sensor.speedtest_upload
       - sensor.nzbget_download_paused
       - sensor.nzbget_speed
       - sensor.nzbget_queue_size
