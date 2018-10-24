@@ -5,7 +5,7 @@ filter:
     - media_player
   include_entities:
     - script.all_off
-    # - script.volumio_play
+    - script.volumio_play
     - sensor.heizung_temperature
     - sensor.nzbget_queue_size
     # - sensor.pool_temperatur
@@ -24,6 +24,10 @@ entity_config:
       - feature: play_pause
       - feature: play_stop
   media_player.kodi_coreeleclocal:
+    feature_list:
+      - feature: play_pause
+      - feature: play_stop
+  media_player.volumio:
     feature_list:
       - feature: play_pause
       - feature: play_stop
