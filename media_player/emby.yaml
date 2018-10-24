@@ -1,4 +1,4 @@
 - platform: emby
-  host: 192.168.10.49
+  host: 192.168.10.126
   api_key: !secret EMBY_API_KEY
   auto_hide: true
