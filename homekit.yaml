@@ -12,3 +12,19 @@ filter:
   exclude_entities:
     - switch.klingel
     - media_player.volumio
+  entity_config:
+    media_player.lg_tv:
+      feature_list:
+        - feature: on_off
+        - feature: play_pause
+        - feature: play_stop
+        - feature: toggle_mute
+    media_player.kodi_libreelecwzlocal:
+      feature_list:
+        - feature: play_pause
+        - feature: play_stop
+    media_player.kodi_coreeleclocal:
+      feature_list:
+        - feature: play_pause
+        - feature: play_stop
+
