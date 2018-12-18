@@ -112,7 +112,7 @@ automation:
   - alias: kz_left_single
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.wall_switch_left_158d00012a7f6a
         click_type: single
@@ -123,7 +123,7 @@ automation:
   - alias: kz_right_single
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.wall_switch_right_158d00012a7f6a
         click_type: single
@@ -134,7 +134,7 @@ automation:
   - alias: kz_aquarium_toggle
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.wall_switch_both_158d00012a7f6a
         click_type: both

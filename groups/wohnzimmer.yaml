@@ -12,5 +12,5 @@ wohnzimmer:
 wz_ambiente:
   name: Ambiente Beleuchtung
   entities:
-    - switch.lichtkugel
+    # - switch.lichtkugel
     - light.couch_led

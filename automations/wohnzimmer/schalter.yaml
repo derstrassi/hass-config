@@ -1,7 +1,7 @@
 - alias: wz_left_single
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.wall_switch_left_158d00018337c3
       click_type: single
@@ -12,7 +12,7 @@
 - alias: wz_right_single
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.wall_switch_right_158d00018337c3
       click_type: single
@@ -23,7 +23,7 @@
 - alias: wz_ambiente_toggle
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.wall_switch_both_158d00018337c3
       click_type: both
@@ -34,7 +34,7 @@
 - alias: smart_button_single_click
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.switch_158d00013f85d3
       click_type: single
@@ -45,7 +45,7 @@
 - alias: smart_button_double_click
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.switch_158d00013f85d3
       click_type: double
@@ -56,7 +56,7 @@
 - alias: smart_button_long_press
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.switch_158d00013f85d3
       click_type: long_click_press
