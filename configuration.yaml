@@ -88,10 +88,7 @@ tado:
 mqtt:
   discovery: true
   discovery_prefix: homeassistant
-  broker: localhost
-  port: 1883
   client_id: !secret MQTT_CLIENT_ID
-  protocol: 3.1
   username: !secret MQTT_USERNAME
   password: !secret MQTT_PASSWORD
 
