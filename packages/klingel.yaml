@@ -151,7 +151,7 @@ automation:
         data:
           message: 'Klingel: Haustür unten'
           data:
-            icon: '/home/homeassistant/.homeassistant/www/icons/baseline-notifications_active.png'
+            icon: '~/.homeassistant/www/icons/baseline-notifications_active.png'
       ## Licht blinken lassen
 
   - alias: doorbell_wohnung_notify
@@ -181,7 +181,7 @@ automation:
       # - service: camera.snapshot
       #   entity_id: camera.arthur_cam
       #   data:
-      #     filename: '/home/homeassistant/.homeassistant/www/snapshots/front_door/{{ states("input_text.klingel_random") }}.jpg'
+      #     filename: '~/homeassistant/.homeassistant/www/snapshots/front_door/{{ states("input_text.klingel_random") }}.jpg'
       - service: notify.notify
       # - service: notify.ios_iphone_von_dennis
         data_template:
@@ -203,5 +203,5 @@ automation:
         data:
           message: 'Klingel: Wohnungstür'
           data:
-            icon: '/home/homeassistant/.homeassistant/www/icons/baseline-notifications_active.png'
+            icon: '~/.homeassistant/www/icons/baseline-notifications_active.png'
       ## Licht blinken lassen

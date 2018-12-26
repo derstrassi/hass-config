@@ -20,7 +20,7 @@
       data:
         message: 'Achtung: Das Licht schaltet sich in 1 Minute aus'
         data:
-          icon: '/home/homeassistant/.homeassistant/www/icons/baseline-brightness_low.png'
+          icon: '~/homeassistant/.homeassistant/www/icons/baseline-brightness_low.png'
     - delay:
         minutes: 1
     - service: homeassistant.turn_off
