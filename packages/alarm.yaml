@@ -7,7 +7,7 @@ automation:
         actionName: SOUND_ALARM
     action:
       - service: light.turn_on
-        entity_id: light.stehlampe_flur
+        entity_id: light.floor_yeelight
         data:
           effect: Alarm
       - service: light.turn_on
@@ -29,7 +29,7 @@ automation:
       - delay:
           minutes: 10
       - service: light.turn_off
-        entity_id: light.stehlampe_flur
+        entity_id: light.floor_yeelight
       - service: light.turn_off
         entity_id: light.gateway_light_286c0788a9dd
 

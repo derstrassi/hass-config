@@ -10,33 +10,33 @@ entities:
     name: Radio
   media_player.lg_tv:
     name: Fernseher
-  light.stehlampe_flur:
+  light.floor_yeelight:
     name: Stehlampe Flur
-  switch.beleuchtung_toilette:
+  switch.toilett_light:
     name: Toilette
-  switch.beleuchtung_esszimmer:
-    name: Wandbeleuchtung
-  switch.beleuchtung_kueche:
-    name: Küche
-  switch.sonoff_bad_1:
-    name: Bad
-  switch.sonoff_bad_2:
-    name: Spiegel Beleuchtung
+  switch.floor_light_wall:
+    name: Flur Wandbeleuchtung
+  switch.kitchen_light:
+    name: Licht Küche
+  switch.bath_light1:
+    name: Licht Bad
+  switch.bath_light2:
+    name: Licht Bad Spiegel
   light.gateway_light_286c0788a9dd:
     name: Gateway Licht
-  switch.sonoff_kz_1:
-    name: Spielbereich
-  switch.sonoff_kz_2:
-    name: Schlafbereich
+  switch.kz_light1:
+    name: Kinderzimmer Licht Spielbereich
+  switch.kz_light2:
+    name: Kinderzimmer Licht Schlafbereich
   switch.rf_wz_stehlampe:
-    name: Stehlampe
-  switch.lichtkugel:
-    name: Lichtkugel
+    name: Flur Stehlampe
+  switch.wz_lichtkugel:
+    name: Wohnzimmer Lichtkugel
   switch.rf_arthur_lichterkette:
-    name: Lichterkette
-  switch.sonoff_wz_1:
-    name: Beleuchtung Couch
-  switch.sonoff_wz_2:
-    name: Beleuchtung Nähzimmer
+    name: Kinderzimmer Lichterkette
+  switch.wz_light1:
+    name: Licht Esszimmer
+  switch.wz_light2:
+    name: Licht TV-Bereich
   switch.rf_sz_nachttisch:
-    name: Nachttisch
+    name: Schlafzimmer Licht Tisch

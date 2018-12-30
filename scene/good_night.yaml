@@ -1,6 +1,6 @@
 - name: Gute Nacht
   entities:
-    light.stehlampe_flur:
+    light.floor_yeelight:
       state: 'on'
       rgb_color: [255,36,146]
       brightness: 150

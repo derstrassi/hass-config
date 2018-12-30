@@ -1,0 +1,200 @@
+homeassistant:
+  customize:
+    switch.wz_light1:
+      friendly_name: Licht Esszimmer
+      icon: 'mdi:ceiling-light'
+    switch.wz_light2:
+      friendly_name: Licht TV-Breich
+      icon: 'mdi:ceiling-light'
+    switch.wz_lichtkugel:
+      friendly_name: Lichtkugel
+      icon: 'mdi:lightbulb-on-outline'
+    light.wz_couch_led:
+      friendly_name: Couch Ambiente
+      icon: 'mdi:sofa'
+    light.wz_ambilight:
+      friendly_name: TV Ambilight
+      icon: 'mdi:television'
+
+switch:
+  - platform: mqtt
+    name: wz_light1
+    command_topic: cmnd/wz/light1/POWER
+    state_topic: stat/wz/light1/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/wz/light1/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: mqtt
+    name: wz_light2
+    command_topic: cmnd/wz/light2/POWER
+    state_topic: stat/wz/light2/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/wz/light2/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: mqtt
+    name: wz_ambilight
+    command_topic: cmnd/wz/ambilight/POWER
+    state_topic: stat/wz/ambilight/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/wz/ambilight/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: mqtt
+    name: wz_lichtkugel
+    command_topic: cmnd/wz/lichtkugel/POWER
+    state_topic: stat/wz/lichtkugel/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/wz/lichtkugel/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+light:
+  - platform: flux_led
+    devices:
+      192.168.10.136:
+        name: wz_couch_led
+        mode: rgbw
+      192.168.10.148:
+        name: wz_wand_led
+        mode: rgbw
+
+group:
+  wohnzimmer:
+    name: Wohnzimmer
+    entities:
+      - sensor.heizung_temperature
+      - sensor.heizung_humidity
+      - switch.wz_light1
+      - switch.wz_light2
+      - switch.wz_lichtkugel
+      - light.wz_couch_led
+      - light.wz_wand_led
+      - media_player.lg_tv
+      - switch.wz_ambilight
+
+  wz_ambiente:
+    name: Ambiente Beleuchtung
+    entities:
+      # - switch.wz_lichtkugel
+      - light.wz_couch_led
+      - light.wz_wand_led
+      - switch.wz_ambilight
+
+automation:
+  - alias: wz_left_single
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.wall_switch_left_158d00018337c3
+          click_type: single
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.switch_158d00013f85d3
+          click_type: double
+    action:
+      service: switch.toggle
+      entity_id: switch.wz_light1
+
+  - alias: wz_right_single
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.wall_switch_right_158d00018337c3
+          click_type: single
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.switch_158d00013f85d3
+          click_type: single
+    action:
+      service: switch.toggle
+      entity_id: switch.wz_light2
+
+  - alias: wz_ambiente_toggle
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.wall_switch_both_158d00018337c3
+          click_type: both
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.switch_158d00013f85d3
+          click_type: long_click_press
+    action:
+      service: homeassistant.toggle
+      entity_id: group.wz_ambiente
+
+  - alias: wohnzimmer_auto_off
+    trigger:
+      - platform: state
+        entity_id: group.wz_ambiente
+        to: 'on'
+        for:
+          hours: 4
+      - platform: state
+        entity_id: switch.wz_light1
+        to: 'on'
+        for:
+          hours: 4
+      - platform: state
+        entity_id: switch.wz_light2
+        to: 'on'
+        for:
+          hours: 4
+    action:
+      - service: notify.livingroom_tv
+        data:
+          message: 'Achtung: Das Licht schaltet sich in 1 Minute aus'
+          data:
+            icon: '~/.homeassistant/www/icons/baseline-brightness_low.png'
+      - delay:
+          minutes: 1
+      - service: homeassistant.turn_off
+        entity_id:
+          - group.wz_ambiente
+          - switch.wz_light1
+          - switch.wz_light2
+
+  - alias: wohnzimmer_tv_lights_on
+    trigger:
+      platform: state
+      entity_id: media_player.lg_tv
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+    action:
+      service: homeassistant.turn_on
+      entity_id: group.wz_ambiente
+
+  - alias: wohnzimmer_tv_lights_off
+    trigger:
+      platform: state
+      entity_id: media_player.lg_tv
+      to: 'off'
+    action:
+      - delay:
+          seconds: 60
+      - service: homeassistant.turn_off
+        entity_id: group.wz_ambiente
+
+

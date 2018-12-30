@@ -1,11 +1,11 @@
 - name: TV Abend
   entities:
     group.wz_ambiente: on
-    switch.beleuchtung_flur: off
+    switch.floor_light_ceiling: off
     switch.sonoff_wz_1: off
     switch.sonoff_wz_2: off
     switch.volumio: off
-    light.stehlampe_flur:
+    light.floor_yeelight:
       state: on
       brightness: 199
       color_temp: 333

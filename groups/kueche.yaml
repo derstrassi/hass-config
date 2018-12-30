@@ -1,6 +1,0 @@
-kueche:
-  name: Küche
-  control: hidden
-  entities:
-    - switch.beleuchtung_kueche
-    - switch.volumio_kueche

@@ -1,0 +1,146 @@
+homeassistant:
+  customize:
+    switch.kitchen_light:
+      friendly_name: Beleuchtung
+      icon: 'mdi:ceiling-light'
+
+group:
+  kueche:
+    name: Küche
+    control: hidden
+    entities:
+      - switch.kitchen_light
+      - switch.volumio_kueche
+
+switch:
+  - platform: mqtt
+    name: kitchen_light
+    command_topic: cmnd/kitchen/light/POWER
+    state_topic: stat/kitchen/light/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/kitchen/light/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: pilight
+    switches:
+      rf_kueche1:
+        on_code:
+          protocol: arctech_switch
+          id: 5935104
+          unit: 1
+          'on': 1
+        off_code:
+          protocol: arctech_switch
+          id: 5935104
+          unit: 1
+          'off': 0
+        on_code_receive:
+          protocol: kaku_switch
+          id: 5935104
+          unit: 1
+          state: 'on'
+        off_code_receive:
+          protocol: kaku_switch
+          id: 5935104
+          unit: 1
+          state: 'off'
+      rf_kueche2:
+        on_code:
+          protocol: arctech_switch
+          id: 5935104
+          unit: 2
+          'on': 1
+        off_code:
+          protocol: arctech_switch
+          id: 5935104
+          unit: 2
+          'off': 0
+        on_code_receive:
+          protocol: kaku_switch
+          id: 5935104
+          unit: 2
+          state: 'on'
+        off_code_receive:
+          protocol: kaku_switch
+          id: 5935104
+          unit: 2
+          state: 'off'
+
+automation:
+  - alias: kueche_movement_on
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d00012326f7
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.motion_sensor_kueche_aktiv
+          state: 'on'
+        - condition: numeric_state
+          entity_id: sun.sun
+          value_template: '{{ state.attributes.elevation }}'
+          below: 12
+    action:
+      service: homeassistant.turn_on
+      entity_id: switch.kitchen_light
+
+  - alias: kueche_movement_off
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d00012326f7
+      to: 'off'
+      for:
+        minutes: 5
+    condition:
+      - condition: state
+        entity_id: input_boolean.motion_sensor_kueche_aktiv
+        state: 'on'
+    action:
+      service: homeassistant.turn_off
+      entity_id: switch.kitchen_light
+
+  # - alias: kueche_movement_volumio_on
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.motion_sensor_158d00012326f7
+  #     to: 'on'
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #       - condition: or
+  #         conditions:
+  #           - condition: time
+  #             after: '06:00:00'
+  #             before: '09:00:00'
+  #             weekday:
+  #               - mon
+  #               - tue
+  #               - wed
+  #               - thu
+  #               - fri
+  #           - condition: time
+  #             after: '06:00:00'
+  #             before: '11:00:00'
+  #             weekday:
+  #               - sat
+  #               - sun
+  #       - condition: state
+  #         entity_id: media_player.volumio
+  #         state: 'idle'
+  #         for:
+  #           hours: 1
+  #   action:
+  #     service: script.volumio_play
+
+  # - alias: kueche_volumio_hw_switch
+  #   trigger:
+  #     platform: state
+  #     entity_id: switch.rf_kueche2
+  #   action:
+  #     service: switch.toggle
+  #     entity_id: switch.volumio_kueche

@@ -1,28 +1,27 @@
 all_off:
   alias: Alles ausschalten
   sequence:
-    - service: switch.turn_off
+    - service: homeassistant.turn_off
       data:
         entity_id:
-          - switch.beleuchtung_esszimmer
-          - switch.beleuchtung_flur
-          - switch.beleuchtung_kueche
-          - switch.beleuchtung_toilette
+          - switch.bath_light1
+          - switch.bath_light2
+          - switch.floor_light_ceiling
+          - switch.floor_light_wall
+          - switch.kitchen_light
+          - switch.kz_light1
+          - switch.kz_light2
           - switch.rf_arthur_lichterkette
           - switch.rf_kueche1
+          - switch.rf_kueche2
           - switch.rf_sz_nachttisch
-          - switch.lichtkugel
           - switch.rf_wz_stehlampe
-          - switch.sonoff_bad_1
-          - switch.sonoff_bad_2
-          - switch.sonoff_kz_1
-          - switch.sonoff_kz_2
-          - switch.sonoff_wz_1
-          - switch.sonoff_wz_2
-          - switch.volumio_kueche
-    - service: light.turn_off
-      data:
-        entity_id: light.stehlampe_flur
+          - switch.toilett_light
+          - switch.wz_lichtkugel
+          - switch.wz_light1
+          - switch.wz_light2
+          - light.floor_yeelight
+          # - switch.volumio_kueche
     - delay:
         seconds: 5
     - service: media_player.turn_off

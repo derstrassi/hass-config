@@ -1,0 +1,13 @@
+homeassistant:
+  customize:
+    switch.rf_sz_nachttisch:
+      friendly_name: Nachttisch
+      icon: 'mdi:lightbulb-on-outline'
+
+group:
+  schlafzimmer:
+    name: Schlafzimmer
+    entities:
+      - sensor.temperature_158d000182580d
+      - sensor.humidity_158d000182580d
+      # - switch.rf_sz_nachttisch

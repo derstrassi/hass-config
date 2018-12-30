@@ -1,0 +1,201 @@
+homeassistant:
+  customize:
+    switch.floor_light_ceiling:
+      friendly_name: Decken-Spots
+      icon: 'mdi:ceiling-light'
+      show_last_changed: true
+    light.floor_yeelight:
+      friendly_name: Stehlampe
+      icon: 'mdi:lightbulb-on-outline'
+    switch.floor_light_wall:
+      friendly_name: Wandbeleuchtung
+      icon: 'mdi:lightbulb-on-outline'
+    light.gateway_light_286c0788a9dd:
+      friendly_name: Nachtlicht Decke
+      icon: 'mdi:lightbulb-on-outline'
+
+group:
+  flur:
+    name: Flur
+    control: hidden
+    entities:
+      - sensor.temperature_158d00018734bb
+      - sensor.humidity_158d00018734bb
+      - sensor.motion_sensor_flur_last_seen
+      - switch.floor_light_wall
+      - light.gateway_light_286c0788a9dd
+      - switch.floor_light_ceiling
+      - light.floor_yeelight
+      - script.yeelight_flur_pink
+      - script.yeelight_flur_weiss
+
+light:
+  - platform: yeelight
+    devices:
+      192.168.10.87:
+        name: floor_yeelight
+
+switch:
+  - platform: mqtt
+    name: floor_light_ceiling
+    command_topic: cmnd/floor/light/POWER
+    state_topic: stat/floor/light/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/floor/light/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: mqtt
+    name: floor_light_wall
+    command_topic: cmnd/floor/light2/POWER
+    state_topic: stat/floor/light2/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/floor/light2/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+binary_sensor:
+  - platform: pilight
+    name: rf_motion_flur
+    device_class: motion
+    variable: 'state'
+    payload:
+      protocol: 'arctech_switch'
+      id: 21633024
+      unit: 1
+    payload_on: 'on'
+    disarm_after_trigger: true
+
+sensor:
+  - platform: template
+    sensors:
+      door_sensor_eingang_last_open:
+        friendly_name: 'Tür Zuletzt geöffnet'
+        icon_template: 'mdi:clock-alert'
+        value_template: '{{ as_timestamp(states.binary_sensor.door_window_sensor_158d00014dbac9.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
+      motion_sensor_flur_last_seen:
+        friendly_name: 'Letzte Bewegung'
+        icon_template: 'mdi:clock-alert'
+        value_template: '{{ as_timestamp(states.binary_sensor.motion_sensor_158d0001e562ad.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
+
+automation:
+  - alias: door_open_reminder
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d00014dbac9
+      to: 'on'
+      for:
+        minutes: 10
+    action:
+      - service: notify.notify
+        data:
+          title: 'Eingangstür offen'
+          message: 'Bitte schließen!'
+      - service: script.flash_floor_lights
+      - delay:
+          seconds: 2
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret XIAOMI_GATEWAY_1_MAC
+          ringtone_id: 0
+          ringtone_vol: 35
+
+  - alias: ez_nightlight_on
+    trigger:
+      platform: sun
+      event: sunset
+      offset: '01:00:00'
+    condition:
+      - condition: state
+        entity_id: group.familie
+        state: 'home'
+    action:
+      - service: script.gateway_nightlight_on
+
+  - alias: ez_nightlight_off
+    trigger:
+      platform: sun
+      event: sunrise
+      offset: '01:00:00'
+    action:
+      - service: light.turn_off
+        entity_id: light.gateway_light_286c0788a9dd
+
+  - alias: flur_movement_on
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e562ad
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: or
+          conditions:
+            - condition: numeric_state
+              entity_id: sun.sun
+              value_template: '{{ state.attributes.elevation }}'
+              below: 8
+            - condition: numeric_state
+              entity_id: sensor.illumination_158d0001e562ad
+              below: 20
+        - condition: state
+          entity_id: input_boolean.motion_sensor_flur_aktiv
+          state: 'on'
+        - condition: state
+          entity_id: light.floor_yeelight
+          state: 'off'
+        - condition: state
+          entity_id: switch.floor_light_ceiling
+          state: 'off'
+        - condition: time
+          after: '09:00:00'
+    action:
+      service: script.yeelight_flur_weiss
+
+  - alias: flur_movement_on_weekdays_morning
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e562ad
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.motion_sensor_flur_aktiv
+          state: 'on'
+        - condition: numeric_state
+          entity_id: sensor.illumination_158d0001e562ad
+          below: 20
+        - condition: time
+          after: '05:00:00'
+          before: '09:00:00'
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+    action:
+      service: homeassistant.turn_on
+      entity_id: switch.floor_light_ceiling
+
+  - alias: flur_movement_off
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e562ad
+      to: 'off'
+      for:
+        minutes: 5
+    condition:
+      - condition: state
+        entity_id: input_boolean.motion_sensor_flur_aktiv
+        state: 'on'
+    action:
+      - service: homeassistant.turn_off
+        entity_id:
+          - light.floor_yeelight
+          - switch.floor_light_ceiling

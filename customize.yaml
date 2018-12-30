@@ -1,55 +1,3 @@
-# Lichter
-switch.beleuchtung_flur:
-  friendly_name: Decken-Spots
-  icon: 'mdi:ceiling-light'
-  show_last_changed: true
-light.stehlampe_flur:
-  friendly_name: Stehlampe
-  icon: 'mdi:lightbulb-on-outline'
-switch.beleuchtung_toilette:
-  friendly_name: Beleuchtung
-  icon: 'mdi:ceiling-light'
-switch.beleuchtung_esszimmer:
-  friendly_name: Wandbeleuchtung
-  icon: 'mdi:lightbulb-on-outline'
-switch.beleuchtung_kueche:
-  friendly_name: Beleuchtung
-  icon: 'mdi:ceiling-light'
-switch.sonoff_bad_1:
-  friendly_name: Beleuchtung
-  icon: 'mdi:ceiling-light'
-switch.sonoff_bad_2:
-  friendly_name: Spiegel
-  icon: 'mdi:lightbulb-on-outline'
-light.gateway_light_286c0788a9dd:
-  friendly_name: Gateway Licht
-  icon: 'mdi:lightbulb-on-outline'
-switch.lichtkugel:
-  friendly_name: Lichtkugel
-  icon: 'mdi:lightbulb-on-outline'
-light.couch_led:
-  friendly_name: Couch Ambientebeleuchtung
-  icon: 'mdi:sofa'
-
-# Xiaomi Sensoren
-binary_sensor.motion_sensor_158d000113dee1:
-  friendly_name: Bewegung
-
-# Schalter
-switch.rf_wz_stehlampe:
-  friendly_name: Stehlampe
-switch.rf_arthur_lichterkette:
-  friendly_name: Lichterkette
-switch.sonoff_wz_1:
-  friendly_name: Beleuchtung Esszimmer
-  icon: 'mdi:ceiling-light'
-switch.sonoff_wz_2:
-  friendly_name: Beleuchtung Couch
-  icon: 'mdi:ceiling-light'
-switch.rf_sz_nachttisch:
-  friendly_name: Nachttisch
-  icon: 'mdi:lightbulb-on-outline'
-
 # Sensoren
 sensor.temperature_158d0001a4c74d:
   friendly_name: Außentemperatur
@@ -63,10 +11,7 @@ binary_sensor.door_window_sensor_158d00014dbac9:
   friendly_name: Eingangstür
   icon: 'mdi:door'
   show_last_changed: true
-binary_sensor.door_window_sensor_158d0001f3a0f0:
-  friendly_name: Fenster
-  icon: 'mdi:window-closed'
-  show_last_changed: true
+
 
 # Wetter
 # input_text.weather:

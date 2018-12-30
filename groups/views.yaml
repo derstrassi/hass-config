@@ -6,7 +6,6 @@ default_view:
     - group.zuhause
     - climate.heizung
     - group.flur
-    - group.esszimmer
     - group.kueche
     - group.toilette
     - group.bad
@@ -24,7 +23,6 @@ media_view:
     - media_player.lg_tv
     - media_player.volumio
     # - media_player.volumio_mpd
-    - media_player.playstation_4
 
 cameras_view:
   name: Cameras

@@ -1,6 +1,0 @@
-esszimmer:
-  name: Esszimmer
-  control: hidden
-  entities:
-    - switch.beleuchtung_esszimmer
-    - light.gateway_light_286c0788a9dd

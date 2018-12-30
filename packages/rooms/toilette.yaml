@@ -1,0 +1,69 @@
+homeassistant:
+  customize:
+    switch.toilett_light:
+      friendly_name: Beleuchtung
+      icon: 'mdi:ceiling-light'
+
+group:
+  toilette:
+    name: Toilette
+    control: hidden
+    entities:
+      #- binary_sensor.motion_sensor_158d000113dee1
+      - sensor.motion_sensor_toilette_last_seen
+      - switch.toilett_light
+
+switch:
+  - platform: mqtt
+    name: toilett_light
+    command_topic: cmnd/toilett/light/POWER
+    state_topic: stat/toilett/light/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/toilett/light/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+sensor:
+  - platform: template
+    sensors:
+      motion_sensor_toilette_last_seen:
+        friendly_name: 'Letzter Klo-Besuch'
+        icon_template: 'mdi:clock-alert'
+        value_template: '{{ as_timestamp(states.binary_sensor.motion_sensor_158d000113dee1.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
+
+automation:
+  - alias: toilett_movement_on
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d000113dee1
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.motion_sensor_toilette_aktiv
+          state: 'on'
+        - condition: numeric_state
+          entity_id: sun.sun
+          value_template: '{{ state.attributes.elevation }}'
+          below: 8
+    action:
+      service: homeassistant.turn_on
+      entity_id: switch.toilett_light
+
+  - alias: toilett_movement_off
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d000113dee1
+      to: 'off'
+      for:
+        minutes: 1
+    condition:
+      - condition: state
+        entity_id: input_boolean.motion_sensor_toilette_aktiv
+        state: 'on'
+    action:
+      service: homeassistant.turn_off
+      entity_id: switch.toilett_light

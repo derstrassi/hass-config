@@ -15,3 +15,5 @@ __pycache__
 /.ps4-wake.credentials.json
 /.ps4.conf
 /tts
+/.storage
+/.ring_cache.pickle

@@ -4,12 +4,14 @@ homeassistant:
       friendly_name: Nachtlicht
       icon: 'mdi:lightbulb-on-outline'
       state_card_mode: single-line
-    switch.sonoff_kz_1:
+    switch.kz_light1:
       friendly_name: Spielbereich
       icon: 'mdi:ceiling-light'
-    switch.sonoff_kz_2:
+    switch.kz_light2:
       friendly_name: Schlafbereich
       icon: 'mdi:ceiling-light'
+    switch.rf_arthur_lichterkette:
+      friendly_name: Lichterkette
 
 group:
   kinderzimmer_view:
@@ -32,19 +34,66 @@ group:
   kz_licht:
     name: Licht
     entities:
-      - switch.sonoff_kz_1
-      - switch.sonoff_kz_2
+      - switch.kz_light1
+      - switch.kz_light2
       - light.gateway_light_7811dcb8c5ed
       - switch.rf_arthur_lichterkette
+
+switch:
+  - platform: mqtt
+    name: kz_light1
+    command_topic: cmnd/kz/light1/POWER
+    state_topic: stat/kz/light1/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/kz/light1/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: mqtt
+    name: kz_light1
+    command_topic: cmnd/kz/light2/POWER
+    state_topic: stat/kz/light2/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/kz/light2/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: pilight
+    switches:
+      rf_arthur_lichterkette:
+        on_code:
+          protocol: clarus_switch
+          id: C7
+          unit: 24
+          'on': 1
+        off_code:
+          protocol: clarus_switch
+          id: C7
+          unit: 24
+          'off': 0
+        on_code_receive:
+          protocol: clarus_switch
+          id: C7
+          unit: 24
+          state: 'on'
+        off_code_receive:
+          protocol: clarus_switch
+          id: C7
+          unit: 24
+          state: 'off'
 
 automation:
   - alias: Arthur macht in der Nacht das Licht an
     trigger:
       - platform: state
-        entity_id: switch.sonoff_kz_1
+        entity_id: switch.kz_light1
         to: 'on'
       - platform: state
-        entity_id: switch.sonoff_kz_2
+        entity_id: switch.kz_light2
         to: 'on'
     condition:
       - condition: time
@@ -66,7 +115,7 @@ automation:
       at: '23:00:00'
     action:
       service: homeassistant.turn_off
-      entity_id: switch.sonoff_kz_2
+      entity_id: switch.kz_light2
 
   - alias: Kinderzimmer Nachtlicht
     trigger:
@@ -118,7 +167,7 @@ automation:
         click_type: single
     action:
       service: switch.toggle
-      entity_id: switch.sonoff_kz_1
+      entity_id: switch.kz_light1
 
   - alias: kz_right_single
     trigger:
@@ -129,7 +178,7 @@ automation:
         click_type: single
     action:
       service: switch.toggle
-      entity_id: switch.sonoff_kz_2
+      entity_id: switch.kz_light2
 
   - alias: kz_aquarium_toggle
     trigger:
