@@ -146,10 +146,15 @@ automation:
           entity_id: binary_sensor.switch_158d00013f85d3
           click_type: long_click_press
     action:
-      service: light.toggle
-      entity_id: light.wz_ambient_lichter
-      data:
-        effect: 'random'
+      - service: light.toggle
+        entity_id: light.wz_ambient_lichter
+      - condition: state
+        entity_id: light.wz_ambient_lichter
+        state: 'on'
+      - service: light.turn_on
+        entity_id: light.wz_ambient_lichter
+        data:
+          effect: 'random'
 
   - alias: wz_ambient_auto_on
     trigger:
