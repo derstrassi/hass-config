@@ -11,7 +11,8 @@ homeassistant:
     "*.*":
       custom_ui_state_card: state-card-custom-ui
     'light.*':
-      state_card_mode: break-slider
+      # state_card_mode: break-slider
+      state_card_mode: single-line
     'switch.rf_*':
       assumed_state: false
       icon: 'mdi:lightbulb'

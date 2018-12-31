@@ -117,21 +117,13 @@ group:
       - switch.wz_light1
       - switch.wz_light2
       - switch.wz_lichtkugel
-      - light.wz_couch_led
-      - light.wz_wand_led
+      # - light.wz_couch_led
+      # - light.wz_wand_led
       - media_player.lg_tv
       - switch.wz_ambilight
-      - light.hyperion
+      # - light.hyperion
       - switch.wz_stehlampe
       - light.ambient_lichter
-
-  wz_ambiente:
-    name: Ambiente Beleuchtung
-    entities:
-      # - switch.wz_lichtkugel
-      - light.wz_couch_led
-      - light.wz_wand_led
-      - switch.wz_ambilight
 
 automation:
   - alias: wz_left_single
@@ -180,12 +172,12 @@ automation:
           click_type: long_click_press
     action:
       service: homeassistant.toggle
-      entity_id: group.wz_ambiente
+      entity_id: light.ambient_lichter
 
   - alias: wohnzimmer_auto_off
     trigger:
       - platform: state
-        entity_id: group.wz_ambiente
+        entity_id: light.ambient_lichter
         to: 'on'
         for:
           hours: 4
@@ -209,22 +201,29 @@ automation:
           minutes: 1
       - service: homeassistant.turn_off
         entity_id:
-          - group.wz_ambiente
+          - light.ambient_lichter
           - switch.wz_light1
           - switch.wz_light2
 
   - alias: wohnzimmer_tv_lights_on
     trigger:
-      platform: state
-      entity_id: media_player.lg_tv
-      to: 'on'
+      - platform: state
+        entity_id: media_player.lg_tv
+        to: 'on'
+      - platform: sun
+        event: sunset
     condition:
       - condition: state
         entity_id: sun.sun
         state: 'below_horizon'
+      - condition: state
+        entity_id: media_player.lg_tv
+        state: 'on'
     action:
       service: homeassistant.turn_on
-      entity_id: group.wz_ambiente
+      entity_id:
+        - light.ambient_lichter
+        - switch.ambilight
 
   - alias: wohnzimmer_tv_lights_off
     trigger:
@@ -235,6 +234,8 @@ automation:
       - delay:
           seconds: 60
       - service: homeassistant.turn_off
-        entity_id: group.wz_ambiente
+        entity_id:
+          - light.ambient_lichter
+          - switch.ambilight
 
 
