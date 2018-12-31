@@ -58,6 +58,30 @@ switch:
     payload_available: Online
     payload_not_available: Offline
 
+  - platform: pilight
+    switches:
+      rf_floor_weihnachtsbaum:
+        on_code:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          'on': 1
+        off_code:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          'off': 0
+        on_code_receive:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          state: 'on'
+        off_code_receive:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          state: 'off'
+
 binary_sensor:
   - platform: pilight
     name: rf_motion_flur

@@ -1,16 +1,40 @@
 homeassistant:
   customize:
     switch.kitchen_light:
-      friendly_name: Beleuchtung
+      friendly_name: Licht
       icon: 'mdi:ceiling-light'
+    light.kitchen_wall_light:
+      friendly_name: Licht Rückwand
 
 group:
   kueche:
     name: Küche
     control: hidden
     entities:
+      - sensor.motion_sensor_kitchen_last_seen
       - switch.kitchen_light
-      - switch.volumio_kueche
+      - light.kitchen_wall_light
+
+light:
+  - platform: switch
+    name: kitchen_light_wall1
+    entity_id: switch.rf_kueche1
+  - platform: switch
+    name: kitchen_light_wall2
+    entity_id: switch.rf_kueche2
+  - platform: group
+    name: kitchen_wall_light
+    entities:
+      - light.kitchen_light_wall1
+      - light.kitchen_light_wall2
+
+sensor:
+  - platform: template
+    sensors:
+      motion_sensor_kitchen_last_seen:
+        friendly_name: 'Letzte Bewegung'
+        icon_template: 'mdi:clock-alert'
+        value_template: '{{ as_timestamp(states.binary_sensor.motion_sensor_158d00012326f7.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
 
 switch:
   - platform: mqtt

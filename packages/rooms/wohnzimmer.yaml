@@ -15,7 +15,7 @@ homeassistant:
     light.wz_wand_led:
       friendly_name: Wand Ambient
       icon: 'mdi:sofa'
-    light.wz_ambilight:
+    switch.wz_ambilight:
       friendly_name: TV Ambilight
       icon: 'mdi:television'
 
@@ -64,30 +64,6 @@ switch:
     payload_available: Online
     payload_not_available: Offline
 
-  - platform: pilight
-    switches:
-      wz_stehlampe:
-        on_code:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          'on': 1
-        off_code:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          'off': 0
-        on_code_receive:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          state: 'on'
-        off_code_receive:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          state: 'off'
-
 light:
   - platform: flux_led
     devices:
@@ -122,7 +98,6 @@ group:
       - media_player.lg_tv
       - switch.wz_ambilight
       # - light.hyperion
-      - switch.wz_stehlampe
       - light.ambient_lichter
 
 automation:
@@ -231,11 +206,11 @@ automation:
       entity_id: media_player.lg_tv
       to: 'off'
     action:
+      - service: homeassistant.turn_off
+        entity_id: switch.ambilight
       - delay:
           seconds: 60
       - service: homeassistant.turn_off
-        entity_id:
-          - light.ambient_lichter
-          - switch.ambilight
+        entity_id: light.ambient_lichter
 
 
