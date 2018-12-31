@@ -15,6 +15,9 @@ homeassistant:
     light.wz_wand_led:
       friendly_name: Wand Ambient
       icon: 'mdi:sofa'
+    light.wz_ambient_lights:
+      friendly_name: Ambient Lichter
+      icon: 'mdi:lightbulb-on-outline'
     switch.wz_ambilight:
       friendly_name: TV Ambilight
       icon: 'mdi:television'
@@ -79,7 +82,7 @@ light:
     host: 192.168.10.95
 
   - platform: group
-    name: Ambient Lichter
+    name: wz_ambient_lights
     entities:
       - light.wz_wand_led
       - light.wz_couch_led
@@ -98,7 +101,7 @@ group:
       - media_player.lg_tv
       - switch.wz_ambilight
       # - light.hyperion
-      - light.wz_ambient_lichter
+      - light.wz_ambient_lights
 
 automation:
   - alias: wz_left_single
@@ -147,12 +150,12 @@ automation:
           click_type: long_click_press
     action:
       - service: light.toggle
-        entity_id: light.wz_ambient_lichter
+        entity_id: light.wz_ambient_lights
       - condition: state
-        entity_id: light.wz_ambient_lichter
+        entity_id: light.wz_ambient_lights
         state: 'on'
       - service: light.turn_on
-        entity_id: light.wz_ambient_lichter
+        entity_id: light.wz_ambient_lights
         data:
           effect: 'random'
 
@@ -166,7 +169,7 @@ automation:
         state: 'home'
     action:
       - service: light.turn_on
-        entity_id: light.wz_ambient_lichter
+        entity_id: light.wz_ambient_lights
         data:
           effect: 'random'
       - service: light.turn_on
@@ -175,7 +178,7 @@ automation:
   - alias: wz_auto_off
     trigger:
       - platform: state
-        entity_id: light.wz_ambient_lichter
+        entity_id: light.wz_ambient_lights
         to: 'on'
         for:
           hours: 4
@@ -199,7 +202,7 @@ automation:
           minutes: 5
       - service: homeassistant.turn_off
         entity_id:
-          - light.wz_ambient_lichter
+          - light.wz_ambient_lights
           - switch.wz_light1
           - switch.wz_light2
           - switch.wz_lichtkugel
@@ -222,7 +225,7 @@ automation:
       - service: homeassistant.turn_on
         entity_id: switch.ambilight
       - service: light.turn_on
-        entity_id: light.wz_ambient_lichter
+        entity_id: light.wz_ambient_lights
         data:
           effect: 'random'
 
@@ -237,6 +240,6 @@ automation:
       - delay:
           seconds: 60
       - service: homeassistant.turn_off
-        entity_id: light.wz_ambient_lichter
+        entity_id: light.wz_ambient_lights
 
 

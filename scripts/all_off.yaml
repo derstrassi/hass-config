@@ -5,7 +5,7 @@ all_off:
       data:
         entity_id:
           - light.floor_yeelight
-          - light.wz_ambient_lichter
+          - light.wz_ambient_lights
           - switch.bath_light1
           - switch.bath_light2
           - switch.floor_light_ceiling
