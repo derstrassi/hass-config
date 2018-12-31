@@ -101,7 +101,6 @@ light:
   - platform: hyperion
     name: hyperion
     host: 192.168.10.95
-    port: 19445
 
   - platform: group
     name: Ambient Lichter
