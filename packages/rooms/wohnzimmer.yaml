@@ -64,6 +64,30 @@ switch:
     payload_available: Online
     payload_not_available: Offline
 
+  - platform: pilight
+    switches:
+      wz_stehlampe:
+        on_code:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          'on': 1
+        off_code:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          'off': 0
+        on_code_receive:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          state: 'on'
+        off_code_receive:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          state: 'off'
+
 light:
   - platform: flux_led
     devices:
@@ -75,8 +99,15 @@ light:
         mode: rgbw
 
   - platform: hyperion
+    name: hyperion
     host: 192.168.10.95
     port: 19445
+
+  - platform: group
+    name: Ambient Lichter
+    entities:
+      - light.wz_wand_led
+      - light.wz_couch_led
 
 group:
   wohnzimmer:
@@ -92,6 +123,8 @@ group:
       - media_player.lg_tv
       - switch.wz_ambilight
       - light.hyperion
+      - switch.wz_stehlampe
+      - light.ambient_lichter
 
   wz_ambiente:
     name: Ambiente Beleuchtung
