@@ -223,3 +223,16 @@ automation:
         entity_id:
           - light.floor_yeelight
           - switch.floor_light_ceiling
+
+  - alias: flur_yeelight_off
+    trigger:
+      platform: state
+      entity_id: switch.floor_light_ceiling
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.motion_sensor_flur_aktiv
+        state: 'on'
+    action:
+      - service: homeassistant.turn_off
+        entity_id: light.floor_yeelight

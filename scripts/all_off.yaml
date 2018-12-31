@@ -4,6 +4,8 @@ all_off:
     - service: homeassistant.turn_off
       data:
         entity_id:
+          - light.floor_yeelight
+          - light.wz_ambient_lichter
           - switch.bath_light1
           - switch.bath_light2
           - switch.floor_light_ceiling
@@ -12,6 +14,7 @@ all_off:
           - switch.kz_light1
           - switch.kz_light2
           - switch.rf_arthur_lichterkette
+          - switch.rf_floor_weihnachtsbaum
           - switch.rf_kueche1
           - switch.rf_kueche2
           - switch.rf_sz_nachttisch
@@ -20,7 +23,6 @@ all_off:
           - switch.wz_lichtkugel
           - switch.wz_light1
           - switch.wz_light2
-          - light.floor_yeelight
           # - switch.volumio_kueche
     - delay:
         seconds: 5

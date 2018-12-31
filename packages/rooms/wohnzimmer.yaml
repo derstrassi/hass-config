@@ -98,7 +98,7 @@ group:
       - media_player.lg_tv
       - switch.wz_ambilight
       # - light.hyperion
-      - light.ambient_lichter
+      - light.wz_ambient_lichter
 
 automation:
   - alias: wz_left_single
@@ -146,13 +146,31 @@ automation:
           entity_id: binary_sensor.switch_158d00013f85d3
           click_type: long_click_press
     action:
-      service: homeassistant.toggle
-      entity_id: light.ambient_lichter
+      service: light.toggle
+      entity_id: light.wz_ambient_lichter
+      data:
+        effect: 'random'
 
-  - alias: wohnzimmer_auto_off
+  - alias: wz_ambient_auto_on
+    trigger:
+      - platform: sun
+        event: sunset
+    condition:
+      - condition: state
+        entity_id: group.familie
+        state: 'home'
+    action:
+      - service: light.turn_on
+        entity_id: light.wz_ambient_lichter
+        data:
+          effect: 'random'
+      - service: light.turn_on
+        entity_id: switch.wz_lichtkugel
+
+  - alias: wz_auto_off
     trigger:
       - platform: state
-        entity_id: light.ambient_lichter
+        entity_id: light.wz_ambient_lichter
         to: 'on'
         for:
           hours: 4
@@ -169,22 +187,23 @@ automation:
     action:
       - service: notify.livingroom_tv
         data:
-          message: 'Achtung: Das Licht schaltet sich in 1 Minute aus'
+          message: 'Achtung: Das Licht schaltet sich in 5 Minuten aus'
           data:
             icon: '~/.homeassistant/www/icons/baseline-brightness_low.png'
       - delay:
-          minutes: 1
+          minutes: 5
       - service: homeassistant.turn_off
         entity_id:
-          - light.ambient_lichter
+          - light.wz_ambient_lichter
           - switch.wz_light1
           - switch.wz_light2
+          - switch.wz_lichtkugel
 
-  - alias: wohnzimmer_tv_lights_on
+  - alias: wz_tv_lights_on
     trigger:
       - platform: state
         entity_id: media_player.lg_tv
-        to: 'on'
+        to: 'playing'
       - platform: sun
         event: sunset
     condition:
@@ -195,12 +214,14 @@ automation:
         entity_id: media_player.lg_tv
         state: 'on'
     action:
-      service: homeassistant.turn_on
-      entity_id:
-        - light.ambient_lichter
-        - switch.ambilight
+      - service: homeassistant.turn_on
+        entity_id: switch.ambilight
+      - service: light.turn_on
+        entity_id: light.wz_ambient_lichter
+        data:
+          effect: 'random'
 
-  - alias: wohnzimmer_tv_lights_off
+  - alias: wz_tv_lights_off
     trigger:
       platform: state
       entity_id: media_player.lg_tv
@@ -211,6 +232,6 @@ automation:
       - delay:
           seconds: 60
       - service: homeassistant.turn_off
-        entity_id: light.ambient_lichter
+        entity_id: light.wz_ambient_lichter
 
 

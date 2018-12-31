@@ -3,6 +3,13 @@
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001e562ad
     to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.motion_sensor_flur_aktiv
+      state: 'on'
+    - condition: state
+      entity_id: switch.floor_light_ceiling
+      state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: switch.rf_floor_weihnachtsbaum
