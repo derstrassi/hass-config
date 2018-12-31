@@ -151,6 +151,8 @@ automation:
     action:
       - service: light.toggle
         entity_id: light.wz_ambient_lights
+      - delay:
+          seconds: 3
       - condition: state
         entity_id: light.wz_ambient_lights
         state: 'on'
