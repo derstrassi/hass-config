@@ -52,7 +52,7 @@ switch:
     payload_not_available: Offline
 
   - platform: mqtt
-    name: kz_light1
+    name: kz_light2
     command_topic: cmnd/kz/light2/POWER
     state_topic: stat/kz/light2/RESULT
     value_template: '{{value_json.POWER}}'
@@ -115,7 +115,9 @@ automation:
       at: '23:00:00'
     action:
       service: homeassistant.turn_off
-      entity_id: switch.kz_light2
+      entity_id:
+        - switch.kz_light2
+        - switch.rf_arthur_lichterkette
 
   - alias: Kinderzimmer Nachtlicht
     trigger:
@@ -180,7 +182,7 @@ automation:
       service: switch.toggle
       entity_id: switch.kz_light2
 
-  - alias: kz_aquarium_toggle
+  - alias: kz_both_click
     trigger:
       platform: event
       event_type: xiaomi_aqara.click
@@ -189,5 +191,5 @@ automation:
         click_type: both
     action:
       service: switch.toggle
-      entity_id: switch.plug_158d0001530b1b
+      entity_id: switch.rf_arthur_lichterkette
 
