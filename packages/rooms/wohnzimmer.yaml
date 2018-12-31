@@ -10,7 +10,10 @@ homeassistant:
       friendly_name: Lichtkugel
       icon: 'mdi:lightbulb-on-outline'
     light.wz_couch_led:
-      friendly_name: Couch Ambiente
+      friendly_name: Couch Ambient
+      icon: 'mdi:sofa'
+    light.wz_wand_led:
+      friendly_name: Wand Ambient
       icon: 'mdi:sofa'
     light.wz_ambilight:
       friendly_name: TV Ambilight
@@ -71,6 +74,10 @@ light:
         name: wz_wand_led
         mode: rgbw
 
+  - platform: hyperion
+    host: 192.168.10.95
+    port: 19445
+
 group:
   wohnzimmer:
     name: Wohnzimmer
@@ -84,6 +91,7 @@ group:
       - light.wz_wand_led
       - media_player.lg_tv
       - switch.wz_ambilight
+      - light.hyperion
 
   wz_ambiente:
     name: Ambiente Beleuchtung

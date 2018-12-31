@@ -38,9 +38,9 @@ light:
 switch:
   - platform: mqtt
     name: floor_light_ceiling
-    command_topic: cmnd/floor/light/POWER
+    command_topic: cmnd/floor/light/POWER1
     state_topic: stat/floor/light/RESULT
-    value_template: '{{value_json.POWER}}'
+    value_template: '{{value_json.POWER1}}'
     payload_off: 'OFF'
     payload_on: 'ON'
     availability_topic: tele/floor/light/LWT

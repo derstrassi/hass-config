@@ -3,7 +3,7 @@ homeassistant:
     switch.klingel:
       friendly_name: Klingel Wohnung
       icon: mdi:bell
-    switch.tuer_oeffner:
+    switch.door_opener:
       friendly_name: Tür-Öffner
       icon: mdi:door-open
     binary_sensor.ring_haustur_ding:
@@ -11,6 +11,18 @@ homeassistant:
       icon: mdi:bell
     binary_sensor.ring_haustur_motion:
       friendly_name: Bewegung Haustür
+
+switch:
+  - platform: mqtt
+    name: door_opener
+    command_topic: cmnd/floor/light/POWER2
+    state_topic: stat/floor/light/RESULT
+    value_template: '{{value_json.POWER2}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/floor/light/LWT
+    payload_available: Online
+    payload_not_available: Offline
 
 binary_sensor:
   - platform: ring
@@ -65,7 +77,7 @@ automation:
         actionName: OPEN_DOOR
     action:
       - service: switch.turn_on
-        entity_id: switch.tuer_oeffner
+        entity_id: switch.door_opener
 
   - alias: start_return_home_timer
     trigger:
