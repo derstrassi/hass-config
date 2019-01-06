@@ -57,8 +57,8 @@ sensor:
           {{ states("sensor.new_commits") }}
 
 shell_command:
-  git_pull: ~/.homeassistant/shell_scripts/git_pull.sh
-  git_update_new_commits_sensor: ~/.homeassistant/shell_scripts/git_update_new_commits_sensor.sh
+  git_pull: /root/.homeassistant/shell_scripts/git_pull.sh
+  git_update_new_commits_sensor: /root/.homeassistant/shell_scripts/git_update_new_commits_sensor.sh
 
 automation:
   - alias: git_update_check

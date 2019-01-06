@@ -93,9 +93,9 @@ automation:
     trigger:
       platform: numeric_state
       entity_id: sensor.humidity_158d0001c2c57f
-      above: 75
+      above: 70
       for:
-        minutes: 30
+        minutes: 15
     condition:
       - condition: state
         entity_id: binary_sensor.door_window_sensor_158d0001f3a0f0

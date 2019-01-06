@@ -152,7 +152,7 @@ automation:
       - service: light.toggle
         entity_id: light.wz_ambient_lights
       - delay:
-          seconds: 3
+          seconds: 1
       - condition: state
         entity_id: light.wz_ambient_lights
         state: 'on'
@@ -199,7 +199,7 @@ automation:
         data:
           message: 'Achtung: Das Licht schaltet sich in 5 Minuten aus'
           data:
-            icon: '~/.homeassistant/www/icons/baseline-brightness_low.png'
+            icon: '/root/.homeassistant/www/icons/baseline-brightness_low.png'
       - delay:
           minutes: 5
       - service: homeassistant.turn_off
@@ -240,7 +240,13 @@ automation:
       - service: homeassistant.turn_off
         entity_id: switch.ambilight
       - delay:
-          seconds: 60
+          seconds: 30
+      - condition: state
+        entity_id: switch.wz_light1
+        state: 'off'
+      - condition: state
+        entity_id: switch.wz_light2
+        state: 'off'
       - service: homeassistant.turn_off
         entity_id: light.wz_ambient_lights
 

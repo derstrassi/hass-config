@@ -128,6 +128,12 @@ notify:
   - platform: webostv
     host: 192.168.10.135
     name: livingroom_tv
+  - name: all_ios_devices
+    platform: group
+    services:
+      - service: ios_iphone_von_dennis
+      - service: ios_iphone_von_mary
+      - service: ios_ipad
 
 weather:
   - platform: yweather
