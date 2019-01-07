@@ -21,11 +21,11 @@ input_boolean:
 script:
   check_for_updates:
     sequence:
-      - service: customizer.set_attribute
-        data:
-          entity_id: script.git_update_config
-          attribute: hidden
-          value: 1
+      # - service: customizer.set_attribute
+      #   data:
+      #     entity_id: script.git_update_config
+      #     attribute: hidden
+      #     value: 1
       - service: shell_command.git_update_new_commits_sensor
       - condition: numeric_state
         entity_id: sensor.new_commits
@@ -35,11 +35,11 @@ script:
           title: "Update verfügbar!"
           message: "Bitte Konfiguration updaten!"
           notification_id: "update_avail"
-      - service: customizer.set_attribute
-        data:
-          entity_id: script.git_update_config
-          attribute: hidden
-          value: 0
+      # - service: customizer.set_attribute
+      #   data:
+      #     entity_id: script.git_update_config
+      #     attribute: hidden
+      #     value: 0
   git_update_config:
     alias: Update HA Config
     sequence:
