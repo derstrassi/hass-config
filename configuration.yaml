@@ -8,15 +8,6 @@ homeassistant:
   customize: !include customize.yaml
   packages: !include_dir_named packages
   customize_glob:
-    # "*.*":
-    #   custom_ui_state_card: state-card-custom-ui
-    'light.*':
-      # state_card_mode: break-slider
-      state_card_mode: single-line
-    'camera.*':
-      custom_ui_state_card: null
-    'media_player.*':
-      custom_ui_state_card: null
     'switch.rf_*':
       assumed_state: false
       icon: 'mdi:lightbulb'
@@ -39,9 +30,6 @@ http:
     - 192.168.20.0/24
   ip_ban_enabled: true
   login_attempts_threshold: 5
-
-# customizer:
-#   custom_ui: local
 
 downloader:
   download_dir: 'www/downloads'
@@ -75,10 +63,6 @@ ring:
 
 frontend:
   themes: !include_dir_merge_named themes
-  # extra_html_url:
-  #   - /local/custom_ui/custom-weather-card.html
-  # extra_html_url_es5:
-  #   - /local/custom_ui/custom-weather-card.html
 
 tts:
   - platform: google
