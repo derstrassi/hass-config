@@ -42,8 +42,10 @@ customizer:
 downloader:
   download_dir: 'www/downloads'
 
-config:
 ffmpeg:
+  ffmpeg_bin: /usr/local/bin/ffmpeg
+
+config:
 history:
 logbook:
 map:
