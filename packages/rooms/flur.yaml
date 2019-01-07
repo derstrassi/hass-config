@@ -1,5 +1,17 @@
 homeassistant:
   customize:
+    sensor.temperature_158d0001a4c74d:
+      friendly_name: Außentemperatur
+    sensor.heizung_temperature:
+      friendly_name: Innentemperatur
+    sensor.heizung_humidity:
+      friendly_name: Luftfeuchtigkeit
+    sensor.heizung_power:
+      friendly_name: Heizung
+    binary_sensor.door_window_sensor_158d00014dbac9:
+      friendly_name: Eingangstür
+      icon: 'mdi:door'
+      show_last_changed: true
     switch.floor_light_ceiling:
       friendly_name: Decken-Spots
       icon: 'mdi:ceiling-light'
