@@ -101,9 +101,9 @@ camera:
   - platform: ffmpeg
     name: arthur_cam
     input: -rtsp_transport tcp -i rtsp://192.168.20.62/unicast
-  - platform: mjpeg
-    name: arthur_cam_mjpeg
-    mjpeg_url: rtsp://192.168.20.62/unicast
+  # - platform: mjpeg
+  #   name: arthur_cam_mjpeg
+  #   mjpeg_url: rtsp://192.168.20.62/unicast
     #extra_arguments: '-c:v h264_omx'
   # - platform: ffmpeg
   #   name: camera_hof

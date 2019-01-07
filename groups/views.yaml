@@ -21,7 +21,7 @@ media_view:
     - media_player.lg_tv
     - group.emby
     - camera.arthur_cam
-    - camera.arthur_cam_mjpeg
+    # - camera.arthur_cam_mjpeg
     # - media_player.volumio
     # - media_player.volumio_mpd
 

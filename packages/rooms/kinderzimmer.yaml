@@ -23,7 +23,7 @@ group:
       - group.kz_licht
       - group.aquarium
       - camera.arthur_cam
-      - camera.arthur_cam_mjpeg
+      # - camera.arthur_cam_mjpeg
 
   kz_status:
     name: Kinderzimmer
