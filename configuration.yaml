@@ -96,11 +96,11 @@ mqtt:
 camera:
   - platform: ffmpeg
     name: arthur_cam
-    input: -rtsp_transport tcp -i rtsp://192.168.10.76/unicast
+    input: -rtsp_transport tcp -i rtsp://192.168.20.62/unicast
     #extra_arguments: '-c:v h264_omx'
-  - platform: ffmpeg
-    name: camera_hof
-    input: -rtsp_transport tcp -i rtsp://192.168.10.115/unicast
+  # - platform: ffmpeg
+  #   name: camera_hof
+  #   input: -rtsp_transport tcp -i rtsp://192.168.10.115/unicast
   # - platform: ring
   #   name: ring
   #   ffmpeg_arguments: -pred 1 -q:v 2
