@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 cd /root/.homeassistant
 git fetch origin master
 commits="$(git rev-list --count master..origin/master)"
