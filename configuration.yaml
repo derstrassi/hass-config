@@ -8,8 +8,8 @@ homeassistant:
   customize: !include customize.yaml
   packages: !include_dir_named packages
   customize_glob:
-    "*.*":
-      custom_ui_state_card: state-card-custom-ui
+    # "*.*":
+    #   custom_ui_state_card: state-card-custom-ui
     'light.*':
       # state_card_mode: break-slider
       state_card_mode: single-line
@@ -40,8 +40,8 @@ http:
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
-customizer:
-  custom_ui: local
+# customizer:
+#   custom_ui: local
 
 downloader:
   download_dir: 'www/downloads'
