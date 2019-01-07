@@ -18,27 +18,27 @@ media_view:
   view: yes
   icon: mdi:television
   entities:
-    - sensor.nzbget
-    - group.emby
     - media_player.lg_tv
-    - media_player.volumio
+    - group.emby
+    - camera.arthur_cam
+    - camera.arthur_cam_mjpeg
+    # - media_player.volumio
     # - media_player.volumio_mpd
 
-cameras_view:
-  name: Cameras
-  view: yes
-  icon: mdi:camcorder
-  entities:
-    # - camera.haustur
-    - camera.arthur_cam
-    - camera.camera_hof
+# cameras_view:
+#   name: Cameras
+#   view: yes
+#   icon: mdi:camcorder
+#   entities:
+#     # - camera.haustur
+#     - camera.camera_hof
 
-garten_view:
-  name: Garten
-  view: yes
-  icon: mdi:pool
-  entities:
-    - group.pool
-    - history_graph.poolstatistiken
-    - group.pool_timer
+# garten_view:
+#   name: Garten
+#   view: yes
+#   icon: mdi:pool
+#   entities:
+#     - group.pool
+#     - history_graph.poolstatistiken
+#     - group.pool_timer
 
