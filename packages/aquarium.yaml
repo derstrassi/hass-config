@@ -12,9 +12,11 @@ group:
     entities:
       - input_boolean.aquarium_light_timer_aktiv
       - input_datetime.aquarium_timer1_start
+      - input_datetime.aquarium_timer1_we_start
       - input_datetime.aquarium_timer1_end
       - input_datetime.aquarium_timer2_start
       - input_datetime.aquarium_timer2_end
+      - input_datetime.aquarium_timer2_we_end
       - switch.plug_158d0001530b1b
 
 input_boolean:
@@ -25,28 +27,42 @@ input_boolean:
 
 input_datetime:
   aquarium_timer1_start:
-    name: Time 1 ein
+    name: Zeit 1 EIN
     has_date: false
     has_time: true
-    initial: '08:00'
+    initial: '07:00'
+    icon: mdi:clock-start
+
+  aquarium_timer1_we_start:
+    name: Zeit 1 EIN (Wochenende)
+    has_date: false
+    has_time: true
+    initial: '09:00'
     icon: mdi:clock-start
 
   aquarium_timer1_end:
-    name: Time 1 aus
+    name: Zeit 1 AUS
     has_date: false
     has_time: true
     initial: '12:00'
     icon: mdi:clock-end
 
   aquarium_timer2_start:
-    name: Time 2 ein
+    name: Zeit 2 EIN
     has_date: false
     has_time: true
     initial: '16:00'
     icon: mdi:clock-start
 
   aquarium_timer2_end:
-    name: Time 2 aus
+    name: Zeit 2 AUS
+    has_date: false
+    has_time: true
+    initial: '19:00'
+    icon: mdi:clock-end
+
+  aquarium_timer2_we_end:
+    name: Zeit 2 AUS (Wochenende)
     has_date: false
     has_time: true
     initial: '20:00'
@@ -60,9 +76,34 @@ automation:
       - platform: template
         value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_timer2_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
     condition:
-      condition: state
-      entity_id: input_boolean.aquarium_light_timer_aktiv
-      state: 'on'
+      - condition: state
+        entity_id: input_boolean.aquarium_light_timer_aktiv
+        state: 'on'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+    action:
+      service: switch.turn_on
+      entity_id: switch.plug_158d0001530b1b
+
+  - alias: aquarium_light_timer_we_on
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_timer1_we_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_timer2_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+    condition:
+      - condition: state
+        entity_id: input_boolean.aquarium_light_timer_aktiv
+        state: 'on'
+      - condition: time
+        weekday:
+          - sat
+          - sun
     action:
       service: switch.turn_on
       entity_id: switch.plug_158d0001530b1b
@@ -74,9 +115,34 @@ automation:
       - platform: template
         value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_timer2_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
     condition:
-      condition: state
-      entity_id: input_boolean.aquarium_light_timer_aktiv
-      state: 'on'
+      - condition: state
+        entity_id: input_boolean.aquarium_light_timer_aktiv
+        state: 'on'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+    action:
+      service: switch.turn_off
+      entity_id: switch.plug_158d0001530b1b
+
+  - alias: aquarium_light_timer_we_off
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_timer1_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.aquarium_timer2_we_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+    condition:
+      - condition: state
+        entity_id: input_boolean.aquarium_light_timer_aktiv
+        state: 'on'
+      - condition: time
+        weekday:
+          - sat
+          - sun
     action:
       service: switch.turn_off
       entity_id: switch.plug_158d0001530b1b
