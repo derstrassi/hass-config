@@ -37,6 +37,8 @@ downloader:
 ffmpeg:
   ffmpeg_bin: /usr/local/bin/ffmpeg
 
+custom_updater:
+
 config:
 history:
 logbook:
