@@ -49,7 +49,7 @@ automation:
   - alias: sz_ks_auto_off
     trigger:
       platform: state
-      entity: light.sz_ks_ambient_lights
+      entity_id: light.sz_ks_ambient_lights
       to: 'on'
       for:
         minutes: 10
