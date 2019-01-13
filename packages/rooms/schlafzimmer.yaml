@@ -21,10 +21,12 @@ light:
     devices:
       192.168.10.152:
         name: sz_ks_led1
-        mode: rgb
+        mode: 'w'
+        protocol: 'ledenet'
       192.168.10.153:
         name: sz_ks_led2
-        mode: rgb
+        mode: 'w'
+        protocol: 'ledenet'
 
   - platform: group
     name: sz_ks_ambient_lights
