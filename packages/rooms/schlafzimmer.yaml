@@ -10,4 +10,36 @@ group:
     entities:
       - sensor.temperature_158d000182580d
       - sensor.humidity_158d000182580d
+      - group.kleiderschrank
       # - switch.rf_sz_nachttisch
+  kleiderschrank:
+    entities:
+      - group.sz_ks_ambient_lights
+
+light:
+  - platform: flux_led
+    devices:
+      192.168.10.152:
+        name: sz_ks_led1
+        mode: w
+      192.168.10.153:
+        name: sz_ks_led2
+        mode: w
+
+  - platform: group
+    name: sz_ks_ambient_lights
+    entities:
+      - light.sz_ks_led1
+      - light.sz_ks_led2
+
+automation:
+  - alias: sz_ks_aqara_button
+    trigger:
+      platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.switch_158d000213540d
+        click_type: single
+    action:
+      service: light.toggle
+      entity_id: light.sz_ks_ambient_lights
