@@ -21,10 +21,10 @@ light:
     devices:
       192.168.10.152:
         name: sz_ks_led1
-        mode: w
+        mode: rgb
       192.168.10.153:
         name: sz_ks_led2
-        mode: w
+        mode: rgb
 
   - platform: group
     name: sz_ks_ambient_lights
