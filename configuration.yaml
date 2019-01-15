@@ -21,11 +21,11 @@ homeassistant:
     - '/tmp'
   auth_providers:
      - type: homeassistant
-     - type: legacy_api_password
+     - type: trusted_networks
 
 http:
-  api_password: !secret HTTP_API_PASSWORD
   trusted_networks:
+    - 127.0.0.1
     - 192.168.10.0/24
     - 192.168.20.0/24
   ip_ban_enabled: true
