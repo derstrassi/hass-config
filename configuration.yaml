@@ -5,7 +5,6 @@ homeassistant:
   elevation: 350
   unit_system: metric
   time_zone: Europe/Berlin
-  customize: !include customize.yaml
   packages: !include_dir_named packages
   customize_glob:
     'switch.rf_*':
