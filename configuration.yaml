@@ -131,7 +131,9 @@ notify:
       - service: ios_ipad
 
 weather:
-  - platform: yweather
+  - platform: darksky
+    api_key: !secret DARK_SKY_API_KEY
+    mode: daily
 
 automation: !include_dir_merge_list automations
 binary_sensor: !include_dir_merge_list binary_sensor
@@ -139,7 +141,7 @@ device_tracker: !include_dir_merge_list device_tracker
 emulated_hue: !include emulated_hue.yaml
 group: !include_dir_merge_named groups
 homekit: !include homekit.yaml
-input_text: !include inputs/text.yaml
+# input_text: !include inputs/text.yaml
 ios: !include ios.yaml
 # light: !include_dir_merge_list lights
 media_player: !include_dir_merge_list media_player

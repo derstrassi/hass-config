@@ -1,4 +1,0 @@
-weather:
-  name: Wetter
-  entities:
-    - input_text.weather
