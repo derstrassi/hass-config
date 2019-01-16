@@ -1,6 +1,0 @@
-emby:
-  name: Emby
-  entities:
-    - media_player.emby__media_notifier__emby_mediaserver
-    - media_player.emby__radarr__emby_mediaserver
-    - media_player.emby__sonarr__emby_mediaserver

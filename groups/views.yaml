@@ -18,7 +18,6 @@ media_view:
   icon: mdi:television
   entities:
     - media_player.lg_tv
-    - group.emby
     - camera.arthur_cam
     # - camera.arthur_cam_mjpeg
     # - media_player.volumio
