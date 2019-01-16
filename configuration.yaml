@@ -101,9 +101,9 @@ camera:
   # - platform: ffmpeg
   #   name: camera_hof
   #   input: -rtsp_transport tcp -i rtsp://192.168.10.115/unicast
-  # - platform: ring
-  #   name: ring
-  #   ffmpeg_arguments: -pred 1 -q:v 2
+  - platform: ring
+    name: ring
+    ffmpeg_arguments: -pred 1 -q:v 2
   # - platform: mjpeg
   #   name: camera_hof
   #   mjpeg_url: rtsp://192.168.10.115/unicast
