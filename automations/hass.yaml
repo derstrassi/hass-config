@@ -7,3 +7,6 @@
       data_template:
         title: "HASS Restart"
         message: "Home Assistant wurde neu gestartet"
+    - service: frontend.set_theme
+      data:
+        name: slate
