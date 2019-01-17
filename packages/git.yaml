@@ -31,7 +31,6 @@ script:
 shell_command:
   git_pull: /bin/sh /root/.homeassistant/shell_scripts/git_pull.sh
 
-
 automation:
   - alias: git_push_webhook
     trigger:
