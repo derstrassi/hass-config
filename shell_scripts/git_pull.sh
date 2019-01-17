@@ -1,2 +1,2 @@
 cd /root/.homeassistant
-git fetch && git reset --hard origin/master
+/usr/local/bin/git fetch && /usr/local/bin/git reset --hard origin/master
