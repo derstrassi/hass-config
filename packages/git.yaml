@@ -19,17 +19,6 @@ input_boolean:
     icon: mdi:git
 
 script:
-  check_for_updates:
-    sequence:
-      - service: shell_command.git_update_new_commits_sensor
-      - condition: numeric_state
-        entity_id: sensor.new_commits
-        above: 0
-      - service: persistent_notification.create
-        data:
-          title: "Update verfügbar!"
-          message: "Bitte Konfiguration updaten!"
-          notification_id: "update_avail"
   git_update_config:
     alias: Update HA Config
     sequence:
@@ -39,39 +28,23 @@ script:
       - service: shell_command.git_pull
       - service: homeassistant.restart
 
-sensor:
-  - platform: template
-    sensors:
-      new_commits:
-        value_template: >-
-          {{ states("sensor.new_commits") }}
-
 shell_command:
   git_pull: /bin/sh /root/.homeassistant/shell_scripts/git_pull.sh
-  git_update_new_commits_sensor: /bin/sh /root/.homeassistant/shell_scripts/git_update_new_commits_sensor.sh
 
 automation:
-  - alias: git_update_check
+  - alias: git_push_webhook
     trigger:
-      platform: time
-      seconds: '/10'
-    condition:
-      condition: or
-      conditions:
-        - condition: numeric_state
-          entity_id: sensor.new_commits
-          below: 1
-        - condition: state
-          entity_id: sensor.new_commits
-          state: 'unknown'
+      platform: webhook
+      webhook_id: github_push
     action:
-      - service: script.check_for_updates
       - condition: state
         entity_id: input_boolean.git_auto_update
         state: 'on'
-      - condition: numeric_state
-        entity_id: sensor.new_commits
-        above: 0
+      - service: persistent_notification.create
+        data:
+          title: "Update verfügbar!"
+          message: "Bitte Konfiguration updaten!"
+          notification_id: "update_avail"
       - service: script.git_update_config
 
 
