@@ -4,6 +4,12 @@ all_off:
     - service: homeassistant.turn_off
       data:
         entity_id:
+          # Media Players
+          - media_player.lg_tv
+          #- media_player.denonavr
+          - switch.rf_wz_subwoofer
+
+          # Lights
           - light.floor_yeelight
           - light.wz_ambient_lights
           - switch.bath_light1
@@ -22,8 +28,3 @@ all_off:
           - switch.wz_lichtkugel
           - switch.wz_light1
           - switch.wz_light2
-          # - switch.volumio_kueche
-    - delay:
-        seconds: 5
-    - service: media_player.turn_off
-      entity_id: media_player.lg_tv

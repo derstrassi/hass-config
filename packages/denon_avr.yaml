@@ -1,0 +1,30 @@
+media_player:
+  - platform: denonavr
+    host: 192.168.10.154
+    zones:
+      - zone: Zone2
+
+switch:
+  - platform: pilight
+    switches:
+      rf_wz_subwoofer:
+        on_code:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          'on': 1
+        off_code:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          'off': 0
+        on_code_receive:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          state: 'on'
+        off_code_receive:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          state: 'off'
