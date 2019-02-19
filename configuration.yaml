@@ -62,13 +62,13 @@ ring:
 #       - sensor.last_boot # Comes from 'systemmonitor' sensor platform
 #       - sensor.date
 
-calendar:
-  - platform: caldav
-    url: !secret CALDAV_URL_FAMILY
-    custom_calendars:
-      - name: Urlaub
-        calendar: Family
-        search: 'Urlaub'
+# calendar:
+#   - platform: caldav
+#     url: !secret CALDAV_URL_FAMILY
+#     custom_calendars:
+#       - name: Urlaub
+#         calendar: Family
+#         search: 'Urlaub'
 
 frontend:
   themes: !include_dir_merge_named themes
