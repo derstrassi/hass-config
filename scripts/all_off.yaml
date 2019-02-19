@@ -6,7 +6,7 @@ all_off:
         entity_id:
           # Media Players
           - media_player.lg_tv
-          #- media_player.denonavr
+          - media_player.denon_avr_x1100w
           - switch.rf_wz_subwoofer
 
           # Lights

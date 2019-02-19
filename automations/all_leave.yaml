@@ -4,7 +4,7 @@
     entity_id: group.motion_sensors
     to: 'off'
     for:
-      minutes: 15
+      minutes: 1
   condition:
     - condition: state
       entity_id: group.familie
