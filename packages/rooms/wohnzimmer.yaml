@@ -9,9 +9,9 @@ homeassistant:
     switch.wz_lichtkugel:
       friendly_name: Lichtkugel
       icon: 'mdi:lightbulb-on-outline'
-    light.wz_couch_led:
-      friendly_name: Couch Ambient
-      icon: 'mdi:sofa'
+    # light.wz_couch_led:
+    #   friendly_name: Couch Ambient
+    #   icon: 'mdi:sofa'
     light.wz_wand_led:
       friendly_name: Wand Ambient
       icon: 'mdi:sofa'
@@ -70,9 +70,9 @@ switch:
 light:
   - platform: flux_led
     devices:
-      192.168.10.136:
-        name: wz_couch_led
-        mode: rgbw
+      # 192.168.10.136:
+      #   name: wz_couch_led
+      #   mode: rgbw
       192.168.10.148:
         name: wz_wand_led
         mode: rgbw
