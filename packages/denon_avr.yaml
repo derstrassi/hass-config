@@ -35,6 +35,9 @@ automation:
       - platform: state
         entity_id: media_player.denon_avr_x1100w
         to: 'on'
+      - platform: state
+        entity_id: media_player.denon_avr_x1100w
+        to: 'playing'
     action:
       - service: homeassistant.turn_on
         entity_id: switch.rf_wz_subwoofer
