@@ -14,7 +14,6 @@ all_off:
           - switch.kz_light1
           - switch.kz_light2
           - switch.rf_arthur_lichterkette
-          - switch.rf_floor_weihnachtsbaum
           - switch.rf_kueche1
           - switch.rf_kueche2
           - switch.rf_sz_nachttisch

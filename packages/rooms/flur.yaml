@@ -25,9 +25,6 @@ homeassistant:
     light.gateway_light_286c0788a9dd:
       friendly_name: Nachtlicht Decke
       icon: 'mdi:lightbulb-on-outline'
-    switch.rf_floor_weihnachtsbaum:
-      friendly_name: Weihnachtsbaum
-      icon: 'mdi:pine-tree'
 
 group:
   flur:
@@ -40,7 +37,6 @@ group:
       - switch.floor_light_wall
       - light.gateway_light_286c0788a9dd
       - switch.floor_light_ceiling
-      - switch.rf_floor_weihnachtsbaum
       - light.floor_yeelight
       - script.yeelight_flur_pink
       - script.yeelight_flur_weiss
@@ -73,30 +69,6 @@ switch:
     availability_topic: tele/floor/light2/LWT
     payload_available: Online
     payload_not_available: Offline
-
-  - platform: pilight
-    switches:
-      rf_floor_weihnachtsbaum:
-        on_code:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          'on': 1
-        off_code:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          'off': 0
-        on_code_receive:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          state: 'on'
-        off_code_receive:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          state: 'off'
 
 binary_sensor:
   - platform: pilight
