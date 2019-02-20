@@ -1,6 +1,6 @@
 media_player:
   - platform: denonavr
-    host: 192.168.10.154
+    host: 192.168.10.155
     zones:
       - zone: Zone2
 
