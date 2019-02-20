@@ -1,20 +1,12 @@
-homeassistant:
-  customize:
-    switch.rf_sz_nachttisch:
-      friendly_name: Nachttisch
-      icon: 'mdi:lightbulb-on-outline'
-
-group:
-  schlafzimmer:
-    name: Schlafzimmer
-    entities:
-      - sensor.temperature_158d000182580d
-      - sensor.humidity_158d000182580d
-      - group.kleiderschrank
-      # - switch.rf_sz_nachttisch
-  kleiderschrank:
-    entities:
-      - group.sz_ks_ambient_lights
+switch:
+  - platform: mqtt
+    name: sz_light
+    command_topic: shellies/shelly1-2C784C/relay/0/command
+    state_topic: shellies/shelly1-2C784C/relay/0
+    payload_off: 'off'
+    payload_on: 'on'
+    state_off: 'off'
+    state_on: 'on'
 
 light:
   - platform: flux_led
