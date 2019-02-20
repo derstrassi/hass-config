@@ -5,29 +5,16 @@ media_player:
       - zone: Zone2
 
 switch:
-  - platform: pilight
-    switches:
-      rf_wz_subwoofer:
-        on_code:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          'on': 1
-        off_code:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          'off': 0
-        on_code_receive:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          state: 'on'
-        off_code_receive:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          state: 'off'
+  - platform: mqtt
+    name: wz_subwoofer
+    command_topic: cmnd/wz/lichtkugel/POWER
+    state_topic: stat/wz/lichtkugel/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/wz/lichtkugel/LWT
+    payload_available: Online
+    payload_not_available: Offline
 
 automation:
   - alias: wz_subwoofer_on

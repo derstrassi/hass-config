@@ -56,16 +56,29 @@ switch:
     payload_available: Online
     payload_not_available: Offline
 
-  - platform: mqtt
-    name: wz_lichtkugel
-    command_topic: cmnd/wz/lichtkugel/POWER
-    state_topic: stat/wz/lichtkugel/RESULT
-    value_template: '{{value_json.POWER}}'
-    payload_off: 'OFF'
-    payload_on: 'ON'
-    availability_topic: tele/wz/lichtkugel/LWT
-    payload_available: Online
-    payload_not_available: Offline
+  - platform: pilight
+    switches:
+      wz_lichtkugel:
+        on_code:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          'on': 1
+        off_code:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          'off': 0
+        on_code_receive:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          state: 'on'
+        off_code_receive:
+          protocol: clarus_switch
+          id: B3
+          unit: 24
+          state: 'off'
 
 light:
   - platform: flux_led
