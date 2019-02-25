@@ -98,7 +98,6 @@ light:
     name: wz_ambient_lights
     entities:
       - light.wz_wand_led
-      - switch.wz_lichtkugel
       # - light.wz_couch_led
 
 group:
@@ -188,7 +187,7 @@ automation:
         entity_id: light.wz_ambient_lights
         data:
           effect: 'random'
-      - service: light.turn_on
+      - service: homeassistant.turn_on
         entity_id: switch.wz_lichtkugel
 
   - alias: wz_auto_off
@@ -265,6 +264,8 @@ automation:
         entity_id: switch.wz_light2
         state: 'off'
       - service: homeassistant.turn_off
-        entity_id: light.wz_ambient_lights
+        entity_id:
+          - light.wz_ambient_lights
+          - switch.wz_lichtkugel
 
 
