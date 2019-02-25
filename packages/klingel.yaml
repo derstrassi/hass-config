@@ -24,6 +24,17 @@ switch:
     payload_available: Online
     payload_not_available: Offline
 
+  - platform: mqtt
+    name: klingel
+    command_topic: cmnd/floor/light/POWER3
+    state_topic: stat/floor/light/RESULT
+    value_template: '{{value_json.POWER3}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/floor/light/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
 binary_sensor:
   - platform: ring
     name: ring
