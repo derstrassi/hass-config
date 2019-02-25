@@ -98,7 +98,8 @@ light:
     name: wz_ambient_lights
     entities:
       - light.wz_wand_led
-      - light.wz_couch_led
+      - switch.wz_lichtkugel
+      # - light.wz_couch_led
 
 group:
   wohnzimmer:
