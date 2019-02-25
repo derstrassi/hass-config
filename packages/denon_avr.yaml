@@ -28,11 +28,17 @@ automation:
     action:
       - service: homeassistant.turn_on
         entity_id: switch.wz_subwoofer
+
   - alias: wz_subwoofer_off
     trigger:
       - platform: state
         entity_id: media_player.denon_avr_x1100w
         to: 'off'
     action:
+      - delay:
+          minutes: 15
+      - condition: state
+        entity_id: media_player.denon_avr_x1100w
+        state: 'off'
       - service: homeassistant.turn_off
         entity_id: switch.wz_subwoofer
