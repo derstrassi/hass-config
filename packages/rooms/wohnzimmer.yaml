@@ -256,6 +256,9 @@ automation:
       - delay:
           seconds: 30
       - condition: state
+        entity_id: media_player.lg_tv
+        state: 'off'
+      - condition: state
         entity_id: switch.wz_light1
         state: 'off'
       - condition: state
