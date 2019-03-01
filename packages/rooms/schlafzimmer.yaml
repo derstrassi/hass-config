@@ -27,13 +27,31 @@ light:
       - light.sz_ks_led2
 
 automation:
+  - alias: sz_lights_on
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0002ec8058
+      to: 'on'
+    action:
+      service: homeassistant.turn_on
+      entity_id: switch.sz_light
+
+  - alias: sz_lights_auto_off
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0002ec8058
+      to: 'off'
+    action:
+      service: homeassistant.turn_off
+      entity_id: switch.sz_light
+
   - alias: sz_ks_ambient_motion_on
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0002ec7e05
       to: 'on'
     action:
-      service: light.turn_on
+      service: homeassistant.turn_on
       entity_id: light.sz_ks_ambient_lights
 
   - alias: sz_ks_ambient_motion_off
@@ -44,7 +62,7 @@ automation:
       for:
         seconds: 5
     action:
-      service: light.turn_off
+      service: homeassistant.turn_off
       entity_id: light.sz_ks_ambient_lights
 
   - alias: sz_ks_aqara_button
@@ -55,7 +73,7 @@ automation:
         entity_id: binary_sensor.switch_158d000213540d
         click_type: single
     action:
-      service: light.toggle
+      service: homeassistant.toggle
       entity_id: light.sz_ks_ambient_lights
 
   - alias: sz_ks_auto_off
@@ -66,5 +84,5 @@ automation:
       for:
         minutes: 10
     action:
-      service: light.turn_off
+      service: homeassistant.turn_off
       entity_id: light.sz_ks_ambient_lights
