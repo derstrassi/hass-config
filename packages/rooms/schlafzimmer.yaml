@@ -32,6 +32,27 @@ automation:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0002ec8058
       to: 'on'
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.illumination_158d0002ec8058
+        below: 30
+      - condition: time
+        after: '06:00:00'
+    action:
+      service: homeassistant.turn_on
+      entity_id: switch.sz_light
+
+  - alias: sz_lights_on_night_mode
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0002ec8058
+      to: 'on'
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.illumination_158d0002ec8058
+        below: 30
+      - condition: time
+        before: '06:00:00'
     action:
       service: homeassistant.turn_on
       entity_id: switch.sz_light
@@ -59,8 +80,6 @@ automation:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0002ec7e05
       to: 'off'
-      for:
-        seconds: 5
     action:
       service: homeassistant.turn_off
       entity_id: light.sz_ks_ambient_lights
@@ -74,15 +93,4 @@ automation:
         click_type: single
     action:
       service: homeassistant.toggle
-      entity_id: light.sz_ks_ambient_lights
-
-  - alias: sz_ks_auto_off
-    trigger:
-      platform: state
-      entity_id: light.sz_ks_ambient_lights
-      to: 'on'
-      for:
-        minutes: 10
-    action:
-      service: homeassistant.turn_off
       entity_id: light.sz_ks_ambient_lights
