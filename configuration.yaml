@@ -26,6 +26,8 @@ homeassistant:
          - 192.168.10.0/24
          - 192.168.20.0/24
 
+default_config:
+
 http:
   ip_ban_enabled: true
   login_attempts_threshold: 5
@@ -37,13 +39,6 @@ ffmpeg:
   ffmpeg_bin: /usr/local/bin/ffmpeg
 
 custom_updater:
-
-config:
-history:
-logbook:
-map:
-sun:
-updater:
 wake_on_lan:
 
 ring:
