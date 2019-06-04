@@ -1,17 +1,3 @@
-homeassistant:
-  customize:
-    switch.klingel:
-      friendly_name: Klingel Wohnung
-      icon: mdi:bell
-    switch.door_opener:
-      friendly_name: Tür-Öffner
-      icon: mdi:door-open
-    binary_sensor.ring_haustur_ding:
-      friendly_name: Klingel Haus
-      icon: mdi:bell
-    binary_sensor.ring_haustur_motion:
-      friendly_name: Bewegung Haustür
-
 switch:
   - platform: mqtt
     name: door_opener
@@ -35,17 +21,6 @@ switch:
     payload_available: Online
     payload_not_available: Offline
 
-binary_sensor:
-  - platform: ring
-    name: ring
-    monitored_conditions:
-      - ding
-      - motion
-
-input_text:
-  ring_random:
-    name: ring_random
-
 timer:
   klingel_cycle:
     duration: '00:00:05'
@@ -65,19 +40,6 @@ script:
             {%- else -%}
               2
             {%- endif -%}
-  doorbell_set_random:
-    sequence:
-      - service: input_text.set_value
-        entity_id: input_text.ring_random
-        data_template:
-          value: >-
-            {%- macro random_int(len) -%}
-              {%- for n in range(len) -%}
-                {{ [0,1,2,3,4,5,6,7,8,9]|random }}
-              {%- endfor -%}
-            {%- endmacro -%}
-            {%- set parts = [random_int(8), random_int(4), random_int(4), random_int(4), random_int(12)] -%}
-            {{ parts|join('-') }}
 
 automation:
   - alias: doorbell_open_door
@@ -113,40 +75,10 @@ automation:
   #           push:
   #             category: 'klingel'
 
-  - alias: doorbell_download_last_motion_video
+  - alias: doorbell_notify
     trigger:
       platform: state
-      entity_id: binary_sensor.ring_haustur_motion
-      to: 'on'
-    action:
-      - delay:
-          seconds: 60
-      - service: downloader.download_file
-        data_template:
-          url: '{{ states.camera.haustur.attributes.video_url }}'
-          subdir: 'ring'
-          filename: 'last_motion.mp4'
-          overwrite: true
-
-  - alias: doorbell_download_last_ring_video
-    trigger:
-      platform: state
-      entity_id: binary_sensor.ring_haustur_ding
-      to: 'on'
-    action:
-      - delay:
-          seconds: 90
-      - service: script.doorbell_set_random
-      - service: downloader.download_file
-        data_template:
-          url: '{{ states.camera.haustur.attributes.video_url }}'
-          subdir: 'ring'
-          filename: '{{ states("input_text.ring_random") }}.mp4'
-
-  - alias: doorbell_haus_notify
-    trigger:
-      platform: state
-      entity_id: binary_sensor.ring_haustur_ding
+      entity_id: switch.klingel
       to: 'on'
     condition:
       # prevent multiple consecutive presses
@@ -164,57 +96,20 @@ automation:
           message: 'Klingel: Haustür unten'
           data:
             icon: '/root/.homeassistant/www/icons/baseline-notifications_active.png'
-      - service: script.doorbell_set_random
-      - service: camera.snapshot
-        entity_id: camera.haustur
-        data:
-          filename: '/root/.homeassistant/www/downloads/ring/snapshots/{{ states("input_text.ring_random") }}.jpg'
-      - delay:
-          seconds: 5
+      # - service: camera.snapshot
+      #   entity_id: camera.haustur
+      #   data:
+      #     filename: '/root/.homeassistant/www/downloads/ring/snapshots/{{ states("input_text.ring_random") }}.jpg'
+      # - delay:
+      #     seconds: 5
       - service: notify.all_ios_devices
         data_template:
           title: 'Klingeling...'
-          message: 'Jemand wartet an der Haustür'
+          message: 'Jemand wartet an der Tür!'
           data:
             # url: https://google.de # ring app url, have to reverse-engineer
             push:
               category: klingel
-            attachment:
-              url: 'https://hass.derstrassi.net/local/downloads/ring/snapshots/{{ states("input_text.ring_random") }}.jpg'
-              content-type: jpg
-
-
-  - alias: doorbell_wohnung_notify
-    trigger:
-      platform: state
-      entity_id: switch.klingel
-      to: 'on'
-    condition:
-      # prevent multiple consecutive presses
-      - condition: state
-        entity_id: timer.klingel_cycle
-        state: 'idle'
-    action:
-      - service: timer.start
-        entity_id: timer.klingel_cycle
-      - service: notify.all_ios_devices
-        data_template:
-          title: 'Klingeling...'
-          message: 'Jemand wartet vor der Wohnungstür'
-          # data:
-          #   push:
-          #     category: klingel
-          #   attachment:
-          #     url: 'https://hass.derstrassi.net/local/snapshots/front_door/{{ states("input_text.ring_random") }}.jpg'
-          #     content-type: jpg
-      - condition: state
-        entity_id: group.familie
-        state: 'home'
-      - service: script.doorbell
-        data:
-          ringtone_id: 11
-      - service: notify.livingroom_tv
-        data:
-          message: 'Klingel: Wohnungstür'
-          data:
-            icon: '/root/.homeassistant/www/icons/baseline-notifications_active.png'
+            # attachment:
+            #   url: 'https://hass.derstrassi.net/local/downloads/ring/snapshots/{{ states("input_text.ring_random") }}.jpg'
+            #   content-type: jpg
