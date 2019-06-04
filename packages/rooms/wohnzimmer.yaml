@@ -70,27 +70,11 @@ light:
     name: hyperion
     host: 192.168.10.95
 
-  - platform: group
-    name: wz_ambient_lights
-    entities:
+  # - platform: group
+  #   name: wz_ambient_lights
+  #   entities:
       # - light.wz_wand_led
       # - light.wz_couch_led
-
-group:
-  wohnzimmer:
-    name: Wohnzimmer
-    entities:
-      - sensor.heizung_temperature
-      - sensor.heizung_humidity
-      - switch.wz_light1
-      - switch.wz_light2
-      - switch.wz_lichtkugel
-      # - light.wz_couch_led
-      # - light.wz_wand_led
-      - media_player.lg_tv
-      - switch.wz_ambilight
-      # - light.hyperion
-      - light.wz_ambient_lights
 
 automation:
   - alias: wz_left_single
@@ -140,17 +124,17 @@ automation:
     action:
       - service: homeassistant.toggle
         entity_id: switch.wz_lichtkugel
-      - service: light.toggle
-        entity_id: light.wz_ambient_lights
-      - delay:
-          seconds: 1
-      - condition: state
-        entity_id: light.wz_ambient_lights
-        state: 'on'
-      - service: light.turn_on
-        entity_id: light.wz_ambient_lights
-        data:
-          effect: 'random'
+      # - service: light.toggle
+      #   entity_id: light.wz_ambient_lights
+      # - delay:
+      #     seconds: 1
+      # - condition: state
+      #   entity_id: light.wz_ambient_lights
+      #   state: 'on'
+      # - service: light.turn_on
+      #   entity_id: light.wz_ambient_lights
+      #   data:
+      #     effect: 'random'
 
   - alias: wz_ambient_auto_on
     trigger:
@@ -161,20 +145,20 @@ automation:
         entity_id: group.familie
         state: 'home'
     action:
-      - service: light.turn_on
-        entity_id: light.wz_ambient_lights
-        data:
-          effect: 'random'
+      # - service: light.turn_on
+      #   entity_id: light.wz_ambient_lights
+      #   data:
+      #     effect: 'random'
       - service: homeassistant.turn_on
         entity_id: switch.wz_lichtkugel
 
   - alias: wz_auto_off
     trigger:
-      - platform: state
-        entity_id: light.wz_ambient_lights
-        to: 'on'
-        for:
-          hours: 4
+      # - platform: state
+      #   entity_id: light.wz_ambient_lights
+      #   to: 'on'
+      #   for:
+      #     hours: 4
       - platform: state
         entity_id: switch.wz_light1
         to: 'on'
@@ -195,7 +179,7 @@ automation:
           minutes: 5
       - service: homeassistant.turn_off
         entity_id:
-          - light.wz_ambient_lights
+          # - light.wz_ambient_lights
           - switch.wz_light1
           - switch.wz_light2
           - switch.wz_lichtkugel
@@ -217,10 +201,10 @@ automation:
     action:
       - service: homeassistant.turn_on
         entity_id: switch.ambilight
-      - service: light.turn_on
-        entity_id: light.wz_ambient_lights
-        data:
-          effect: 'random'
+      # - service: light.turn_on
+      #   entity_id: light.wz_ambient_lights
+      #   data:
+      #     effect: 'random'
 
   - alias: wz_tv_lights_off
     trigger:
@@ -243,7 +227,7 @@ automation:
         state: 'off'
       - service: homeassistant.turn_off
         entity_id:
-          - light.wz_ambient_lights
+          # - light.wz_ambient_lights
           - switch.wz_lichtkugel
 
 
