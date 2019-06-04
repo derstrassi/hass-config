@@ -1,27 +1,3 @@
-homeassistant:
-  customize:
-    switch.wz_light1:
-      friendly_name: Licht Esszimmer
-      icon: 'mdi:ceiling-light'
-    switch.wz_light2:
-      friendly_name: Licht TV-Breich
-      icon: 'mdi:ceiling-light'
-    switch.wz_lichtkugel:
-      friendly_name: Lichtkugel
-      icon: 'mdi:lightbulb-on-outline'
-    # light.wz_couch_led:
-    #   friendly_name: Couch Ambient
-    #   icon: 'mdi:sofa'
-    light.wz_wand_led:
-      friendly_name: Wand Ambient
-      icon: 'mdi:sofa'
-    light.wz_ambient_lights:
-      friendly_name: Ambient Lichter
-      icon: 'mdi:lightbulb-on-outline'
-    switch.wz_ambilight:
-      friendly_name: TV Ambilight
-      icon: 'mdi:television'
-
 switch:
   - platform: mqtt
     name: wz_light1
@@ -86,9 +62,9 @@ light:
       # 192.168.10.136:
       #   name: wz_couch_led
       #   mode: rgbw
-      192.168.10.148:
-        name: wz_wand_led
-        mode: rgbw
+      # 192.168.10.148:
+      #   name: wz_wand_led
+      #   mode: rgbw
 
   - platform: hyperion
     name: hyperion
@@ -97,7 +73,7 @@ light:
   - platform: group
     name: wz_ambient_lights
     entities:
-      - light.wz_wand_led
+      # - light.wz_wand_led
       # - light.wz_couch_led
 
 group:
