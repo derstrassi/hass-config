@@ -56,9 +56,9 @@ switch:
           unit: 24
           state: 'off'
 
-light:
-  - platform: flux_led
-    devices:
+# light:
+#   - platform: flux_led
+#     devices:
       # 192.168.10.136:
       #   name: wz_couch_led
       #   mode: rgbw
