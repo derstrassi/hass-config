@@ -1,15 +1,18 @@
-homeassistant:
-  customize:
-    sensor.pool_temperatur:
-      friendly_name: Wassertemperatur
-      icon: mdi:oil-temperature
-    switch.pool:
-      friendly_name: Filterpumpe
-      icon: mdi:gauge
+switch:
+  - platform: mqtt
+    name: pool_filter_pump
+    command_topic: cmnd/garden/pool/POWER
+    state_topic: stat/garden/pool/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/garden/pool/LWT
+    payload_available: Online
+    payload_not_available: Offline
 
 sensor:
   - platform: mqtt
-    name: pool_temperatur
+    name: pool_temp
     state_topic: "tele/garden/pool/SENSOR"
     unit_of_measurement: "°C"
     expire_after: 600
@@ -20,45 +23,23 @@ binary_sensor:
     sensors:
       pool_temp_too_high:
         value_template: >-
-          {{ states("sensor.pool_temperatur")|float > states("input_number.pool_temp_threshold")|float }}
+          {{ states("sensor.pool_temp")|float > states("input_number.pool_temp_threshold")|float }}
 
 history_graph:
   pool:
-    name: Pool-Statistiken
     entities:
-      - sensor.pool_temperatur
-      - switch.pool
+      - sensor.pool_temp
+      - switch.pool_filter_pump
     hours_to_show: 168
     refresh: 60
 
-group:
-  pool:
-    name: Pool
-    control: hidden
-    entities:
-      - sensor.pool_temperatur
-      - input_number.pool_temp_threshold
-      - switch.pool
-
-  pool_timer:
-    name: Filterpumpe Zeitsteuerung
-    control: hidden
-    entities:
-      - input_boolean.pool_timer_aktiv
-      - input_datetime.pool_timer1_start
-      - input_datetime.pool_timer1_stop
-      - input_datetime.pool_timer2_start
-      - input_datetime.pool_timer2_stop
-
 input_boolean:
   pool_timer_aktiv:
-    name: Timer aktiv
     initial: on
     icon: mdi:clock
 
 input_number:
   pool_temp_threshold:
-    name: Schwellwert Umwälzung
     icon: mdi:oil-temperature
     #initial: 22
     min: 20.0
@@ -68,29 +49,22 @@ input_number:
 
 input_datetime:
   pool_timer1_start:
-    name: Timer 1 ein
     has_date: false
     has_time: true
     initial: '10:30'
-    icon: mdi:clock-start
   pool_timer1_stop:
-    name: Timer 1 aus
     has_date: false
     has_time: true
     initial: '14:00'
-    icon: mdi:clock-end
   pool_timer2_start:
-    name: Timer 2 ein
     has_date: false
     has_time: true
     initial: '16:00'
-    icon: mdi:clock-start
   pool_timer2_stop:
     name: Timer 2 aus
     has_date: false
     has_time: true
     initial: '20:00'
-    icon: mdi:clock-end
 
 automation:
   - alias: cycle_pool_pump
@@ -102,7 +76,7 @@ automation:
         minutes: 30
     condition:
       - condition: state
-        entity_id: switch.pool
+        entity_id: switch.pool_filter_pump
         state: 'off'
       - condition: time
         after: '06:00:00'
@@ -111,13 +85,13 @@ automation:
       - service: notify.ios_iphone_von_dennis
         data_template:
           title: 'Pool'
-          message: 'Die Temperatur im Pool beträgt aktuell {{ states("sensor.pool_temperatur") }}°C, die Filterpumpe wird jetzt aktiviert'
+          message: 'Die Temperatur im Pool beträgt aktuell {{ states("sensor.pool_temp") }}°C, die Filterpumpe wird jetzt aktiviert'
       - service: switch.turn_on
-        entity_id: switch.pool
+        entity_id: switch.pool_filter_pump
       - delay:
           minutes: 15
       - service: switch.turn_off
-        entity_id: switch.pool
+        entity_id: switch.pool_filter_pump
 
   - alias: pool_timer_start
     trigger:
@@ -131,7 +105,7 @@ automation:
       state: 'on'
     action:
       service: switch.turn_on
-      entity_id: switch.pool
+      entity_id: switch.pool_filter_pump
 
   - alias: pool_timer_stop
     trigger:
@@ -141,4 +115,4 @@ automation:
         value_template: "{{ states('sensor.time') == (states.input_datetime.pool_timer2_stop.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
     action:
       service: switch.turn_off
-      entity_id: switch.pool
+      entity_id: switch.pool_filter_pump
