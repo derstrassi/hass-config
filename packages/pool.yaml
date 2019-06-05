@@ -61,7 +61,6 @@ input_datetime:
     has_time: true
     initial: '16:00'
   pool_timer2_stop:
-    name: Timer 2 aus
     has_date: false
     has_time: true
     initial: '20:00'
