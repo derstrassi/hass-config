@@ -58,7 +58,6 @@ switch:
 binary_sensor:
   - platform: pilight
     name: rf_motion_flur
-    device_class: motion
     variable: 'state'
     payload:
       protocol: 'arctech_switch'
