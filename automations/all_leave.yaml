@@ -7,7 +7,7 @@
       minutes: 1
   condition:
     - condition: state
-      entity_id: group.familie
+      entity_id: person.familie
       state: 'not_home'
   action:
     - service: script.all_off

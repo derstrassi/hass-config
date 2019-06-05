@@ -55,7 +55,7 @@ automation:
   # - alias: start_return_home_timer
   #   trigger:
   #     platform: state
-  #     entity_id: group.person_dennis
+  #     entity_id: person.dennis_strasser
   #     to: 'home'
   #   action:
   #     - service: timer.start
@@ -64,7 +64,7 @@ automation:
   # - alias: doorbell_ask_for_door_open
   #   trigger:
   #     platform: state
-  #     entity_id: group.person_dennis
+  #     entity_id: person.dennis_strasser
   #     to: 'home'
   #   action:
   #     - service: notify.ios_iphone_von_dennis

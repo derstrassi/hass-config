@@ -107,7 +107,7 @@ automation:
       offset: '01:00:00'
     condition:
       - condition: state
-        entity_id: group.familie
+        entity_id: person.familie
         state: 'home'
     action:
       - service: script.gateway_nightlight_on

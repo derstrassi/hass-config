@@ -142,7 +142,7 @@ automation:
         event: sunset
     condition:
       - condition: state
-        entity_id: group.familie
+        entity_id: person.familie
         state: 'home'
     action:
       # - service: light.turn_on

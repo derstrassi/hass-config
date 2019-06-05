@@ -40,7 +40,7 @@ automation:
       to: 'on'
     condition:
       - condition: state
-        entity_id: group.familie
+        entity_id: person.familie
         state: 'not_home'
     action:
       - service: notify.notify

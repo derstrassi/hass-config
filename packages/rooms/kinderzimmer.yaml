@@ -126,7 +126,7 @@ automation:
       at: '19:00:00'
     condition:
       - condition: state
-        entity_id: group.familie
+        entity_id: person.familie
         state: 'home'
     action:
       - service: light.turn_on
@@ -148,7 +148,7 @@ automation:
       condition: and
       conditions:
         - condition: state
-          entity_id: group.familie
+          entity_id: person.familie
           state: 'home'
         - condition: time
           after: '20:00:00'
