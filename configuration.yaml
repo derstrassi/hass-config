@@ -38,7 +38,9 @@ downloader:
 ffmpeg:
   ffmpeg_bin: /usr/local/bin/ffmpeg
 
-custom_updater:
+hacs:
+  token: !secret GITHUB_ACCESS_TOKEN
+
 wake_on_lan:
 
 # recorder:
