@@ -67,7 +67,7 @@ automation:
   #     entity_id: person.dennis_strasser
   #     to: 'home'
   #   action:
-  #     - service: notify.ios_iphone_von_dennis
+  #     - service: notify.mobile_app_iphone_von_dennis
   #       data:
   #         title: 'Wilkommen Zuhause!'
   #         message: 'Möchtest du die Tür öffnen?'

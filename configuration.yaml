@@ -127,7 +127,8 @@ notify:
   - name: all_ios_devices
     platform: group
     services:
-      - service: ios_iphone_von_dennis
+      - service: mobile_app_iphone_von_dennis
+      - service: mobile_app_ipad_von_dennis_strasser
       - service: ios_iphone_von_mary
       - service: ios_ipad
 

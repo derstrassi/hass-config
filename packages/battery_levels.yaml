@@ -29,7 +29,7 @@ automation:
           title: Niedriger Batteriestand
           message: "{{ states('sensor.low_battery') }}"
           notification_id: low-battery-alert
-      - service: notify.ios_iphone_von_dennis
+      - service: notify.mobile_app_iphone_von_dennis
         data_template:
           title: "Niedriger Batteriestand"
           message: "{{ states('sensor.low_battery') }}"

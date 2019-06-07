@@ -13,7 +13,7 @@
       for:
         minutes: 15
   action:
-    - service: notify.ios_iphone_von_dennis
+    - service: notify.mobile_app_iphone_von_dennis
       data_template:
         title: "Tür wurde geöffnet"
         message: "{{ states.sensor.last_person.state }} hat das Haus betreten."
