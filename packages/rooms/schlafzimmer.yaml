@@ -8,6 +8,30 @@ switch:
     state_off: 'off'
     state_on: 'on'
 
+  - platform: pilight
+    switches:
+      rf_air_conditioner:
+        on_code:
+          protocol: clarus_switch
+          id: C7
+          unit: 24
+          'on': 1
+        off_code:
+          protocol: clarus_switch
+          id: C7
+          unit: 24
+          'off': 0
+        on_code_receive:
+          protocol: clarus_switch
+          id: C7
+          unit: 24
+          state: 'on'
+        off_code_receive:
+          protocol: clarus_switch
+          id: C7
+          unit: 24
+          state: 'off'
+
 light:
   - platform: flux_led
     devices:
@@ -71,6 +95,10 @@ automation:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0002ec7e05
       to: 'on'
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.illumination_158d0002ec7e05
+        below: 30
     action:
       service: homeassistant.turn_on
       entity_id: light.sz_ks_ambient_lights
@@ -94,3 +122,19 @@ automation:
     action:
       service: homeassistant.toggle
       entity_id: light.sz_ks_ambient_lights
+
+  - alias: sz_air_conditioner_auto
+    trigger:
+      platform: time
+      at: '19:00:00'
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.temperature_158d000182580d
+        above: 27
+    action:
+      - service: homeassistant.turn_on
+        entity_id: switch.rf_air_conditioner
+      - delay:
+          hours: 2
+      - service: homeassistant.turn_off
+        entity_id: switch.rf_air_conditioner
