@@ -5,19 +5,17 @@ homeassistant:
       icon: 'mdi:lightbulb-on-outline'
       extra_data_template: "${attributes.load_power !== 0 ? (attributes.load_power + 'W') : ''}"
 
-group:
-  aquarium:
-    name: Aquarium
-    control: hidden
-    entities:
-      - input_boolean.aquarium_light_timer_aktiv
-      - input_datetime.aquarium_timer1_start
-      - input_datetime.aquarium_timer1_we_start
-      - input_datetime.aquarium_timer1_end
-      - input_datetime.aquarium_timer2_start
-      - input_datetime.aquarium_timer2_end
-      - input_datetime.aquarium_timer2_we_end
-      - switch.plug_158d0001530b1b
+sensor:
+  - platform: template
+    sensors:
+      plug_158d0001530b1b_load_power:
+        device_class: power
+        unit_of_measurement: 'W'
+        value_template: "{{ state_attr('switch.plug_158d0001530b1b', 'load_power')  }}"
+      plug_158d0001530b1b_power_consumed:
+        device_class: power
+        unit_of_measurement: 'W/h'
+        value_template: "{{ state_attr('switch.plug_158d0001530b1b', 'power_consumed')  }}"
 
 input_boolean:
   aquarium_light_timer_aktiv:
