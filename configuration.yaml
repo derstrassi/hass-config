@@ -47,17 +47,20 @@ wake_on_lan:
 logger:
   default: info
 
-# recorder:
-#   purge_keep_days: 7
-#   db_url: mysql://homeassistant@192.168.10.95/homeassistant?charset=utf8
-#   exclude:
-#     domains:
-#       - automation
-#       - updater
-#     entities:
-#       - sun.sun # Don't record sun data
-#       - sensor.last_boot # Comes from 'systemmonitor' sensor platform
-#       - sensor.date
+recorder:
+  purge_keep_days: 14
+  purge_interval: 1
+  exclude:
+    domains:
+      - automation
+      - weblink
+      - updater
+      - script
+      - zone
+    entities:
+      - sun.sun # Don't record sun data
+      - sensor.last_boot # Comes from 'systemmonitor' sensor platform
+      - sensor.date
 
 # calendar:
 #   - platform: caldav
