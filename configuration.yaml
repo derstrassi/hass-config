@@ -26,8 +26,8 @@ homeassistant:
          - 192.168.10.0/24
          - 192.168.20.0/24
 
-zeroconf:
 default_config:
+discovery:
 
 http:
   ip_ban_enabled: true
