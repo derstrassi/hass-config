@@ -1,9 +1,0 @@
-- name: Gute Nacht
-  entities:
-    light.floor_yeelight:
-      state: 'on'
-      rgb_color: [255,36,146]
-      brightness: 150
-    group.all_lights: off
-    group.all_switches: off
-    media_player.lg_tv: off

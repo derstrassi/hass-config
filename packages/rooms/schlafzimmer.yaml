@@ -123,18 +123,18 @@ automation:
       service: homeassistant.toggle
       entity_id: light.sz_ks_ambient_lights
 
-  - alias: sz_air_conditioner_auto
-    trigger:
-      platform: time
-      at: '19:00:00'
-    condition:
-      - condition: numeric_state
-        entity_id: sensor.temperature_158d000182580d
-        above: 27
-    action:
-      - service: homeassistant.turn_on
-        entity_id: switch.rf_air_conditioner
-      - delay:
-          hours: 2
-      - service: homeassistant.turn_off
-        entity_id: switch.rf_air_conditioner
+  # - alias: sz_air_conditioner_auto
+  #   trigger:
+  #     platform: time
+  #     at: '19:00:00'
+  #   condition:
+  #     - condition: numeric_state
+  #       entity_id: sensor.temperature_158d000182580d
+  #       above: 27
+  #   action:
+  #     - service: homeassistant.turn_on
+  #       entity_id: switch.rf_air_conditioner
+  #     - delay:
+  #         hours: 2
+  #     - service: homeassistant.turn_off
+  #       entity_id: switch.rf_air_conditioner

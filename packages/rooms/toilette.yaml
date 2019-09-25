@@ -1,18 +1,3 @@
-homeassistant:
-  customize:
-    switch.toilett_light:
-      friendly_name: Beleuchtung
-      icon: 'mdi:ceiling-light'
-
-group:
-  toilette:
-    name: Toilette
-    control: hidden
-    entities:
-      #- binary_sensor.motion_sensor_158d000113dee1
-      - sensor.motion_sensor_toilette_last_seen
-      - switch.toilett_light
-
 switch:
   - platform: mqtt
     name: toilett_light
