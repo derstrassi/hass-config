@@ -57,14 +57,14 @@ switch:
           state: 'off'
 
 light:
-#   - platform: flux_led
-#     devices:
+  - platform: flux_led
+    devices:
       # 192.168.10.136:
       #   name: wz_couch_led
       #   mode: rgbw
-      # 192.168.10.148:
-      #   name: wz_wand_led
-      #   mode: rgbw
+      192.168.10.148:
+        name: wz_wand_led
+        mode: rgbw
 
   - platform: hyperion
     name: hyperion
