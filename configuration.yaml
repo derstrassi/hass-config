@@ -6,16 +6,6 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/Berlin
   packages: !include_dir_named packages
-  customize_glob:
-    'switch.rf_*':
-      assumed_state: false
-      icon: 'mdi:lightbulb'
-    'sensor.temperature_*':
-      friendly_name: Temperatur
-    'sensor.pressure_*':
-      friendly_name: Luftdruck
-    'sensor.humidity_*':
-      friendly_name: Luftfeuchtigkeit
   whitelist_external_dirs:
     - '/tmp'
   auth_providers:
@@ -24,13 +14,12 @@ homeassistant:
        trusted_networks:
          - 127.0.0.1
          - 192.168.10.0/24
-         - 192.168.20.0/24
 
 default_config:
 discovery:
 
 http:
-  ip_ban_enabled: true
+  ip_ban_enabled: false
   login_attempts_threshold: 5
 
 downloader:

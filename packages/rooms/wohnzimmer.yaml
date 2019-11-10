@@ -32,30 +32,6 @@ switch:
     payload_available: Online
     payload_not_available: Offline
 
-  - platform: pilight
-    switches:
-      wz_lichtkugel:
-        on_code:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          'on': 1
-        off_code:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          'off': 0
-        on_code_receive:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          state: 'on'
-        off_code_receive:
-          protocol: clarus_switch
-          id: B3
-          unit: 24
-          state: 'off'
-
 light:
   - platform: flux_led
     devices:
@@ -69,12 +45,6 @@ light:
   - platform: hyperion
     name: hyperion
     host: 192.168.10.95
-
-  # - platform: group
-  #   name: wz_ambient_lights
-  #   entities:
-      # - light.wz_wand_led
-      # - light.wz_couch_led
 
 automation:
   - alias: wz_left_single

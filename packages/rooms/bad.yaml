@@ -1,36 +1,3 @@
-homeassistant:
-  customize:
-    switch.bath_light1:
-      friendly_name: Beleuchtung
-      icon: 'mdi:ceiling-light'
-    switch.bath_light2:
-      friendly_name: Spiegel / Steckdose
-      icon: 'mdi:lightbulb-on-outline'
-    binary_sensor.door_window_sensor_158d0001f3a0f0:
-      friendly_name: Fenster
-      icon: 'mdi:window-closed'
-      show_last_changed: true
-
-group:
-  bad:
-    name: Badezimmer
-    control: hidden
-    entities:
-      - sensor.temperature_158d0001c2c57f
-      - sensor.humidity_158d0001c2c57f
-      - binary_sensor.door_window_sensor_158d0001f3a0f0
-      - sensor.motion_sensor_bad_last_seen
-      - switch.bath_light1
-      - switch.bath_light2
-
-sensor:
-  - platform: template
-    sensors:
-      motion_sensor_bad_last_seen:
-        friendly_name: 'Letzte Bewegung'
-        icon_template: 'mdi:clock-alert'
-        value_template: '{{ as_timestamp(states.binary_sensor.motion_sensor_158d0001e516a5.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
-
 switch:
   - platform: mqtt
     name: bath_light1
@@ -125,16 +92,4 @@ automation:
       #   entity_id: media_player.volumio
       #   data_template:
       #     volume_level: 0.2
-
-  - alias: bad_zahnbuerste_laden
-    trigger:
-      platform: time
-      at: '10:00:00'
-    action:
-      - service: homeassistant.turn_on
-        entity_id: switch.bath_light2
-      - delay:
-          hours: 3
-      - service: homeassistant.turn_off
-        entity_id: switch.bath_light2
 

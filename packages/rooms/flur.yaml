@@ -1,37 +1,3 @@
-homeassistant:
-  customize:
-    sensor.temperature_158d0001a4c74d:
-      friendly_name: Außentemperatur
-    sensor.heizung_temperature:
-      friendly_name: Innentemperatur
-    sensor.heizung_humidity:
-      friendly_name: Luftfeuchtigkeit
-    sensor.heizung_power:
-      friendly_name: Heizung
-    binary_sensor.door_window_sensor_158d00014dbac9:
-      friendly_name: Eingangstür
-      icon: 'mdi:door'
-      show_last_changed: true
-    switch.floor_light_ceiling:
-      friendly_name: Decken-Spots
-      icon: 'mdi:ceiling-light'
-      show_last_changed: true
-    light.floor_yeelight:
-      friendly_name: Stehlampe
-      icon: 'mdi:lightbulb-on-outline'
-    switch.floor_light_wall:
-      friendly_name: Wandbeleuchtung
-      icon: 'mdi:lightbulb-on-outline'
-    light.gateway_light_286c0788a9dd:
-      friendly_name: Nachtlicht Decke
-      icon: 'mdi:lightbulb-on-outline'
-
-yeelight:
-  devices:
-    192.168.10.87:
-      name: floor_yeelight
-      save_on_change: true
-
 switch:
   - platform: mqtt
     name: floor_light_ceiling
@@ -55,17 +21,6 @@ switch:
     payload_available: Online
     payload_not_available: Offline
 
-binary_sensor:
-  - platform: pilight
-    name: rf_motion_flur
-    variable: 'state'
-    payload:
-      protocol: 'arctech_switch'
-      id: 21633024
-      unit: 1
-    payload_on: 'on'
-    disarm_after_trigger: true
-
 sensor:
   - platform: template
     sensors:
@@ -73,10 +28,6 @@ sensor:
         friendly_name: 'Tür Zuletzt geöffnet'
         icon_template: 'mdi:clock-alert'
         value_template: '{{ as_timestamp(states.binary_sensor.door_window_sensor_158d00014dbac9.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
-      motion_sensor_flur_last_seen:
-        friendly_name: 'Letzte Bewegung'
-        icon_template: 'mdi:clock-alert'
-        value_template: '{{ as_timestamp(states.binary_sensor.motion_sensor_158d0001e562ad.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
 
 automation:
   - alias: door_open_reminder
@@ -142,7 +93,7 @@ automation:
           entity_id: input_boolean.motion_sensor_flur_aktiv
           state: 'on'
         - condition: state
-          entity_id: light.floor_yeelight
+          entity_id: light.stehlampe
           state: 'off'
         - condition: state
           entity_id: switch.floor_light_ceiling
@@ -150,7 +101,8 @@ automation:
         - condition: time
           after: '09:00:00'
     action:
-      service: script.yeelight_flur_weiss
+      service: homeassistant.turn_on
+      entity_id: light.stehlampe
 
   - alias: flur_movement_on_weekdays_morning
     trigger:
@@ -193,7 +145,7 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id:
-          - light.floor_yeelight
+          - light.stehlampe
           - switch.floor_light_ceiling
 
   - alias: flur_yeelight_off
@@ -207,4 +159,4 @@ automation:
         state: 'on'
     action:
       - service: homeassistant.turn_off
-        entity_id: light.floor_yeelight
+        entity_id: light.stehlampe
