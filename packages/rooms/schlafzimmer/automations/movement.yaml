@@ -1,0 +1,11 @@
+automation:
+  - alias: sz_lights_auto_off
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0002ec8058
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+      service: homeassistant.turn_off
+      entity_id: switch.sz_light

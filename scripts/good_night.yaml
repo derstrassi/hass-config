@@ -1,0 +1,33 @@
+good_night:
+  sequence:
+    - service: script.join_speakers
+    - service: media_player.media_pause
+      entity_id: media_player.symfonisk_wohnzimmer
+    - service: light.turn_on
+      entity_id: light.flur_stehlampe
+      data:
+        brightness_pct: 10
+        transition: 10
+    - service: light.turn_on
+      entity_id: light.gateway_light_286c0788a9dd
+      data:
+        rgb_color: [255,100,100]
+        brightness_pct: 50
+        transition: 15
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - media_player.denon_avr_x1100w
+          - media_player.lg_tv
+          - group.all_switches
+    - service: light.turn_off
+      data_template:
+        entity_id: >
+          {% set exclude_light = [
+            'light.gateway_light_286c0788a9dd',
+            'light.gateway_light_7811dcb8c5ed',
+            'light.flur_stehlampe',
+            'light.nachttisch_links',
+            'light.nachttisch_rechts'
+          ] %}
+          {%- for device in states.light|rejectattr('entity_id','in',exclude_light)|rejectattr('state','in','off') %}{%- if loop.first %}{%- else %}, {% endif %}{{device.entity_id }}{%- if loop.last %}{% endif %}{%- endfor  %}

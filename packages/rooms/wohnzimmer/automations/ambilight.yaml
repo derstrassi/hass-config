@@ -1,0 +1,27 @@
+# automation:
+# - alias: wz_tv_lights_on
+#   trigger:
+#     - platform: state
+#       entity_id: media_player.lg_tv
+#       to: 'playing'
+#     - platform: sun
+#       event: sunset
+#   condition:
+#     - condition: state
+#       entity_id: sun.sun
+#       state: 'below_horizon'
+#     - condition: state
+#       entity_id: media_player.lg_tv
+#       state: 'on'
+#   action:
+#     - service: homeassistant.turn_on
+#       entity_id: switch.ambilight
+
+# - alias: wz_tv_lights_off
+#   trigger:
+#     platform: state
+#     entity_id: media_player.lg_tv
+#     to: 'off'
+#   action:
+#     - service: homeassistant.turn_off
+#       entity_id: switch.ambilight

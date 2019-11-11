@@ -1,0 +1,6 @@
+join_speakers:
+  sequence:
+    - service: sonos.join
+      data:
+        master: media_player.symfonisk_wohnzimmer
+        entity_id: media_player.symfonisk_kueche

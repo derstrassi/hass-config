@@ -1,0 +1,27 @@
+automation:
+  - alias: door_open_reminder
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d00014dbac9
+      to: 'on'
+      for:
+        minutes: 10
+    action:
+      - service: tts.google_say
+        entity_id:
+          - media_player.symfonisk_kuche
+          - media_player.symfonisk_wohnzimmer
+        data_template:
+          message: "Die Eingangstür steht seit 10 Minuten offen, bitte schließen!"
+      # - service: xiaomi_aqara.play_ringtone
+      #   data:
+      #     gw_mac: !secret XIAOMI_GATEWAY_1_MAC
+      #     ringtone_id: 0
+      #     ringtone_vol: 35
+      - condition: state
+        entity_id: person.familie
+        state: 'not_home'
+      - service: notify.notify
+        data:
+          title: 'Eingangstür offen'
+          message: 'Bitte schließen!'

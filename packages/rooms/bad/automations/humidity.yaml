@@ -1,0 +1,23 @@
+automation:
+  - alias: bad_humidity_too_high
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.humidity_158d0001c2c57f
+      above: 65
+      for:
+        minutes: 15
+    condition:
+      - condition: state
+        entity_id: binary_sensor.door_window_sensor_158d0001f3a0f0
+        state: 'off'
+    action:
+      ############# Ab hier nur vor 20:00 Uhr ####################################
+      - condition: time
+        before: '20:00:00'
+      - service: tts.google_say
+        entity_id:
+          - media_player.symfonisk_kuche
+          - media_player.symfonisk_wohnzimmer
+        data_template:
+          message: "Die Luftfeuchtigkeit im Bad ist aktuell bei {{ states.sensor.humidity_158d0001c2c57f.state }}%, bitte lüften!"
+

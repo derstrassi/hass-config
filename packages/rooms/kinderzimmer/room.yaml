@@ -1,0 +1,29 @@
+switch:
+  - platform: mqtt
+    name: kz_light1
+    command_topic: cmnd/kz/light1/POWER
+    state_topic: stat/kz/light1/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/kz/light1/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: mqtt
+    name: kz_light2
+    command_topic: cmnd/kz/light2/POWER
+    state_topic: stat/kz/light2/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/kz/light2/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+
+
+
+
+
+

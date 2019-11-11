@@ -1,0 +1,34 @@
+automation:
+  - alias: good_morning
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e562ad
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.motion_sensor_flur_aktiv
+          state: 'on'
+        # Woher kommt die Person?
+        # Bad
+        - condition: state
+          entity_id: binary_sensor.motion_sensor_158d0001e516a5
+          state: 'off'
+        # Toilette
+        - condition: state
+          entity_id: binary_sensor.motion_sensor_158d000113dee1
+          state: 'off'
+        # Kueche
+        - condition: state
+          entity_id: binary_sensor.motion_sensor_158d00012326f7
+          state: 'off'
+        # Schlafzimmer
+        - condition: state
+          entity_id: binary_sensor.motion_sensor_158d0002ec8058
+          state: 'on'
+        - condition: time
+          after: '05:00:00'
+          before: '10:00:00'
+    action:
+      - service: script.good_morning

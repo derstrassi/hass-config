@@ -1,0 +1,19 @@
+automation:
+  - alias: kz_nightlight
+    trigger:
+      platform: time
+      at: '19:00:00'
+    condition:
+      - condition: state
+        entity_id: person.familie
+        state: 'home'
+    action:
+      - service: light.turn_on
+        entity_id: light.gateway_light_7811dcb8c5ed
+        data:
+          brightness: 50
+          rgb_color: [255, 63, 0]
+      - delay:
+          hours: 12
+      - service: light.turn_off
+        entity_id: light.gateway_light_7811dcb8c5ed

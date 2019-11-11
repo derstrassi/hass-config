@@ -1,0 +1,21 @@
+automation:
+  - alias: wz_ambient_auto_on
+    trigger:
+      - platform: sun
+        event: sunset
+    condition:
+      - condition: state
+        entity_id: person.familie
+        state: 'home'
+    action:
+      - service: light.turn_on
+        entity_id: switch.wz_lichtkugel
+        data:
+          brightness_pct: 65
+      - service: light.turn_on
+        entity_id: light.wz_wand_led
+        data_template:
+          hs_color:
+            - "{{ range(360)|random }}"
+            - "{{ range(80,101)|random }}"
+          brightness_pct: 100

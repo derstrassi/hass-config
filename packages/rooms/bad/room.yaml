@@ -1,0 +1,22 @@
+switch:
+  - platform: mqtt
+    name: bath_light1
+    command_topic: cmnd/bad/POWER1
+    state_topic: stat/bad/RESULT
+    value_template: '{{value_json.POWER1}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/bad/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: mqtt
+    name: bath_light2
+    command_topic: cmnd/bad/POWER2
+    state_topic: stat/bad/RESULT
+    value_template: '{{value_json.POWER2}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/bad/LWT
+    payload_available: Online
+    payload_not_available: Offline

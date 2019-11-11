@@ -1,0 +1,30 @@
+automation:
+  - alias: flur_button_welcome_home
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.switch_158d00013f85d3
+          click_type: single
+    action:
+      service: script.welcome
+
+  - alias: flur_button_good_night
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.switch_158d00013f85d3
+          click_type: double
+    action:
+      service: script.good_night
+
+  - alias: flur_button_leave
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.switch_158d00013f85d3
+          click_type: long_click_press
+    action:
+      service: script.all_off

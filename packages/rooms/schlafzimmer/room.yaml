@@ -1,0 +1,27 @@
+switch:
+  - platform: mqtt
+    name: sz_light
+    command_topic: shellies/shelly1-2C784C/relay/0/command
+    state_topic: shellies/shelly1-2C784C/relay/0
+    payload_off: 'off'
+    payload_on: 'on'
+    state_off: 'off'
+    state_on: 'on'
+
+light:
+  - platform: flux_led
+    devices:
+      192.168.10.152:
+        name: sz_ks_led1
+        mode: 'w'
+        protocol: 'ledenet'
+      192.168.10.153:
+        name: sz_ks_led2
+        mode: 'w'
+        protocol: 'ledenet'
+
+  - platform: group
+    name: sz_ks_ambient_lights
+    entities:
+      - light.sz_ks_led1
+      - light.sz_ks_led2

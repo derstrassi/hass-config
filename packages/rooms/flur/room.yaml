@@ -1,0 +1,30 @@
+switch:
+  - platform: mqtt
+    name: floor_light_ceiling
+    command_topic: cmnd/floor/light/POWER1
+    state_topic: stat/floor/light/RESULT
+    value_template: '{{value_json.POWER1}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/floor/light/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: mqtt
+    name: floor_light_wall
+    command_topic: cmnd/floor/light2/POWER
+    state_topic: stat/floor/light2/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/floor/light2/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+sensor:
+  - platform: template
+    sensors:
+      door_sensor_eingang_last_open:
+        friendly_name: 'Tür Zuletzt geöffnet'
+        icon_template: 'mdi:clock-alert'
+        value_template: '{{ as_timestamp(states.binary_sensor.door_window_sensor_158d00014dbac9.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'

@@ -1,0 +1,59 @@
+switch:
+  - platform: mqtt
+    name: wz_light1
+    command_topic: cmnd/wz/light1/POWER
+    state_topic: stat/wz/light1/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/wz/light1/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: mqtt
+    name: wz_light2
+    command_topic: cmnd/wz/light2/POWER
+    state_topic: stat/wz/light2/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/wz/light2/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+  - platform: mqtt
+    name: wz_ambilight
+    command_topic: cmnd/wz/ambilight/POWER
+    state_topic: stat/wz/ambilight/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/wz/ambilight/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+light:
+  - platform: flux_led
+    devices:
+      # 192.168.10.136:
+      #   name: wz_couch_led
+      #   mode: rgbw
+      192.168.10.148:
+        name: wz_wand_led
+        mode: rgbw
+
+  - platform: hyperion
+    name: hyperion
+    host: 192.168.10.95
+
+
+
+
+
+
+
+
+
+
+
+

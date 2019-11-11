@@ -1,5 +1,17 @@
 all_off:
   sequence:
+    - service: sonos.join
+      data:
+        master: media_player.symfonisk_wohnzimmer
+        entity_id: media_player.symfonisk_kueche
+    - service: media_player.media_pause
+      entity_id: media_player.symfonisk_wohnzimmer
+    - service: tts.google_say
+      entity_id: media_player.symfonisk_wohnzimmer
+      data_template:
+        message: "Die Beleuchtung und alle Geräte werden in 10 Sekunden ausgeschaltet. Auf wiedersehen {{ states.sensor.last_person.state }}."
+    - delay:
+        seconds: 10
     - service: homeassistant.turn_off
       data:
         entity_id:
@@ -7,5 +19,3 @@ all_off:
           - group.all_switches
           - media_player.denon_avr_x1100w
           - media_player.lg_tv
-          - media_player.symfonisk_kuche
-          - media_player.symfonisk_wohnzimmer

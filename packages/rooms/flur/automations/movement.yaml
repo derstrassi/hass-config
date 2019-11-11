@@ -1,0 +1,93 @@
+automation:
+  - alias: flur_stehlampe_on
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e562ad
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: or
+          conditions:
+            - condition: numeric_state
+              entity_id: sun.sun
+              value_template: '{{ state.attributes.elevation }}'
+              below: 8
+            - condition: numeric_state
+              entity_id: sensor.illumination_158d0001e562ad
+              below: 20
+        - condition: state
+          entity_id: input_boolean.motion_sensor_flur_aktiv
+          state: 'on'
+        - condition: state
+          entity_id: switch.floor_light_ceiling
+          state: 'off'
+    action:
+      - service: light.turn_on
+        entity_id: light.flur_stehlampe
+        data:
+          brightness_pct: 65
+
+  - alias: flur_stehlampe_dim
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e562ad
+      to: 'off'
+    condition:
+      condition: and
+      conditions:
+        - condition: or
+          conditions:
+            - condition: numeric_state
+              entity_id: sun.sun
+              value_template: '{{ state.attributes.elevation }}'
+              below: 8
+            - condition: numeric_state
+              entity_id: sensor.illumination_158d0001e562ad
+              below: 20
+        - condition: state
+          entity_id: input_boolean.motion_sensor_flur_aktiv
+          state: 'on'
+        - condition: state
+          entity_id: light.flur_stehlampe
+          state: 'on'
+        - condition: state
+          entity_id: switch.floor_light_ceiling
+          state: 'off'
+        - condition: state
+          entity_id: person.familie
+          state: 'home'
+    action:
+      - service: light.turn_on
+        entity_id: light.flur_stehlampe
+        data:
+          brightness_pct: 5
+
+  - alias: flur_stehlampe_off_when_switched
+    trigger:
+      platform: state
+      entity_id: switch.floor_light_ceiling
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.motion_sensor_flur_aktiv
+        state: 'on'
+    action:
+      - service: homeassistant.turn_off
+        entity_id: light.flur_stehlampe
+
+  - alias: flur_no_movement_auto_off
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e562ad
+      to: 'off'
+      for:
+        minutes: 5
+    condition:
+      - condition: state
+        entity_id: input_boolean.motion_sensor_flur_aktiv
+        state: 'on'
+    action:
+      - service: homeassistant.turn_off
+        entity_id:
+          - switch.floor_light_ceiling

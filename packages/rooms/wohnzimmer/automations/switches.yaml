@@ -1,0 +1,40 @@
+automation:
+  - alias: wz_left_single
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.wall_switch_left_158d00018337c3
+          click_type: single
+    action:
+      service: switch.toggle
+      entity_id: switch.wz_light1
+
+  - alias: wz_right_single
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.wall_switch_right_158d00018337c3
+          click_type: single
+    action:
+      service: switch.toggle
+      entity_id: switch.wz_light2
+
+  - alias: wz_ambiente_toggle
+    trigger:
+      - platform: event
+        event_type: xiaomi_aqara.click
+        event_data:
+          entity_id: binary_sensor.wall_switch_both_158d00018337c3
+          click_type: both
+    action:
+      - service: homeassistant.toggle
+        entity_id: light.wz_lichtkugel
+      - service: light.toggle
+        entity_id: light.wz_wand_led
+        data_template:
+          hs_color:
+            - "{{ range(360)|random }}"
+            - "{{ range(80,101)|random }}"
+          brightness_pct: 100

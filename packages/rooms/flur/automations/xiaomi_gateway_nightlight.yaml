@@ -1,0 +1,19 @@
+automation:
+  - alias: floor_nightlight_on
+    trigger:
+      platform: sun
+      event: sunset
+    condition:
+      - condition: state
+        entity_id: person.familie
+        state: 'home'
+    action:
+      - service: script.gateway_nightlight_on
+
+  - alias: floor_nightlight_off
+    trigger:
+      platform: sun
+      event: sunrise
+    action:
+      - service: light.turn_off
+        entity_id: light.gateway_light_286c0788a9dd

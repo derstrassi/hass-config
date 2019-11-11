@@ -1,0 +1,9 @@
+good_morning:
+  sequence:
+    - service: script.cozy_lights
+    - service: script.play_music
+    - condition: numeric_state
+      entity_id: sensor.illumination_158d0001e562ad
+      below: 20
+    - service: homeassistant.turn_on
+      entity_id: switch.kueche_licht

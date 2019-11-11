@@ -1,0 +1,20 @@
+switch:
+  - platform: mqtt
+    name: toilett_light
+    command_topic: cmnd/toilett/light/POWER
+    state_topic: stat/toilett/light/RESULT
+    value_template: '{{value_json.POWER}}'
+    payload_off: 'OFF'
+    payload_on: 'ON'
+    availability_topic: tele/toilett/light/LWT
+    payload_available: Online
+    payload_not_available: Offline
+
+sensor:
+  - platform: template
+    sensors:
+      motion_sensor_toilette_last_seen:
+        friendly_name: 'Letzter Klo-Besuch'
+        icon_template: 'mdi:clock-alert'
+        value_template: '{{ as_timestamp(states.binary_sensor.motion_sensor_158d000113dee1.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
+

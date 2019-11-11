@@ -1,0 +1,29 @@
+automation:
+  - alias: welcome_home
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d00014dbac9
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: person.familie
+        state: 'home'
+      - condition: state
+        entity_id: binary_sensor.motion_sensor_158d0001e562ad
+        state: 'off'
+        for:
+          minutes: 15
+    action:
+      - service: script.cozy_lights
+      - service: tts.google_say
+        entity_id:
+          - media_player.symfonisk_kuche
+        data_template:
+          message: "Hallo {{ states.sensor.last_person.state }}. Schön das du wieder Zuhause bist."
+      - delay:
+          seconds: 6
+      - service: script.play_music
+      - service: notify.mobile_app_iphone_von_dennis
+        data_template:
+          title: "Tür wurde geöffnet"
+          message: "{{ states.sensor.last_person.state }} hat das Haus betreten."
