@@ -17,3 +17,7 @@ cozy_lights:
       entity_id: light.wz_lichtkugel
       data:
         brightness_pct: 80
+    - service: homeassistant.turn_off
+      entity_id:
+        - switch.floor_light_ceiling
+        - switch.floor_light_wall
