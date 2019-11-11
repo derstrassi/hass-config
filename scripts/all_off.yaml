@@ -1,9 +1,6 @@
 all_off:
   sequence:
-    - service: sonos.join
-      data:
-        master: media_player.symfonisk_wohnzimmer
-        entity_id: media_player.symfonisk_kueche
+    - service: script.join_speakers
     - service: media_player.media_pause
       entity_id: media_player.symfonisk_wohnzimmer
     - service: tts.google_say

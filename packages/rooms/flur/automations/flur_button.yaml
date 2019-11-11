@@ -7,7 +7,7 @@ automation:
           entity_id: binary_sensor.switch_158d00013f85d3
           click_type: single
     action:
-      service: script.welcome
+      service: script.cozy_lights
 
   - alias: flur_button_good_night
     trigger:
