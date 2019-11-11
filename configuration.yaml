@@ -102,8 +102,7 @@ homekit:
       - light
       - switch
       - media_player
-    include_entities:
-      - script.all_off
+      - script
 
 emulated_hue:
   exposed_domains:
@@ -112,10 +111,10 @@ emulated_hue:
     - media_player
     - script
 
-pilight:
-  host: 192.168.10.93
-  port: 5000
-  send_delay: 0.8
+# pilight:
+#   host: 192.168.10.93
+#   port: 5000
+#   send_delay: 0.8
 
 xiaomi_aqara:
   discovery_retry: 10
