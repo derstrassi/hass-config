@@ -1,0 +1,6 @@
+sonos_pause:
+  sequence:
+    - service: media_player.media_pause
+      entity_id:
+        - media_player.symfonisk_wohnzimmer
+        - media_player.symfonisk_kueche

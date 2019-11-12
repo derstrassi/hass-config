@@ -1,4 +1,4 @@
-join_speakers:
+sonos_join:
   sequence:
     - service: sonos.join
       data:

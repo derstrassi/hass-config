@@ -15,14 +15,12 @@ automation:
           minutes: 15
     action:
       - service: script.cozy_lights
-      - service: tts.google_say
-        entity_id:
-          - media_player.symfonisk_kuche
+      - service: script.sonos_say
         data_template:
           message: "Hallo {{ states.sensor.last_person.state }}. Schön das du wieder Zuhause bist."
       - delay:
           seconds: 6
-      - service: script.play_music
+      - service: script.sonos_play
       - service: notify.mobile_app_iphone_von_dennis
         data_template:
           title: "Tür wurde geöffnet"

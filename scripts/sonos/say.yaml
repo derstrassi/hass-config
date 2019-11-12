@@ -1,0 +1,24 @@
+sonos_say:
+  fields:
+    message:
+      description: 'The message to speak'
+      example: ''
+  sequence:
+    - service: sonos.snapshot
+      entity_id:
+        - media_player.symfonisk_wohnzimmer
+        - media_player.symfonisk_kueche
+      with_group: true
+    - service: script.sonos_join
+    - service: tts.google_translate_say
+      entity_id:
+        - media_player.symfonisk_wohnzimmer
+        - media_player.symfonisk_kueche
+      data_template:
+        message: '{{ message }}'
+        language: 'de'
+    - service: sonos.restore
+      entity_id:
+        - media_player.symfonisk_wohnzimmer
+        - media_player.symfonisk_kueche
+      with_group: true

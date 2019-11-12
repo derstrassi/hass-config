@@ -1,8 +1,6 @@
 good_night:
   sequence:
-    - service: script.join_speakers
-    - service: media_player.media_pause
-      entity_id: media_player.symfonisk_wohnzimmer
+    - service: script.sonos_pause
     - service: light.turn_on
       entity_id: light.flur_stehlampe
       data:

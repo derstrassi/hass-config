@@ -1,10 +1,6 @@
 all_off:
   sequence:
-    - service: script.join_speakers
-    - service: media_player.media_pause
-      entity_id: media_player.symfonisk_wohnzimmer
-    - service: tts.google_say
-      entity_id: media_player.symfonisk_wohnzimmer
+    - service: script.sonos_say
       data_template:
         message: "Die Beleuchtung und alle Geräte werden in 10 Sekunden ausgeschaltet. Auf wiedersehen {{ states.sensor.last_person.state }}."
     - delay:

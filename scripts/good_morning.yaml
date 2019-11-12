@@ -1,7 +1,7 @@
 good_morning:
   sequence:
     - service: script.cozy_lights
-    - service: script.play_music
+    - service: script.sonos_play
     - condition: numeric_state
       entity_id: sensor.illumination_158d0001e562ad
       below: 20

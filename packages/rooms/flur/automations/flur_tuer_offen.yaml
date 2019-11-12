@@ -7,10 +7,7 @@ automation:
       for:
         minutes: 10
     action:
-      - service: tts.google_say
-        entity_id:
-          - media_player.symfonisk_kuche
-          - media_player.symfonisk_wohnzimmer
+      - service: script.sonos_say
         data_template:
           message: "Die Eingangstür steht seit 10 Minuten offen, bitte schließen!"
       # - service: xiaomi_aqara.play_ringtone
