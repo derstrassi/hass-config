@@ -1,13 +1,11 @@
 - alias: all_off_when_nobody_home
   trigger:
     platform: state
-    entity_id: group.motion_sensors
-    to: 'off'
-    for:
-      minutes: 1
+    entity_id: person.familie
+    state: 'not_home'
   condition:
     - condition: state
-      entity_id: person.familie
-      state: 'not_home'
+      entity_id: group.motion_sensors
+      state: 'off'
   action:
     - service: script.all_off
