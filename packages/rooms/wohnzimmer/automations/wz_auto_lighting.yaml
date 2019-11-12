@@ -12,6 +12,7 @@ automation:
         entity_id: switch.wz_lichtkugel
         data:
           brightness_pct: 65
+          transition: 10
       - service: light.turn_on
         entity_id: light.wz_wand_led
         data_template:
@@ -19,3 +20,4 @@ automation:
             - "{{ range(360)|random }}"
             - "{{ range(80,101)|random }}"
           brightness_pct: 100
+          transition: 10

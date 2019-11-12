@@ -37,3 +37,4 @@ automation:
             - "{{ range(360)|random }}"
             - "{{ range(80,101)|random }}"
           brightness_pct: 100
+          transition: 10

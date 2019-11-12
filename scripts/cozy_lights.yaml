@@ -10,15 +10,17 @@ cozy_lights:
           - "{{ range(360)|random }}"
           - "{{ range(80,101)|random }}"
         brightness_pct: 50
-        transition: 15
+        transition: 3
     - service: light.turn_on
       entity_id: light.flur_stehlampe
       data:
         brightness_pct: 65
+        transition: 8
     - service: light.turn_on
       entity_id: light.wz_lichtkugel
       data:
-        brightness_pct: 80
+        brightness_pct: 85
+        transition: 10
     - service: homeassistant.turn_off
       entity_id:
         - switch.floor_light_ceiling

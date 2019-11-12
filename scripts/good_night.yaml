@@ -5,15 +5,15 @@ good_night:
       entity_id: light.flur_stehlampe
       data:
         brightness_pct: 10
-        transition: 10
+        transition: 5
     - service: light.turn_on
       entity_id: light.gateway_light_286c0788a9dd
       data_template:
         hs_color:
           - "{{ range(360)|random }}"
           - "{{ range(80,101)|random }}"
-        brightness_pct: 50
-        transition: 15
+        brightness_pct: 30
+        transition: 5
     - service: homeassistant.turn_off
       data:
         entity_id:

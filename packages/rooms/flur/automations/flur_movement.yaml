@@ -27,7 +27,7 @@ automation:
         entity_id: light.flur_stehlampe
         data:
           brightness_pct: 65
-          transition: 10
+          transition: 3
 
   - alias: flur_stehlampe_dim
     trigger:
@@ -63,6 +63,7 @@ automation:
         entity_id: light.flur_stehlampe
         data:
           brightness_pct: 1
+          transition: 5
 
   - alias: flur_stehlampe_off_when_switched
     trigger:
