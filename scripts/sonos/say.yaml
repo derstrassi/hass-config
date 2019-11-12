@@ -8,7 +8,6 @@ sonos_say:
       entity_id:
         - media_player.symfonisk_wohnzimmer
         - media_player.symfonisk_kueche
-      with_group: true
     - service: script.sonos_join
     - service: tts.google_translate_say
       entity_id:
@@ -21,4 +20,3 @@ sonos_say:
       entity_id:
         - media_player.symfonisk_wohnzimmer
         - media_player.symfonisk_kueche
-      with_group: true

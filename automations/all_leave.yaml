@@ -2,7 +2,7 @@
   trigger:
     platform: state
     entity_id: person.familie
-    state: 'not_home'
+    to: 'not_home'
   condition:
     - condition: state
       entity_id: group.motion_sensors
