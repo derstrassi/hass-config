@@ -1,5 +1,5 @@
 automation:
-  - alias: flur_button_welcome_home
+  - alias: flur_button_evening_lighting
     trigger:
       - platform: event
         event_type: xiaomi_aqara.click
@@ -7,7 +7,10 @@ automation:
           entity_id: binary_sensor.switch_158d00013f85d3
           click_type: single
     action:
-      service: script.cozy_lights
+      - service: script.light_blink
+        data:
+          entity_id: light.flur_stehlampe
+      - service: script.cozy_lights
 
   - alias: flur_button_good_night
     trigger:
@@ -17,7 +20,10 @@ automation:
           entity_id: binary_sensor.switch_158d00013f85d3
           click_type: double
     action:
-      service: script.good_night
+      - service: script.light_blink
+        data:
+          entity_id: light.flur_stehlampe
+      - service: script.good_night
 
   - alias: flur_button_leave
     trigger:
@@ -27,4 +33,7 @@ automation:
           entity_id: binary_sensor.switch_158d00013f85d3
           click_type: long_click_press
     action:
-      service: script.all_off
+      - service: script.light_blink
+        data:
+          entity_id: light.flur_stehlampe
+      - service: script.all_off
