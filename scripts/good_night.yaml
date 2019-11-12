@@ -8,8 +8,10 @@ good_night:
         transition: 10
     - service: light.turn_on
       entity_id: light.gateway_light_286c0788a9dd
-      data:
-        rgb_color: [255,100,100]
+      data_template:
+        hs_color:
+          - "{{ range(360)|random }}"
+          - "{{ range(80,101)|random }}"
         brightness_pct: 50
         transition: 15
     - service: homeassistant.turn_off

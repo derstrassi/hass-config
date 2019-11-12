@@ -18,8 +18,7 @@ automation:
       - service: script.sonos_say
         data_template:
           message: "Hallo {{ states.sensor.last_person.state }}. Schön das du wieder Zuhause bist."
-      - delay:
-          seconds: 6
+      - delay: '00:00:06'
       - service: script.sonos_play
       - service: notify.mobile_app_iphone_von_dennis
         data_template:

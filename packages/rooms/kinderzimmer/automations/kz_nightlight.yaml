@@ -10,9 +10,11 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.gateway_light_7811dcb8c5ed
-        data:
+        data_template:
           brightness: 50
-          rgb_color: [255, 63, 0]
+          hs_color:
+            - "{{ range(360)|random }}"
+            - "{{ range(80,101)|random }}"
       - delay:
           hours: 12
       - service: light.turn_off
