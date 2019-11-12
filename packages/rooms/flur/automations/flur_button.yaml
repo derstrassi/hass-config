@@ -10,6 +10,7 @@ automation:
       - service: script.light_blink
         data:
           entity_id: light.flur_stehlampe
+      - delay: '00:00:03'
       - service: script.cozy_lights
 
   - alias: flur_button_good_night
@@ -23,6 +24,7 @@ automation:
       - service: script.light_blink
         data:
           entity_id: light.flur_stehlampe
+      - delay: '00:00:03'
       - service: script.good_night
 
   - alias: flur_button_leave
@@ -36,4 +38,5 @@ automation:
       - service: script.light_blink
         data:
           entity_id: light.flur_stehlampe
+      - delay: '00:00:03'
       - service: script.all_off
