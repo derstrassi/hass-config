@@ -19,7 +19,7 @@ cozy_lights:
     - service: light.turn_on
       entity_id: light.wz_lichtkugel
       data:
-        brightness_pct: 85
+        brightness_pct: 55
         transition: 10
     - service: homeassistant.turn_off
       entity_id:

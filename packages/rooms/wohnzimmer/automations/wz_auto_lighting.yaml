@@ -11,7 +11,7 @@ automation:
       - service: light.turn_on
         entity_id: switch.wz_lichtkugel
         data:
-          brightness_pct: 65
+          brightness_pct: 55
           transition: 10
       - service: light.turn_on
         entity_id: light.wz_wand_led
