@@ -9,6 +9,12 @@ sonos_say:
         - media_player.symfonisk_wohnzimmer
         - media_player.symfonisk_kueche
     - service: script.sonos_join
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.symfonisk_wohnzimmer
+        - media_player.symfonisk_kueche
+      data:
+        volume_level: 0.5
     - service: tts.google_translate_say
       entity_id:
         - media_player.symfonisk_wohnzimmer

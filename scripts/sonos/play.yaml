@@ -6,7 +6,9 @@ sonos_play:
       data_template:
         source: "{{state_attr('media_player.symfonisk_wohnzimmer', 'source_list')[0]}}"
     - service: media_player.volume_set
-      entity_id: media_player.symfonisk_wohnzimmer
+      entity_id:
+        - media_player.symfonisk_wohnzimmer
+        - media_player.symfonisk_kueche
       data:
         volume_level: 0.1
     - service: media_player.media_play
