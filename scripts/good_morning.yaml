@@ -10,31 +10,31 @@ good_morning:
     - service: homeassistant.turn_on
       entity_id: switch.kueche_licht
     # increase sonos volume step by step
-    - delay: '00:00:30'
+    - delay: '00:01:00'
     - service: script.sonos_volume
       data:
         volume: 0.02
-    - delay: '00:00:25'
+    - delay: '00:00:45'
     - service: script.sonos_volume
       data:
         volume: 0.03
-    - delay: '00:00:25'
+    - delay: '00:00:30'
     - service: script.sonos_volume
       data:
         volume: 0.04
-    - delay: '00:00:25'
+    - delay: '00:00:30'
     - service: script.sonos_volume
       data:
         volume: 0.05
-    - delay: '00:00:25'
+    - delay: '00:00:30'
     - service: script.sonos_volume
       data:
         volume: 0.06
-    - delay: '00:00:25'
+    - delay: '00:00:30'
     - service: script.sonos_volume
       data:
         volume: 0.07
-    - delay: '00:00:25'
+    - delay: '00:00:30'
     - service: script.sonos_volume
       data:
         volume: 0.08
