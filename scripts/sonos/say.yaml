@@ -14,7 +14,7 @@ sonos_say:
     - service: script.sonos_join
     - service: script.sonos_volume
       data_template:
-        volume_level: '{{ volume | default(0.65) }}'
+        volume: '{{ volume | default(0.65) }}'
     - delay: '00:00:01'
     - service: tts.google_translate_say
       entity_id:
