@@ -12,13 +12,10 @@ sonos_say:
     - service: script.sonos_pause
     - wait_template: "{{ is_state('media_player.symfonisk_kueche', 'paused') and is_state('media_player.symfonisk_wohnzimmer', 'paused')}}"
     - service: script.sonos_join
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.symfonisk_wohnzimmer
-        - media_player.symfonisk_kueche
+    - service: script.sonos_volume
       data_template:
-        volume_level: '{{ volume | default(0.65) | float }}'
+        volume_level: '{{ volume | default(0.65) }}'
+    - delay: '00:00:01'
     - service: tts.google_translate_say
       entity_id:
         - media_player.symfonisk_wohnzimmer
