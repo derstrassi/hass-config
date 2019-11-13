@@ -13,7 +13,7 @@ sonos_play:
         source: "{{state_attr('media_player.symfonisk_wohnzimmer', 'source_list')[0]}}"
     - service: script.sonos_volume
       data_template:
-        volume: '{{ volume | default(0.1) | float }}'
+        volume: '{{ volume | default(0.08) | float }}'
     - service: media_player.media_play
       entity_id:
         - media_player.symfonisk_wohnzimmer

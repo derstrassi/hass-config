@@ -15,12 +15,13 @@ automation:
           minutes: 15
     action:
       - service: script.cozy_lights
-      - service: script.sonos_say
-        data_template:
-          message: "Hallo {{ states.sensor.last_person.state }}. Schön das du wieder Zuhause bist."
-      - delay: '00:00:06'
-      - service: script.sonos_play
       - service: notify.mobile_app_iphone_von_dennis
         data_template:
           title: "Tür wurde geöffnet"
           message: "{{ states.sensor.last_person.state }} hat das Haus betreten."
+      - delay: '00:00:05'
+      - service: script.sonos_say
+        data_template:
+          message: "Hallo {{ states.sensor.last_person.state }}. Schön das du wieder Zuhause bist."
+      - delay: '00:00:15'
+      - service: script.sonos_play
