@@ -8,4 +8,4 @@ sonos_volume:
         - media_player.symfonisk_wohnzimmer
         - media_player.symfonisk_kueche
       data_template:
-        volume_level: '{{ volume }}'
+        volume_level: '{{ volume | float }}'

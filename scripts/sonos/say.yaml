@@ -18,7 +18,7 @@ sonos_say:
         - media_player.symfonisk_wohnzimmer
         - media_player.symfonisk_kueche
       data:
-        volume_level: '{{ volume | default(0.65) }}'
+        volume_level: '{{ volume | default(0.65) | float }}'
     - service: tts.google_translate_say
       entity_id:
         - media_player.symfonisk_wohnzimmer
