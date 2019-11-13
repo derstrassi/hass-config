@@ -1,8 +1,7 @@
 light_blink:
   fields:
     entity_id:
-      description: 'The entity'
-      example: ''
+      description: 'The entity_id'
   sequence:
     - service: light.turn_on
       data_template:

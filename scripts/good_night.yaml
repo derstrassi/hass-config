@@ -1,6 +1,5 @@
 good_night:
   sequence:
-    - service: script.sonos_pause
     - service: light.turn_on
       entity_id: light.flur_stehlampe
       data:
@@ -14,6 +13,7 @@ good_night:
           - "{{ range(80,101)|random }}"
         brightness_pct: 30
         transition: 5
+    - service: script.sonos_pause
     - service: homeassistant.turn_off
       data:
         entity_id:

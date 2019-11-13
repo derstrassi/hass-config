@@ -2,9 +2,9 @@ all_off:
   sequence:
     - service: script.sonos_say
       data_template:
-        message: "Die Beleuchtung und alle Geräte werden in 10 Sekunden ausgeschaltet. Auf wiedersehen {{ states.sensor.last_person.state }}."
-    - delay:
-        seconds: 10
+        message: "Die Selbstzerstörung wurde aktiviert. Die Wohnung wird sich in 10 Sekunden von selbst zerstören. Auf wiedersehen {{ states.sensor.last_person.state }}. Zehn. Neun. Acht. Sieben. Sechs. Fünf. Vier. Drei. Zwei. Eins"
+    - delay: '00:00:15'
+    - service: script.sonos_pause
     - service: homeassistant.turn_off
       data:
         entity_id:

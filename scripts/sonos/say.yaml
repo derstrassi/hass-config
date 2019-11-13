@@ -2,21 +2,23 @@ sonos_say:
   fields:
     message:
       description: 'The message to speak'
-      example: ''
+    volume:
+      description: 'The volume to set'
   sequence:
     - service: sonos.snapshot
       entity_id:
         - media_player.symfonisk_wohnzimmer
         - media_player.symfonisk_kueche
     - service: script.sonos_pause
+    - wait_template: "{{ is_state('media_player.symfonisk_kueche', 'paused') and is_state('media_player.symfonisk_wohnzimmer', 'paused')}}"
     - service: script.sonos_join
-    #- wait_template: "{{ is_state('media_player.symfonisk_kueche', 'paused') and is_state('media_player.symfonisk_wohnzimmer', 'paused')}}"
+    - delay: '00:00:01'
     - service: media_player.volume_set
       entity_id:
         - media_player.symfonisk_wohnzimmer
         - media_player.symfonisk_kueche
       data:
-        volume_level: 0.1
+        volume_level: '{{ volume | default(0.65) }}'
     - service: tts.google_translate_say
       entity_id:
         - media_player.symfonisk_wohnzimmer
@@ -24,7 +26,7 @@ sonos_say:
       data_template:
         message: '{{ message }}'
         language: 'de'
-    - delay: '00:00:03'
+    - delay: '00:00:05'
     - wait_template: "{{ is_state('media_player.symfonisk_kueche', 'paused') and is_state('media_player.symfonisk_wohnzimmer', 'paused')}}"
     - service: sonos.restore
       entity_id:

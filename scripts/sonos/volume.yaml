@@ -1,0 +1,11 @@
+sonos_volume:
+  fields:
+    volume:
+      description: 'Volume to set'
+  sequence:
+    - service: media_player.volume_set
+      entity_id:
+        - media_player.symfonisk_wohnzimmer
+        - media_player.symfonisk_kueche
+      data_template:
+        volume_level: '{{ volume }}'
