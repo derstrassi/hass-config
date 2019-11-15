@@ -2,13 +2,13 @@ all_off:
   sequence:
     - service: script.sonos_say
       data_template:
-        message: "Die Selbstzerstörung wurde aktiviert. Die Wohnung wird sich in 10 Sekunden von selbst zerstören. Auf wiedersehen {{ states.sensor.last_person.state }}. Zehn. Neun. Acht. Sieben. Sechs. Fünf. Vier. Drei. Zwei. Eins"
-    - delay: '00:00:15'
-    - service: script.sonos_pause
+        message: "Abwesenheitsmodus aktiviert. Auf wiedersehen {{ states.sensor.last_person.state }}."
+    - delay: '00:00:10'
     - service: homeassistant.turn_off
       data:
         entity_id:
           - group.all_lights
           - group.all_switches
           - media_player.denon_avr_x1100w
-          - media_player.lg_tv
+    - service: script.tv_turn_off
+    - service: script.sonos_pause

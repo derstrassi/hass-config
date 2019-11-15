@@ -4,7 +4,7 @@
       value_template: >-
         {% set persons = [states.person.dennis_strasser, states.person.maria_scheuermann] %}
         {% for person in persons %}
-          {% if as_timestamp(person.last_changed) == as_timestamp(persons | map(attribute='last_changed') | max) %}
+          {% if as_timestamp(person.last_changed) == as_timestamp(persons | rejectattr('state', 'eq', 'not_home') | map(attribute='last_changed') | max) %}
             {{ person.name }}
           {% endif %}
         {% endfor %}

@@ -10,8 +10,18 @@ automation:
       - service: script.light_blink
         data:
           entity_id: light.flur_stehlampe
-      - delay: '00:00:03'
+      - delay: '00:00:01'
       - service: script.cozy_lights
+      - service: homeassistant.turn_off
+        entity_id:
+          - switch.kueche_licht
+          - switch.bath_light1
+          - switch.bath_light2
+          - switch.toilett_light
+          - switch.floor_light_wall
+          - switch.floor_light_ceiling
+          - switch.wz_light1
+          - switch.wz_light2
 
   - alias: flur_button_good_night
     trigger:
@@ -24,7 +34,7 @@ automation:
       - service: script.light_blink
         data:
           entity_id: light.flur_stehlampe
-      - delay: '00:00:03'
+      - delay: '00:00:01'
       - service: script.good_night
 
   - alias: flur_button_leave
@@ -38,5 +48,5 @@ automation:
       - service: script.light_blink
         data:
           entity_id: light.flur_stehlampe
-      - delay: '00:00:03'
+      - delay: '00:00:01'
       - service: script.all_off

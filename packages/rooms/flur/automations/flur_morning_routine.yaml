@@ -10,6 +10,9 @@ automation:
         - condition: state
           entity_id: input_boolean.motion_sensor_flur_aktiv
           state: 'on'
+        # Prüfen ob die automation nicht bereits läuft
+        - condition: template
+          value_template: "{{ is_state('media_player.symfonisk_kueche', 'paused') and is_state('media_player.symfonisk_wohnzimmer', 'paused')}}"
         # Woher kommt die Person?
         # Bad
         - condition: state

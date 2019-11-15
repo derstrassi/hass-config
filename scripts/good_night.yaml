@@ -14,11 +14,11 @@ good_night:
         brightness_pct: 30
         transition: 5
     - service: script.sonos_pause
+    - service: script.tv_turn_off
     - service: homeassistant.turn_off
       data:
         entity_id:
           - media_player.denon_avr_x1100w
-          - media_player.lg_tv
           - group.all_switches
     - service: light.turn_off
       data_template:

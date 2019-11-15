@@ -1,0 +1,8 @@
+tv_turn_off:
+  sequence:
+    - condition: state
+      entity_id: media_player.lg_tv
+      state: 'playing'
+    - service: homeassistant.turn_off
+      data:
+        entity_id: media_player.lg_tv
