@@ -3,11 +3,14 @@ automation:
     trigger:
       platform: webhook
       webhook_id: 0be070e5ce714653b95f504a783c4e41
-    condition:
-      - condition: template
-        value_template: '{{ true }}'
     action:
-      - service: switch.turn_on
+      - service: notify.mobile_app_iphone_von_dennis
+        data_template:
+          title: "Emby Aktion"
+          message: "{{ trigger.json.User.Name }} hat den Film {{ trigger.json.Item.Name }} gestartet. Aktion: {{ trigger.json.Event }}"
+      - service_template: >
+          {% if trigger.json.Event == "playback.start" %} switch.turn_off
+          {% else %} switch.turn_on {% endif %}
         entity_id: switch.nzbget
 
 switch:
