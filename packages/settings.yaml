@@ -18,19 +18,6 @@ input_boolean:
     name: Bewegungsmelder Küche
     icon: mdi:radar
 
-
-sensor:
-  - platform: nzbget
-    host: 192.168.10.130
-    username: !secret NZBGET_USERNAME
-    password: !secret NZBGET_PASSWORD
-    monitored_variables:
-      - download_paused
-      - article_cache
-      - download_rate
-      - download_size
-      - remaining_size
-
 group:
   settings_view:
     name: Einstellungen

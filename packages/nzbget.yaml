@@ -1,0 +1,36 @@
+automation:
+  - alias: 'Stop nzbget when emby starts playing'
+    trigger:
+      platform: webhook
+      webhook_id: 0be070e5ce714653b95f504a783c4e41
+    condition:
+      - condition: template
+        value_template: '{{ true }}'
+    action:
+      - service: switch.turn_on
+        entity_id: switch.nzbget
+
+switch:
+  - platform: rest
+    name: nzbget
+    resource: 'http://192.168.10.130/jsonrpc'
+    username: !secret NZBGET_USERNAME
+    password: !secret NZBGET_PASSWORD
+    body_on: '{"jsonrpc": "2.0", "method": "resumedownload"}'
+    body_off: '{"jsonrpc": "2.0", "method": "pausedownload"}'
+    is_on_template: '{{ states("sensor.nzbget_download_paused") }}'
+    headers:
+      Content-Type: 'application/json'
+
+sensor:
+  - platform: nzbget
+    host: 192.168.10.130
+    username: !secret NZBGET_USERNAME
+    password: !secret NZBGET_PASSWORD
+    monitored_variables:
+      - download_paused
+      - article_cache
+      - download_rate
+      - download_size
+      - remaining_size
+
