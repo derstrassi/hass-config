@@ -17,7 +17,6 @@ homeassistant:
 
 default_config:
 discovery:
-ios:
 
 http:
   ip_ban_enabled: false
