@@ -31,7 +31,6 @@ group:
 
   home_assistant:
     name: Home-Assistant
-    control: hidden
     entities:
       - input_boolean.git_auto_update
       - script.git_update_config
@@ -39,7 +38,6 @@ group:
 
   network:
     name: Netzwerk
-    control: hidden
     entities:
       - sensor.nzbget_download_paused
       - sensor.nzbget_speed
@@ -47,7 +45,6 @@ group:
 
   bewegungsmelder:
     name: Bewegungsmelder
-    control: hidden
     entities:
       - input_boolean.motion_sensor_flur_aktiv
       - input_boolean.motion_sensor_kueche_aktiv

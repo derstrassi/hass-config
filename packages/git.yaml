@@ -8,7 +8,6 @@ homeassistant:
 group:
   ha:
     name: Home-Assistant
-    control: hidden
     entities:
       - input_boolean.git_auto_update
       - script.git_update_config
