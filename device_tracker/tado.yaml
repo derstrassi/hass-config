@@ -1,4 +1,0 @@
-- platform: tado
-  username: !secret TADO_USERNAME
-  password: !secret TADO_PASSWORD
-  home_id: !secret TADO_HOME_ID

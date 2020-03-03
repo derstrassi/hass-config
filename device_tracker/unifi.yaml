@@ -1,4 +1,0 @@
-- platform: unifi_direct
-  host: 192.168.99.11
-  username: dennis
-  password: !secret UNIFI_SSH
