@@ -80,6 +80,12 @@ mqtt:
   username: !secret MQTT_USERNAME
   password: !secret MQTT_PASSWORD
 
+nzbget:
+  host: 192.168.10.130
+  port: 6789
+  username: !secret NZBGET_USERNAME
+  password: !secret NZBGET_PASSWORD
+
 camera:
   - platform: ffmpeg
     name: arthur_cam
