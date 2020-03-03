@@ -1,3 +1,9 @@
+nzbget:
+  host: 192.168.10.130
+  port: 6789
+  username: !secret NZBGET_USERNAME
+  password: !secret NZBGET_PASSWORD
+
 automation:
   - alias: 'Stop nzbget when emby starts playing'
     trigger:
@@ -24,16 +30,4 @@ switch:
     is_on_template: '{{ states("sensor.nzbget_download_paused") }}'
     headers:
       Content-Type: 'application/json'
-
-sensor:
-  - platform: nzbget
-    host: 192.168.10.130
-    username: !secret NZBGET_USERNAME
-    password: !secret NZBGET_PASSWORD
-    monitored_variables:
-      - download_paused
-      - article_cache
-      - download_rate
-      - download_size
-      - remaining_size
 
