@@ -156,6 +156,12 @@ notify:
       - service: ios_iphone_von_mary
       - service: ios_ipad
 
+vacuum:
+  - platform: xiaomi_miio
+    name: roborock_s50
+    host: 192.168.10.166
+    token: !secret ROBOROCK_TOKEN
+
 weather:
   - platform: darksky
     api_key: !secret DARK_SKY_API_KEY
