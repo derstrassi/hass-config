@@ -35,9 +35,14 @@ automation:
           entity_id: light.flur_stehlampe
       #- service: script.good_night
       - service: vacuum.send_command
-        data:
+        data_template:
           entity_id: vacuum.roborock_s50
-          command: app_zoned_clean
+          command: >-
+            {%- if is_state("vacuum.roborock_s50", "cleaning") -%}
+              return_to_base
+            {%- else -%}
+              app_zoned_clean
+            {%- endif -%}
 
   - alias: flur_button_leave
     trigger:
