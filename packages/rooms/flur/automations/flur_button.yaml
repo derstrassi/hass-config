@@ -10,7 +10,6 @@ automation:
       - service: script.light_blink
         data:
           entity_id: light.flur_stehlampe
-      - delay: '00:00:01'
       - service: script.cozy_lights
       - service: homeassistant.turn_off
         entity_id:
@@ -34,8 +33,11 @@ automation:
       - service: script.light_blink
         data:
           entity_id: light.flur_stehlampe
-      - delay: '00:00:01'
-      - service: script.good_night
+      #- service: script.good_night
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.roborock_s50
+          command: app_zoned_clean
 
   - alias: flur_button_leave
     trigger:
@@ -48,5 +50,4 @@ automation:
       - service: script.light_blink
         data:
           entity_id: light.flur_stehlampe
-      - delay: '00:00:01'
       - service: script.all_off
