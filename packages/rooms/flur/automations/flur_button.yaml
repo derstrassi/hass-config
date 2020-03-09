@@ -1,5 +1,5 @@
 automation:
-  - alias: flur_button_evening_lighting
+  - alias: flur_button_single
     trigger:
       - platform: event
         event_type: xiaomi_aqara.click
@@ -22,7 +22,7 @@ automation:
           - switch.wz_light1
           - switch.wz_light2
 
-  - alias: flur_button_good_night
+  - alias: flur_button_double
     trigger:
       - platform: event
         event_type: xiaomi_aqara.click
@@ -40,7 +40,7 @@ automation:
             script.roborock_clean_floor
           {%- endif -%}
 
-  - alias: flur_button_leave
+  - alias: flur_button_long_press
     trigger:
       - platform: event
         event_type: xiaomi_aqara.click
