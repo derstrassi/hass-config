@@ -3,6 +3,8 @@ roborock_clean_floor:
     - service: script.sonos_say
       data_template:
         message: "Die Reinigung von Flur und Küche wird gestartet"
-    - service: script.roborock_clean_room
-      data:
-        rooms: [18, 21]
+    - service: vacuum.send_command
+      data_template:
+        entity_id: vacuum.roborock_s50
+        command: app_segment_clean
+        params: [18, 21]
