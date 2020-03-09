@@ -1,0 +1,8 @@
+roborock_clean_floor:
+  sequence:
+    - service: script.sonos_say
+      data_template:
+        message: "Die Reinigung von Flur und Küche wird gestartet"
+    - service: script.roborock_clean_room
+      data:
+        rooms: [18, 21]

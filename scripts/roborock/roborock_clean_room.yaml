@@ -1,0 +1,16 @@
+##
+# Starts cleaning
+#   rooms:
+#     18 -> main floor
+#     21 -> kitchen
+##
+roborock_clean_room:
+  fields:
+    rooms:
+      description: 'The rooms to clean'
+  sequence:
+    - service: vacuum.send_command
+      data_template:
+        entity_id: vacuum.roborock_s50
+        command: app_segment_clean
+        params: {{ rooms }}

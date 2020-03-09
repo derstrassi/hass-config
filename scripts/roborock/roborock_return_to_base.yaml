@@ -1,0 +1,3 @@
+roborock_return_to_base:
+  sequence:
+    - service: vacuum.return_to_base
