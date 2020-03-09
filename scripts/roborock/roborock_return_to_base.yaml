@@ -1,5 +1,9 @@
 roborock_return_to_base:
   sequence:
+    - service: vacuum.pause
+      data:
+        entity_id: vacuum.roborock_s50
+    - delay: '00:00:03'
     - service: vacuum.return_to_base
       data:
         entity_id: vacuum.roborock_s50
