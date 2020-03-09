@@ -21,7 +21,6 @@ input_boolean:
 group:
   settings_view:
     name: Einstellungen
-    view: yes
     icon: mdi:settings
     entities:
       - group.home_assistant

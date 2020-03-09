@@ -25,14 +25,6 @@ binary_sensor:
         value_template: >-
           {{ states("sensor.pool_temp")|float > states("input_number.pool_temp_threshold")|float }}
 
-history_graph:
-  pool:
-    entities:
-      - sensor.pool_temp
-      - switch.pool_filter_pump
-    hours_to_show: 168
-    refresh: 60
-
 input_boolean:
   pool_timer_aktiv:
     initial: on
