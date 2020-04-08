@@ -1,9 +1,5 @@
 all_off:
   sequence:
-    - service: script.sonos_say
-      data_template:
-        message: "Abwesenheitsmodus aktiviert. Auf wiedersehen {{ states.sensor.last_person.state }}."
-    - delay: '00:00:10'
     - service: homeassistant.turn_off
       data:
         entity_id:
