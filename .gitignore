@@ -17,3 +17,4 @@ __pycache__
 /tts
 /.storage
 /.ring_cache.pickle
+custom_components
