@@ -14,6 +14,7 @@ homeassistant:
        trusted_networks:
          - 127.0.0.1
          - 192.168.10.0/24
+         - 192.168.30.0/24
 
 default_config:
 discovery:
@@ -96,17 +97,6 @@ camera:
     port: 2020
     username: !secret TAPO_USERNAME
     password: !secret TAPO_PASSWORD
-  # - platform: mjpeg
-  #   name: arthur_cam_mjpeg
-  #   mjpeg_url: rtsp://192.168.20.62/unicast
-    #extra_arguments: '-c:v h264_omx'
-  # - platform: ffmpeg
-  #   name: camera_hof
-  #   input: -rtsp_transport tcp -i rtsp://192.168.10.115/unicast
-  # - platform: mjpeg
-  #   name: camera_hof
-  #   mjpeg_url: rtsp://192.168.10.115/unicast
-    #extra_arguments: '-c:v h264_omx'
 
 device_tracker:
   - platform: unifi_direct
@@ -125,13 +115,14 @@ homekit:
       - switch
       - media_player
       - script
+      - binary_sensor
 
-emulated_hue:
-  exposed_domains:
-    - switch
-    - light
-    - media_player
-    - script
+# emulated_hue:
+#   exposed_domains:
+#     - switch
+#     - light
+#     - media_player
+#     - script
 
 media_player:
   - platform: emby
@@ -147,10 +138,6 @@ xiaomi_aqara:
       key: !secret XIAOMI_GATEWAY_2_KEY
 
 notify:
-  - name: slack
-    platform: slack
-    api_key: !secret SLACK_API_KEY
-    default_channel: 'automation'
   - platform: webostv
     host: 192.168.10.135
     name: livingroom_tv
