@@ -93,7 +93,7 @@ camera:
     input: -rtsp_transport tcp -i rtsp://192.168.10.161/unicast
   - platform: onvif
     name: Court Camera
-    host: http://192.168.10.171:2020/onvif/device_service
+    host: http://192.168.10.179:2020/onvif/device_service
     port: 2020
     username: !secret TAPO_USERNAME
     password: !secret TAPO_PASSWORD
