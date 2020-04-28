@@ -36,6 +36,9 @@ wake_on_lan:
 
 logger:
   default: info
+  logs:
+    homeassistant.components.homekit: debug
+    pyhap: debug
 
 recorder:
   purge_keep_days: 14
@@ -109,15 +112,17 @@ device_tracker:
     home_id: !secret TADO_HOME_ID
 
 homekit:
-  safe_mode: true
   filter:
-    include_domains:
-      - light
-      - switch
-      - media_player
     include_entities:
-      - binary_sensor.door_window_sensor_158d00014dbac9
-      - binary_sensor.door_window_sensor_158d0001f3a0f0
+      - demo.demo
+  # filter:
+  #   include_domains:
+  #     - light
+  #     - switch
+  #     - media_player
+  #   include_entities:
+  #     - binary_sensor.door_window_sensor_158d00014dbac9
+  #     - binary_sensor.door_window_sensor_158d0001f3a0f0
 
 # emulated_hue:
 #   exposed_domains:
