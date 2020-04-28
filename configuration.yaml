@@ -109,6 +109,7 @@ device_tracker:
     home_id: !secret TADO_HOME_ID
 
 homekit:
+  safe_mode: true
   filter:
     include_domains:
       - light
