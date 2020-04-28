@@ -114,8 +114,9 @@ homekit:
       - light
       - switch
       - media_player
-      - script
-      - binary_sensor
+    include_entities:
+      - binary_sensor.door_window_sensor_158d00014dbac9
+      - binary_sensor.door_window_sensor_158d0001f3a0f0
 
 # emulated_hue:
 #   exposed_domains:
