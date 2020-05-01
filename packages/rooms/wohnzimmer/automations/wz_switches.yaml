@@ -29,12 +29,6 @@ automation:
           entity_id: binary_sensor.wall_switch_both_158d00018337c3
           click_type: both
     action:
-      - service: script.cozy_lights
-      - service: light.turn_on
-        entity_id: light.wz_wand_led
-        data_template:
-          hs_color:
-            - "{{ range(360)|random }}"
-            - "{{ range(80,101)|random }}"
-          brightness_pct: 100
-          transition: 10
+      - service: light.toggle
+        entity_id: light.wz_schreibtisch_led
+

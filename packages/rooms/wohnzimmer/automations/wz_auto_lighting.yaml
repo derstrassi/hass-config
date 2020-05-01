@@ -9,7 +9,7 @@ automation:
         state: 'home'
     action:
       - service: light.turn_on
-        entity_id: switch.wz_lichtkugel
+        entity_id: light.wz_lichtkugel
         data:
           brightness_pct: 55
           transition: 10
@@ -21,3 +21,29 @@ automation:
             - "{{ range(80,101)|random }}"
           brightness_pct: 100
           transition: 10
+      - service: light.turn_on
+        entity_id: light.wz_schreibtisch_led
+        data:
+          brightness_pct: 20
+          transition: 10
+
+  - alias: wz_ambient_auto_off
+    trigger:
+      platform: state
+      entity_id: media_player.lg_tv
+      to: 'off'
+    condition:
+      condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    action:
+      - delay:
+          minutes: 5
+      - service: homeassistant.turn_off
+        entity_id:
+          - light.wz_lichtkugel
+          - light.wz_wand_led
+          - light.wz_schreibtisch_led
+          - switch.wz_light1
+          - switch.wz_light2
+

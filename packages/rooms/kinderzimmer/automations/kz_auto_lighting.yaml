@@ -1,0 +1,21 @@
+automation:
+  - alias: kz_lights_auto_off_light1
+    trigger:
+      - platform: state
+        entity_id: switch.kz_light1
+        to: 'on'
+        for:
+          hours: 2
+    action:
+      service: homeassistant.turn_off
+      entity_id: switch.kz_light1
+  - alias: kz_lights_auto_off_light2
+    trigger:
+      - platform: state
+        entity_id: switch.kz_light2
+        to: 'on'
+        for:
+          hours: 2
+    action:
+      service: homeassistant.turn_off
+      entity_id: switch.kz_light2

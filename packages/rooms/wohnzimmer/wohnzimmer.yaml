@@ -35,9 +35,9 @@ switch:
 light:
   - platform: flux_led
     devices:
-      # 192.168.10.136:
-      #   name: wz_couch_led
-      #   mode: rgbw
+      192.168.10.136:
+        name: wz_schreibtisch_led
+        mode: w
       192.168.10.148:
         name: wz_wand_led
         mode: rgbw
