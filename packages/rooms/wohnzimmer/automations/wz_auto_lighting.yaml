@@ -47,3 +47,30 @@ automation:
           - switch.wz_light1
           - switch.wz_light2
 
+  - alias: wz_watch_tv
+    trigger:
+      platform: state
+      entity_id: media_player.lg_tv
+      to: 'on'
+    condition:
+      condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: light.wz_wand_led
+        data_template:
+          brightness_pct: 50
+          hs_color:
+            - "{{ range(360)|random }}"
+            - "{{ range(80,101)|random }}"
+      - service: homeassistant.turn_on
+        entity_id: light.wz_lichtkugel
+        data:
+          brightness_pct: 10
+      - service: homeassistant.turn_off
+        entity_id:
+          - switch.wz_light1
+          - switch.wz_light2
+
+

@@ -7,8 +7,17 @@ automation:
           entity_id: binary_sensor.wall_switch_left_158d00018337c3
           click_type: single
     action:
-      service: switch.toggle
-      entity_id: switch.wz_light1
+      - service: homeassistant.toggle
+        entity_id: switch.wz_light1
+      - delay:
+          seconds: 1
+      - condition: state
+        entity_id: switch.wz_light1
+        state: 'on'
+      - service: homeassistant.turn_off
+        entity_id:
+          - light.wz_wand_led
+          - light.wz_lichtkugel
 
   - alias: wz_right_single
     trigger:
