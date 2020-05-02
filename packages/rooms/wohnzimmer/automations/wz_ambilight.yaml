@@ -4,15 +4,23 @@ automation:
       - platform: state
         entity_id: media_player.lg_tv
         to: 'playing'
+      - platform: state
+        entity_id: media_player.lg_tv
+        to: 'on'
       - platform: sun
         event: sunset
     condition:
       - condition: state
         entity_id: sun.sun
         state: 'below_horizon'
-      - condition: state
-        entity_id: media_player.lg_tv
-        state: 'on'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: media_player.lg_tv
+            state: 'on'
+          - condition: state
+            entity_id: media_player.lg_tv
+            state: 'playing'
     action:
       - service: homeassistant.turn_on
         entity_id: switch.wz_ambilight
