@@ -9,4 +9,13 @@
         message: "Home Assistant wurde neu gestartet"
     - service: frontend.set_theme
       data:
-        name: slate
+        name: ios-light-mode
+
+- alias: 'Set dark theme for the night'
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    - service: frontend.set_theme
+      data:
+        name: ios-dark-mode
