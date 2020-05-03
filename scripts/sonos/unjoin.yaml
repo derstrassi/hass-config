@@ -1,0 +1,8 @@
+sonos_unjoin:
+  fields:
+    entity_id:
+      description: 'Speaker to unjoin'
+  sequence:
+    - service: sonos.unjoin
+      data_template:
+        entity_id: '{{ entity_id }}'

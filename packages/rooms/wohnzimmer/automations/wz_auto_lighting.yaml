@@ -57,7 +57,7 @@ automation:
       entity_id: sun.sun
       state: 'below_horizon'
     action:
-      - service: homeassistant.turn_on
+      - service: light.turn_on
         entity_id: light.wz_wand_led
         data_template:
           brightness_pct: 50

@@ -19,8 +19,15 @@ cozy_lights:
     - service: light.turn_on
       entity_id: light.wz_lichtkugel
       data:
-        brightness_pct: 55
+        brightness_pct: 50
         transition: 10
+    - service: light.turn_on
+      entity_id: light.wz_wand_led
+      data_template:
+        brightness_pct: 50
+        hs_color:
+          - "{{ range(360)|random }}"
+          - "{{ range(80,101)|random }}"
     - service: homeassistant.turn_off
       entity_id:
         - switch.floor_light_ceiling

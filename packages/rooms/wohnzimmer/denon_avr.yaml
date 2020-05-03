@@ -1,8 +1,6 @@
 media_player:
   - platform: denonavr
     host: 192.168.10.155
-    zones:
-      - zone: Zone2
 
 switch:
   - platform: mqtt
@@ -25,9 +23,6 @@ automation:
       - platform: state
         entity_id: media_player.denon_avr_x1100w
         to: 'playing'
-    condition:
-      - condition: time
-        after: '08:00:00'
     action:
       - service: homeassistant.turn_on
         entity_id: switch.wz_subwoofer

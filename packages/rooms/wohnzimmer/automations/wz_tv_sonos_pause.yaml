@@ -1,0 +1,15 @@
+automation:
+  - alias: wz_tv_sonos_pause
+    trigger:
+      - platform: state
+        entity_id: media_player.lg_tv
+        to: 'on'
+        from: 'off'
+    action:
+      - service: script.sonos_unjoin
+        data:
+          entity_id: media_player.symfonisk_wohnzimmer
+      - delay:
+          seconds: 3
+      - service: media_player.media_pause
+        entity_id: media_player.symfonisk_wohnzimmer
