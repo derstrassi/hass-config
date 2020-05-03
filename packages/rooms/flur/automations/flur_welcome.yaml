@@ -19,11 +19,11 @@ automation:
         data_template:
           title: "Tür wurde geöffnet"
           message: "{{ states.sensor.last_person.state }} hat das Haus betreten."
-      - condition: time
-        before: '20:00:00'
-      - delay: '00:00:05'
-      - service: script.sonos_say
-        data_template:
-          message: "Hallo Arthur Straßer. Schön das du wieder Zuhause bist."
-      - delay: '00:00:15'
-      - service: script.sonos_play
+      # - condition: time
+      #   before: '20:00:00'
+      # - delay: '00:00:05'
+      # - service: script.sonos_say
+      #   data_template:
+      #     message: "Hallo Arthur Straßer. Schön das du wieder Zuhause bist."
+      # - delay: '00:00:15'
+      # - service: script.sonos_play
