@@ -62,8 +62,8 @@ recorder:
 #       - name: Urlaub
 #         calendar: Family
 #         search: 'Urlaub'
-
-themes: !include_dir_merge_named themes
+frontend:
+  themes: !include_dir_merge_named themes
 
 tts:
   - platform: google_translate
