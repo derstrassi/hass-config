@@ -6,7 +6,7 @@ automation:
       to: 'home'
     action:
       - service: climate.set_hvac_mode
-        entity_id: switch.toilett_floor_heating
+        entity_id: climate.toilett_floor_heating
         data:
           hvac_mode: auto
 
@@ -34,14 +34,14 @@ automation:
       - service: switch.turn_off
         entity_id: switch.toilett_floor_heating
 
-  - alias: Turn toilett heating off when window closed
+  - alias: Turn toilett heating on when window closed
     trigger:
       platform: state
       entity_id: binary_sensor.door_window_sensor_158d0001f3a0f0
       to: 'off'
     action:
       - service: climate.set_hvac_mode
-        entity_id: switch.toilett_floor_heating
+        entity_id: climate.toilett_floor_heating
         data:
           hvac_mode: auto
 
