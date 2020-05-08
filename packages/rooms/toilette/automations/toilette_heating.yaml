@@ -1,0 +1,14 @@
+automation:
+  - alias: Turn toilett heating off when window opened
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001f3a0f0
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: switch.toilett_floor_heating
+        state: 'on'
+    action:
+      - service: switch.turn_off
+        entity_id: switch.toilett_floor_heating
+

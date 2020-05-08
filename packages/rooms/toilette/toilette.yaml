@@ -1,3 +1,10 @@
+climate:
+  - platform: floureon
+    name: toilett_floor_heating
+    mac: !secret BEOK_THERMOSTAT_MAC
+    host: 192.168.10.183
+    use_external_temp: false
+
 switch:
   - platform: mqtt
     name: toilett_light
@@ -10,6 +17,14 @@ switch:
     payload_available: Online
     payload_not_available: Offline
 
+  - platform: floureon
+    name: toilett_floor_heating
+    mac: !secret BEOK_THERMOSTAT_MAC
+    host: 192.168.10.183
+    turn_off_mode: min_temp
+    turn_on_mode: max_temp
+    use_external_temp: false
+
 sensor:
   - platform: template
     sensors:
@@ -18,3 +33,8 @@ sensor:
         icon_template: 'mdi:clock-alert'
         value_template: '{{ as_timestamp(states.binary_sensor.motion_sensor_158d000113dee1.last_changed) | timestamp_custom("%a %d %b %H:%M") }}'
 
+  - platform: template
+    sensors:
+      toilett_temperature:
+        value_template: '{{ states.climate.toilett_floor_heating.attributes.current_temperature if states.climate.toilett_floor_heating else "unavailable" }}'
+        unit_of_measurement: °C
