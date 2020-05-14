@@ -171,6 +171,7 @@ webostv:
     data:
       mac: !secret LG_TV_MAC
 
+alexa: !include alexa.yaml
 automation: !include_dir_merge_list automations
 group: !include_dir_merge_named groups
 ios: !include ios.yaml

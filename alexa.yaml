@@ -1,0 +1,14 @@
+smart_home:
+  locale: de-DE
+  endpoint: https://api.eu.amazonalexa.com/v3/events
+  client_id: !secret ALEXA_CLIENT_ID
+  client_secret: !secret ALEXA_CLIENT_SECRET
+  filter:
+    include_domains:
+      - light
+      - switch
+  entity_config:
+    switch.bath_light1:
+      name: "Badezimmer Licht"
+      description: "Das Licht im Badezimmer"
+      display_categories: LIGHT
