@@ -12,7 +12,6 @@ homeassistant:
      - type: homeassistant
      - type: trusted_networks
        trusted_networks:
-         - 127.0.0.1
          - 192.168.10.0/24
          - 192.168.30.0/24
 
@@ -20,8 +19,10 @@ default_config:
 discovery:
 
 http:
-  ip_ban_enabled: false
-  login_attempts_threshold: 5
+  base_url: 'https://hass.derstrassi.net'
+  use_x_forwarded_for: True
+  trusted_proxies:
+    - 127.0.0.1
 
 downloader:
   download_dir: 'www/downloads'
