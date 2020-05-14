@@ -1,34 +1,138 @@
+input_boolean:
+  toilett_heating_timer_active:
+    initial: on
+  toilett_heating_open_window_detection:
+    initial: on
+
+input_datetime:
+  toilett_heating_timer_1_start:
+    has_time: true
+    #initial: '06:00'
+  toilett_heating_timer_1_end:
+    has_time: true
+    #initial: '09:00'
+  toilett_heating_timer_2_start:
+    has_time: true
+    #initial: '16:00'
+  toilett_heating_timer_2_end:
+    has_time: true
+    #initial: '22:00'
+
+input_number:
+  toilett_heating_floor_max_temp:
+    min: 21.0
+    max: 40.0
+    step: 1.0
+    unit_of_measurement: '°C'
+
 automation:
+  ### START: Timers ###
+  - alias: Toilett floor heating timer start
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.toilett_heating_timer_1_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.toilett_heating_timer_2_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+    condition:
+      - condition: state
+        entity_id: input_boolean.toilett_heating_timer_active
+        state: 'on'
+      - condition: state
+        entity_id: person.familie
+        state: 'home'
+      - condition: template
+        value_template: >-
+          {{ is_state('input_boolean.toilett_heating_open_window_detection', 'off') or (is_state('input_boolean.toilett_heating_open_window_detection', 'on') and is_state('binary_sensor.door_window_sensor_158d0001f3a0f0', 'off')) }}
+    action:
+      - service: switch.turn_on
+        entity_id: switch.toilett_floor_heating
+
+  - alias: Toilett floor heating timer end
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.toilett_heating_timer_1_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+      - platform: template
+        value_template: "{{ states('sensor.time') == (states.input_datetime.toilett_heating_timer_2_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+    action:
+      - service: switch.turn_off
+        entity_id: switch.toilett_floor_heating
+  ### END: Timers ###
+
+  ### START: Control display light ###
+  - alias: Toilett floor heating display control
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d000113dee1
+        to: 'on'
+    action:
+      - service: floureon.enable_display
+        entity_id: climate.toilett_floor_heating
+  ### END: Control display light ###
+
+
+  ### START: Temperature watchdog ###
+  - alias: Toilett floor heating temperature watchdog
+    trigger:
+      - platform: template
+        value_template: >-
+          {{ states("sensor.temperature_158d00018734bb")|float > states("input_number.toilett_heating_floor_max_temp")|float }}
+    action:
+      - service: switch.turn_off
+        entity_id: switch.toilett_floor_heating
+  ### END: Temperature watchdog ###
+
+  ### START: Control Home/Away  ###
   - alias: Turn toilett heating on when home
     trigger:
-      platform: state
-      entity_id: person.familie
-      to: 'home'
+      - platform: state
+        entity_id: person.familie
+        to: 'home'
+    action:
+      - service: switch.turn_on
+        entity_id: switch.toilett_floor_heating
+      - condition: or
+        conditions:
+          # Window open?
+          - condition: template
+            value_template: >-
+              {{ is_state('input_boolean.toilett_heating_open_window_detection', 'on') and is_state('binary_sensor.door_window_sensor_158d0001f3a0f0', 'off') }}
+          # Heating time slot?
+          - condition: and
+            conditions:
+              - condition: template
+                value_template: "{{ states('sensor.time') > (states.input_datetime.toilett_heating_timer_1_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+              - condition: template
+                value_template: "{{ states('sensor.time') < (states.input_datetime.toilett_heating_timer_2_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+          - condition: and
+            conditions:
+              - condition: template
+                value_template: "{{ states('sensor.time') > (states.input_datetime.toilett_heating_timer_2_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+              - condition: template
+                value_template: "{{ states('sensor.time') < (states.input_datetime.toilett_heating_timer_1_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+      - service: switch.turn_off
+        entity_id: switch.toilett_floor_heating
+
+  - alias: Turn toilett heating off when nobody is home
+    trigger:
+      - platform: state
+        entity_id: person.familie
+        to: 'not_home'
     action:
       - service: climate.set_hvac_mode
         entity_id: climate.toilett_floor_heating
         data:
-          hvac_mode: auto
+          hvac_mode: 'off'
+  ### END: Control Home/Away  ###
 
-  - alias: Turn toilett heating off when nobody is home
-    trigger:
-      platform: state
-      entity_id: person.familie
-      to: 'not_home'
-    action:
-      - service: climate.set_hvac_mode
-        entity_id: switch.toilett_floor_heating
-        data:
-          hvac_mode: off
-
+  ### START: Shutdown heating when window was openend  ###
   - alias: Turn toilett heating off when window opened
     trigger:
-      platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001f3a0f0
-      to: 'on'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001f3a0f0
+        to: 'on'
     condition:
       - condition: state
-        entity_id: switch.toilett_floor_heating
+        entity_id: input_boolean.toilett_heating_open_window_detection
         state: 'on'
     action:
       - service: switch.turn_off
@@ -36,12 +140,33 @@ automation:
 
   - alias: Turn toilett heating on when window closed
     trigger:
-      platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001f3a0f0
-      to: 'off'
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001f3a0f0
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: input_boolean.toilett_heating_open_window_detection
+        state: 'on'
+      - condition: template
+        value_template: >-
+          {{ states("sensor.temperature_158d00018734bb")|float < states("input_number.toilett_heating_floor_max_temp")|float }}
+      - condition: or
+        conditions:
+          - condition: and
+            conditions:
+              - condition: template
+                value_template: "{{ states('sensor.time') > (states.input_datetime.toilett_heating_timer_1_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+              - condition: template
+                value_template: "{{ states('sensor.time') < (states.input_datetime.toilett_heating_timer_1_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+          - condition: and
+            conditions:
+              - condition: template
+                value_template: "{{ states('sensor.time') > (states.input_datetime.toilett_heating_timer_2_start.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+              - condition: template
+                value_template: "{{ states('sensor.time') < (states.input_datetime.toilett_heating_timer_2_end.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
     action:
-      - service: climate.set_hvac_mode
-        entity_id: climate.toilett_floor_heating
-        data:
-          hvac_mode: auto
+      - service: switch.turn_on
+        entity_id: switch.toilett_floor_heating
+  ### END: Shutdown heating when window was openend  ###
+
 
