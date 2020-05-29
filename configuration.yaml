@@ -35,11 +35,12 @@ hacs:
 
 wake_on_lan:
 
-logger:
-  default: info
-  logs:
-    homeassistant.components.homekit: debug
-    pyhap: debug
+# logger:
+#   default: info
+#   logs:
+#     homeassistant.components.alexa: debug
+#     homeassistant.components.homekit: debug
+#     pyhap: debug
 
 recorder:
   purge_keep_days: 7
@@ -120,18 +121,6 @@ homekit:
     include_entities:
       - binary_sensor.door_window_sensor_158d00014dbac9
       - binary_sensor.door_window_sensor_158d0001f3a0f0
-
-# emulated_hue:
-#   exposed_domains:
-#     - switch
-#     - light
-#     - media_player
-#     - script
-
-media_player:
-  - platform: emby
-    host: 192.168.10.126
-    api_key: !secret EMBY_API_KEY
 
 xiaomi_aqara:
   discovery_retry: 10
