@@ -14,6 +14,7 @@ homeassistant:
        trusted_networks:
          - 192.168.10.0/24
          - 192.168.30.0/24
+  external_url: !secret URL_HASS
 
 default_config:
 discovery:
