@@ -18,8 +18,10 @@ homeassistant:
 default_config:
 discovery:
 
+custom_icons:
+
 http:
-  base_url: 'https://hass.derstrassi.net'
+  base_url: !secret URL_HASS
   use_x_forwarded_for: True
   trusted_proxies:
     - 127.0.0.1
