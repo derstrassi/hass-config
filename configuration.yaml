@@ -85,10 +85,8 @@ mqtt:
   password: !secret MQTT_PASSWORD
 
 nzbget:
-  host: 192.168.10.130
+  host: nzbget.local
   port: 6789
-  username: !secret NZBGET_USERNAME
-  password: !secret NZBGET_PASSWORD
 
 camera:
   - platform: ffmpeg
