@@ -161,6 +161,43 @@ webostv:
     data:
       mac: !secret LG_TV_MAC
 
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: !secret URL_HASSCONFIGURATOR
+    require_admin: true
+  plex:
+    title: Plex
+    icon: si:plex
+    url: !secret URL_PLEX
+    require_admin: true
+  tautulli:
+    title: Tautulli
+    icon: mdi:filmstrip
+    url: !secret URL_TAUTULLI
+    require_admin: true
+  nzbget:
+    title: NZBGet
+    icon: mdi:arrow-bottom-circle
+    url: !secret URL_NZBGET
+    require_admin: true
+  radarr:
+    title: Radarr
+    icon: custom:radarr
+    url: !secret URL_RADARR
+    require_admin: true
+  sonarr:
+    title: Sonarr
+    icon: custom:radarr
+    url: !secret URL_SONARR
+    require_admin: true
+  zoneminder:
+    title: ZoneMinder
+    icon: mdi:video
+    url: !secret URL_ZONEMINDER
+    require_admin: true
+
 alexa: !include alexa.yaml
 automation: !include_dir_merge_list automations
 group: !include_dir_merge_named groups
