@@ -1,14 +1,112 @@
-smart_home:
-  locale: de-DE
-  endpoint: https://api.eu.amazonalexa.com/v3/events
-  client_id: !secret ALEXA_CLIENT_ID
-  client_secret: !secret ALEXA_CLIENT_SECRET
-  filter:
-    include_domains:
-      - light
-      - switch
-  entity_config:
-    switch.bath_light1:
-      name: "Badezimmer Licht"
-      description: "Das Licht im Badezimmer"
-      display_categories: LIGHT
+  smart_home:
+    endpoint: 'https://api.eu.amazonalexa.com/v3/events'
+    client_id: !secret ALEXA_CLIENT_ID
+    client_secret: !secret ALEXA_CLIENT_SECRET
+    filter:
+      include_domains:
+        - light
+        - switch
+        - climate
+        - camera
+        - vacuum
+        - script
+      include_entities:
+        - media_player.lg_tv
+      exclude_entities:
+        - switch.wz_subwoofer
+        - switch.klingel
+        - light.sz_ks_led1
+        - light.sz_ks_led2
+    entity_config:
+      ### Vacuum
+      vacuum.roborock_s50:
+        name: Staubsauger
+        description: Der Roborock Staugroboter
+      ### Media Player
+      media_player.lg_tv:
+        name: TV
+        description: Der LG Fernseher im Wohnzimmer
+      media_player.symfonisk_kueche:
+        name: Lautsprecher Küche
+        description: IKEA Symfonisk Lautsprecher in der Küche
+      media_player.symfonisk_wohnzimmer:
+        name: Lautsprecher Wohnzimmer
+        description: IKEA Symfonisk Lautsprecher im Wohnzimmer
+      ### Flur
+      light.flur_stehlampe:
+        name: Stehlampe
+        description: Die Stehlampe im FLur
+      switch.floor_light_wall:
+        name: Wandbeleuchtung
+        description: Die Wandbeleuchtung im Flur
+      switch.door_opener:
+        name: Tür-Öffner
+        description: Der Tür-Öffner für die Haustür
+      switch.floor_light_ceiling:
+        name: Flur
+        description: Das Licht im Flur
+      ### Küche
+      switch.kueche_licht:
+        name: Küche
+        description: Das Licht in der Küche
+        display_categories: LIGHT
+      ### Badezimmer
+      switch.bath_light1:
+        name: Badezimmer
+        description: Das Licht im Badezimmer
+        display_categories: LIGHT
+      switch.bath_light2:
+        name: Badezimmer Spiegel
+        description: Das Licht des Spiegels im Badezimmer
+        display_categories: LIGHT
+      switch.toilett_light:
+        name: Toilette
+        description: Das Licht in der Toilette
+        display_categories: LIGHT
+      ### Wohnzimmer
+      switch.wz_ambilight:
+        name: Ambilight
+        description: Ambilight im Wohnzimmer
+      switch.wz_light1:
+        name: TV-Bereich
+        description: Das Licht im Wohnzimmer im TV-Bereich
+        display_categories: LIGHT
+      switch.wz_light2:
+        name: Esszimmer
+        description: Das Licht im Wohnzimmer im Essbereich
+        display_categories: LIGHT
+      light.wz_wand_led:
+        name: Wandbeleuchtung
+        description: Die Wandbeleuchtung im Wohnzimmer
+      light.wz_schreibtisch_led:
+        name: Schreibtisch-Beleuchtung
+        description: Die Beleuchtung vom Schreibtisch im Wohnzimmer
+      light.wz_lichtkugel:
+        name: Lichtkugel
+        description: Die Lichtkugel im Wohnzimmer
+      ### Kinderzimmer
+      switch.kz_light1:
+        name: Spielbereich
+        description: Die Beleuchtung vom Spielbereich im Kinderzimmer
+        display_categories: LIGHT
+      switch.kz_light2:
+        name: Schlafbereich
+        description: Das Beleuchtung vom Schlafbereich im Kinderzimmer
+        display_categories: LIGHT
+      switch.plug_158d0001530b1b:
+        name: Aquarium
+        description: Die Beleuchtung vom Aquarium im Kinderzimmer
+      ### Schlafzimmer
+      light.nachttisch_rechts:
+        name: Nachttisch-Lampe Rechts
+        description: Marias Nachttisch-Lampe
+      light.nachttisch_links:
+        name: Nachttisch-Lampe Links
+        description: Dennis Nachttisch-Lampe
+      light.sz_ks_ambient_lights:
+        name: Kleiderschrank
+        description: Die Beleuchtung vom Kleiderschrank im Schlafzimmer
+      ### Aussen
+      switch.pool_filter_pump:
+        name: Filterpumpe
+        description: Die Pool Filterpumpe
