@@ -65,6 +65,21 @@ automation:
           brightness_pct: 1
           transition: 5
 
+  - alias: flur_stehlampe_auto_off
+    trigger:
+      platform: state
+      entity_id: light.flur_stehlampe
+      to: 'on'
+      for:
+        hours: 1
+    condition:
+      - condition: state
+        entity_id: binary_sensor.motion_sensor_158d0001e562ad
+        state: 'off'
+    action:
+      - service: light.turn_off
+        entity_id: light.flur_stehlampe
+
   - alias: flur_stehlampe_off_when_switched
     trigger:
       platform: state

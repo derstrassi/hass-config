@@ -39,5 +39,5 @@ automation:
           click_type: both
     action:
       - service: light.toggle
-        entity_id: light.wz_schreibtisch_led
+        entity_id: light.wz_lichtkugel
 

@@ -1,4 +1,33 @@
 automation:
+  - alias: sz_nightlights_on
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0002ec8058
+      to: 'on'
+    action:
+      service: light.turn_on
+      entity_id:
+        - light.nachttisch_links
+        - light.nachttisch_rechts
+
+  - alias: sz_nightlights_auto_off
+    trigger:
+      - platform: state
+        entity_id: light.nachttisch_links
+        to: 'on'
+        for:
+          hours: 1
+      - platform: state
+        entity_id: light.nachttisch_rechts
+        to: 'on'
+        for:
+          hours: 1
+    action:
+      service: light.turn_off
+      entity_id:
+        - light.nachttisch_links
+        - light.nachttisch_rechts
+
   - alias: sz_lights_auto_off
     trigger:
       platform: state
