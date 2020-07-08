@@ -124,14 +124,6 @@ homekit:
       - binary_sensor.door_window_sensor_158d00014dbac9
       - binary_sensor.door_window_sensor_158d0001f3a0f0
 
-xiaomi_aqara:
-  discovery_retry: 10
-  gateways:
-    - mac: !secret XIAOMI_GATEWAY_1_MAC
-      key: !secret XIAOMI_GATEWAY_1_KEY
-    - mac: !secret XIAOMI_GATEWAY_2_MAC
-      key: !secret XIAOMI_GATEWAY_2_KEY
-
 notify:
   - platform: webostv
     host: 192.168.10.135
