@@ -28,7 +28,7 @@ script:
       - service: homeassistant.restart
 
 shell_command:
-  git_pull: /bin/sh /root/.homeassistant/shell_scripts/git_pull.sh
+  git_pull: /bin/sh /home/hass/homeassistant/shell_scripts/git_pull.sh
 
 automation:
   - alias: git_push_webhook
