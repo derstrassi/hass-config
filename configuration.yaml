@@ -19,8 +19,6 @@ homeassistant:
 default_config:
 discovery:
 
-custom_icons:
-
 http:
   use_x_forwarded_for: True
   trusted_proxies:
@@ -95,12 +93,6 @@ camera:
   - platform: ffmpeg
     name: arthur_cam
     input: -rtsp_transport tcp -i rtsp://192.168.10.161/unicast
-  - platform: onvif
-    name: Court Camera
-    host: http://192.168.10.179:2020/onvif/device_service
-    port: 2020
-    username: !secret TAPO_USERNAME
-    password: !secret TAPO_PASSWORD
 
 device_tracker:
   - platform: unifi_direct
