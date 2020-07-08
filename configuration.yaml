@@ -104,16 +104,16 @@ device_tracker:
     password: !secret TADO_PASSWORD
     home_id: !secret TADO_HOME_ID
 
-homekit:
-  name: HA Bridge
-  filter:
-    include_domains:
-      - light
-      - switch
-      - media_player
-    include_entities:
-      - binary_sensor.door_window_sensor_158d00014dbac9
-      - binary_sensor.door_window_sensor_158d0001f3a0f0
+# homekit:
+#   name: HA Bridge
+#   filter:
+#     include_domains:
+#       - light
+#       - switch
+#       - media_player
+#     include_entities:
+#       - binary_sensor.door_window_sensor_158d00014dbac9
+#       - binary_sensor.door_window_sensor_158d0001f3a0f0
 
 notify:
   - platform: webostv
