@@ -21,26 +21,6 @@ switch:
     payload_available: Online
     payload_not_available: Offline
 
-timer:
-  klingel_cycle:
-    duration: '00:00:05'
-  # return_home:
-  #   duration: '00:30:00'
-
-script:
-  doorbell:
-    sequence:
-      - service: xiaomi_aqara.play_ringtone
-        data_template:
-          gw_mac: !secret XIAOMI_GATEWAY_1_MAC
-          ringtone_id: '{{ ringtone_id }}'
-          ringtone_vol: >-
-            {%- if states('sensor.time') > '05:59' and states('sensor.time') < '20:00' -%}
-              35
-            {%- else -%}
-              2
-            {%- endif -%}
-
 automation:
   - alias: doorbell_open_door
     trigger:
@@ -52,42 +32,12 @@ automation:
       - service: switch.turn_on
         entity_id: switch.door_opener
 
-  # - alias: start_return_home_timer
-  #   trigger:
-  #     platform: state
-  #     entity_id: person.dennis_strasser
-  #     to: 'home'
-  #   action:
-  #     - service: timer.start
-  #       entity_id: timer.return_home
-
-  # - alias: doorbell_ask_for_door_open
-  #   trigger:
-  #     platform: state
-  #     entity_id: person.dennis_strasser
-  #     to: 'home'
-  #   action:
-  #     - service: notify.mobile_app_iphone_von_dennis
-  #       data:
-  #         title: 'Wilkommen Zuhause!'
-  #         message: 'Möchtest du die Tür öffnen?'
-  #         data:
-  #           push:
-  #             category: 'klingel'
-
   - alias: doorbell_notify
     trigger:
       platform: state
       entity_id: switch.klingel
       to: 'on'
-    condition:
-      # prevent multiple consecutive presses
-      - condition: state
-        entity_id: timer.klingel_cycle
-        state: 'idle'
     action:
-      - service: timer.start
-        entity_id: timer.klingel_cycle
       - service: script.doorbell
         data:
           ringtone_id: 10
