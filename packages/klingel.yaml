@@ -21,6 +21,29 @@ switch:
     payload_available: Online
     payload_not_available: Offline
 
+script:
+  doorbell:
+    alias: Doorbell
+    sequence:
+    - choose:
+      - conditions:
+        - condition: time
+          after: '5:59'
+          before: '20:00'
+        sequence:
+        - service: xiaomi_aqara.play_ringtone
+          data:
+            gw_mac: 286c0788a9dd
+            ringtone_id: '{{ ringtone_id }}'
+            ringtone_vol: 35
+      default:
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: 286c0788a9dd
+          ringtone_id: '{{ ringtone_id }}'
+          ringtone_vol: 2
+    mode: single
+
 automation:
   - alias: doorbell_open_door
     trigger:
