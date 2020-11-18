@@ -65,10 +65,6 @@ tts:
   - platform: google_translate
     language: 'de'
 
-tado:
-  username: !secret TADO_USERNAME
-  password: !secret TADO_PASSWORD
-
 mqtt:
   # discovery: true
   # discovery_prefix: homeassistant
@@ -77,15 +73,6 @@ mqtt:
   client_id: !secret MQTT_CLIENT_ID
   username: !secret MQTT_USERNAME
   password: !secret MQTT_PASSWORD
-
-nzbget:
-  host: nzbget.local
-  port: 6789
-
-camera:
-  - platform: ffmpeg
-    name: arthur_cam
-    input: -rtsp_transport tcp -i rtsp://192.168.10.161/unicast
 
 device_tracker:
   - platform: unifi_direct
@@ -182,5 +169,5 @@ automation old: !include_dir_merge_list automations
 group: !include_dir_merge_named groups
 ios: !include ios.yaml
 script: !include scripts.yaml
-script_old: !include_dir_merge_named scripts
+script old: !include_dir_merge_named scripts
 sensor: !include_dir_merge_list sensor
