@@ -65,15 +65,6 @@ tts:
   - platform: google_translate
     language: 'de'
 
-mqtt:
-  # discovery: true
-  # discovery_prefix: homeassistant
-  broker: 192.168.10.150
-  port: 1883
-  client_id: !secret MQTT_CLIENT_ID
-  username: !secret MQTT_USERNAME
-  password: !secret MQTT_PASSWORD
-
 device_tracker:
   - platform: unifi_direct
     host: 192.168.99.11
