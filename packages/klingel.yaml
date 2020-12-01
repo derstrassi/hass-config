@@ -1,26 +1,3 @@
-switch:
-  - platform: mqtt
-    name: door_opener
-    command_topic: cmnd/floor/light/POWER2
-    state_topic: stat/floor/light/RESULT
-    value_template: '{{value_json.POWER2}}'
-    payload_off: 'OFF'
-    payload_on: 'ON'
-    availability_topic: tele/floor/light/LWT
-    payload_available: Online
-    payload_not_available: Offline
-
-  - platform: mqtt
-    name: klingel
-    command_topic: cmnd/floor/light/POWER3
-    state_topic: stat/floor/light/RESULT
-    value_template: '{{value_json.POWER3}}'
-    payload_off: 'OFF'
-    payload_on: 'ON'
-    availability_topic: tele/floor/light/LWT
-    payload_available: Online
-    payload_not_available: Offline
-
 script:
   doorbell:
     alias: Doorbell
@@ -44,45 +21,28 @@ script:
           ringtone_vol: 2
     mode: single
 
-automation:
-  - alias: doorbell_open_door
-    trigger:
-      platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: OPEN_DOOR
-    action:
-      - service: switch.turn_on
-        entity_id: switch.door_opener
+# automation:
+#   - alias: doorbell_open_door
+#     trigger:
+#       platform: event
+#       event_type: ios.notification_action_fired
+#       event_data:
+#         actionName: OPEN_DOOR
+#     action:
+#       - service: switch.turn_on
+#         entity_id: switch.door_opener
 
-  - alias: doorbell_notify
-    trigger:
-      platform: state
-      entity_id: switch.klingel
-      to: 'on'
-    action:
-      - service: script.doorbell
-        data:
-          ringtone_id: 10
-      - service: notify.livingroom_tv
-        data:
-          message: 'Klingel: Haustür unten'
-          data:
-            icon: '/root/.homeassistant/www/icons/baseline-notifications_active.png'
-      # - service: camera.snapshot
-      #   entity_id: camera.haustur
-      #   data:
-      #     filename: '/root/.homeassistant/www/downloads/ring/snapshots/{{ states("input_text.ring_random") }}.jpg'
-      # - delay:
-      #     seconds: 5
-      - service: notify.all_ios_devices
-        data_template:
-          title: 'Klingeling...'
-          message: 'Jemand wartet an der Tür!'
-          data:
-            # url: https://google.de # ring app url, have to reverse-engineer
-            push:
-              category: klingel
-            # attachment:
-            #   url: 'https://hass.derstrassi.net/local/downloads/ring/snapshots/{{ states("input_text.ring_random") }}.jpg'
-            #   content-type: jpg
+#   - alias: doorbell_notify
+#     trigger:
+#       platform: state
+#       entity_id: switch.klingel
+#       to: 'on'
+#     action:
+#       - service: script.doorbell
+#         data:
+#           ringtone_id: 10
+#       - service: notify.livingroom_tv
+#         data:
+#           message: 'Klingel: Haustür unten'
+#           data:
+#             icon: '/root/.homeassistant/www/icons/baseline-notifications_active.png'

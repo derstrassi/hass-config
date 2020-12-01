@@ -6,16 +6,6 @@ climate:
     use_external_temp: false
 
 switch:
-  - platform: mqtt
-    name: toilett_light
-    command_topic: cmnd/toilett/light/POWER
-    state_topic: stat/toilett/light/RESULT
-    value_template: '{{value_json.POWER}}'
-    payload_off: 'OFF'
-    payload_on: 'ON'
-    availability_topic: tele/toilett/light/LWT
-    payload_available: Online
-    payload_not_available: Offline
 
   - platform: floureon
     name: toilett_floor_heating
